@@ -10,6 +10,7 @@ export const Hero: React.FC = () => {
       <div className="hero-bg-video-wrapper" aria-hidden="true">
         <video
           src="/video/VN20261109_081100.mp4"
+          poster="/images/campaign-video-poster.jpg"
           autoPlay
           loop
           muted

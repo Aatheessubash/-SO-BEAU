@@ -144,6 +144,7 @@ export const CampaignVideoSection: React.FC = () => {
           <video
             ref={videoRef}
             src="/video/VN20261109_081100.mp4"
+            poster="/images/campaign-video-poster.jpg"
             className="campaign-video-player"
             autoPlay
             loop

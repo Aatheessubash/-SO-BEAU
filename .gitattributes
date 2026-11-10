@@ -1,1 +1,1 @@
-public/video/VN20261109_081100.mp4 filter=lfs diff=lfs merge=lfs -text
+public/video/VN20261109_081100.mp4 -filter -diff -merge -text
