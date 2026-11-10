@@ -1,0 +1,276 @@
+@use '../variables' as *;
+
+.quickview-modal-content {
+  background-color: $color-white;
+  width: 100%;
+  max-width: 860px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: $shadow-elevated;
+  animation: fadeInUp 300ms ease forwards;
+
+  .quickview-close-btn {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    z-index: 10;
+    color: $color-charcoal;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    padding: 0.35rem;
+    transition: all $transition-fast;
+
+    &:hover {
+      background: $color-charcoal;
+      color: $color-white;
+    }
+  }
+
+  .quickview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+
+    @media (max-width: $bp-tablet) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // Left gallery
+  .quickview-gallery {
+    padding: 2rem;
+    background-color: $color-ivory;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .main-image-wrap {
+      width: 100%;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .quickview-thumbnails {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+
+      .thumb-btn {
+        width: 60px;
+        height: 75px;
+        border: 1px solid transparent;
+        overflow: hidden;
+        opacity: 0.6;
+        transition: all $transition-fast;
+
+        &.active, &:hover {
+          opacity: 1;
+          border-color: $color-charcoal;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  // Right info
+  .quickview-info {
+    padding: 2.5rem 2.5rem 2.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    @media (max-width: $bp-tablet) {
+      padding: 0 2rem 2rem;
+    }
+
+    .quickview-title {
+      font-size: 1.75rem;
+      font-family: $font-serif;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .quickview-rating-row {
+      display: flex;
+      align-items: center;
+    }
+
+    .quickview-headline {
+      font-size: 0.92rem;
+      color: $color-charcoal-light;
+      line-height: 1.55;
+    }
+
+    .option-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+
+      .option-header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .option-label {
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: $color-charcoal;
+
+        strong {
+          color: $color-charcoal;
+        }
+      }
+
+      .size-guide-link {
+        font-size: 0.72rem;
+        text-decoration: underline;
+        color: $color-grey;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+
+        &:hover {
+          color: $color-charcoal;
+        }
+      }
+    }
+
+    .color-swatches-row {
+      display: flex;
+      gap: 0.65rem;
+
+      .color-swatch-btn {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        padding: 2px;
+        border: 1px solid transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &.selected {
+          border-color: $color-charcoal;
+        }
+
+        .swatch-inner {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+
+    .size-chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+
+      .size-chip-btn {
+        min-width: 42px;
+        height: 38px;
+        padding: 0 0.75rem;
+        font-size: 0.78rem;
+        font-weight: 600;
+        border: 1px solid $color-border;
+        background-color: $color-white;
+        color: $color-charcoal;
+        transition: all $transition-fast;
+
+        &:hover {
+          border-color: $color-charcoal;
+        }
+
+        &.selected {
+          background-color: $color-charcoal;
+          color: $color-white;
+          border-color: $color-charcoal;
+        }
+      }
+    }
+
+    .actions-section {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+
+      .qty-picker {
+        display: flex;
+        align-items: center;
+        border: 1px solid $color-border;
+
+        .qty-btn {
+          width: 36px;
+          height: 44px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1rem;
+          color: $color-charcoal;
+
+          &:hover {
+            background-color: $color-ivory;
+          }
+        }
+
+        .qty-val {
+          padding: 0 0.6rem;
+          font-weight: 600;
+          font-size: 0.88rem;
+        }
+      }
+
+      .add-to-bag-btn {
+        flex: 1;
+        height: 46px;
+      }
+    }
+
+    .quickview-perks {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      padding: 0.75rem 0;
+      border-top: 1px solid $color-border;
+
+      .perk-item {
+        font-size: 0.76rem;
+        color: $color-grey;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    }
+
+    .quickview-footer-link {
+      .full-details-link {
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: $color-charcoal;
+        border-bottom: 1px solid $color-charcoal;
+        padding-bottom: 2px;
+
+        &:hover {
+          color: $color-taupe-dark;
+          border-color: $color-taupe-dark;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,134 @@
+@use '../variables' as *;
+
+.insta-feed-section {
+  background-color: #FDFBF7;
+  padding-top: 5rem;
+  padding-bottom: 3.5rem;
+  border-top: 1px solid rgba(27, 59, 43, 0.08);
+
+  .insta-header {
+    max-width: 680px;
+    margin: 0 auto 3rem;
+    text-align: center;
+
+    .overline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #1B3B2B;
+      background: rgba(27, 59, 43, 0.06);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: 0.85rem;
+    }
+
+    .insta-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      margin-bottom: 0.75rem;
+      color: #1B3B2B;
+    }
+
+    .insta-subtitle {
+      font-size: 1.02rem;
+      line-height: 1.6;
+      color: #555555;
+      margin-bottom: 1.5rem;
+    }
+
+    .insta-handle-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #1B3B2B;
+      transition: color $transition-fast;
+
+      svg {
+        color: #1B3B2B;
+      }
+
+      &:hover {
+        color: #C5A050;
+
+        svg {
+          color: #C5A050;
+        }
+      }
+    }
+  }
+
+  .insta-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    width: 100%;
+
+    @media (max-width: $bp-laptop) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: $bp-mobile) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .insta-tile {
+      position: relative;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      background-color: #E7DEC2;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform $transition-smooth;
+      }
+
+      .insta-tile-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(27, 59, 43, 0.88);
+        color: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1.25rem;
+        text-align: center;
+        opacity: 0;
+        transition: opacity $transition-base;
+        backdrop-filter: blur(2px);
+
+        .handle-text {
+          font-family: $font-sans;
+          font-weight: 700;
+          font-size: 0.85rem;
+          margin-bottom: 0.35rem;
+          color: #C5A050;
+        }
+
+        .tag-text {
+          font-size: 0.72rem;
+          color: #FDFBF7;
+          letter-spacing: 0.05em;
+        }
+      }
+
+      &:hover {
+        img {
+          transform: scale(1.08);
+        }
+
+        .insta-tile-overlay {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,412 @@
+@use '../variables' as *;
+
+.content-page {
+  background-color: $color-ivory-light;
+  padding-bottom: 6rem;
+
+  .content-hero-banner {
+    background-color: $color-ivory;
+    border-bottom: 1px solid $color-border;
+    padding: clamp(4rem, 7vw, 6.5rem) 0 4rem;
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      margin-bottom: 1rem;
+    }
+
+    .hero-lead {
+      font-size: 1.1rem;
+      color: $color-charcoal-light;
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+  }
+
+  .content-body-container {
+    padding-top: 3.5rem;
+  }
+
+  // Toggle Bar
+  .unit-toggle-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+
+    span {
+      font-size: 0.82rem;
+      color: $color-grey;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .toggle-group {
+      display: flex;
+      border: 1px solid $color-charcoal;
+
+      .toggle-btn {
+        padding: 0.45rem 1rem;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: $color-charcoal;
+
+        &.active {
+          background-color: $color-charcoal;
+          color: $color-white;
+        }
+      }
+    }
+  }
+
+  // Tables
+  .guide-table-section {
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    box-shadow: $shadow-subtle;
+
+    h2 {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .table-intro {
+      font-size: 0.95rem;
+      color: $color-charcoal-light;
+      margin-bottom: 1.75rem;
+    }
+
+    .table-responsive {
+      overflow-x: auto;
+
+      table {
+        width: 100%;
+        text-align: left;
+        font-size: 0.9rem;
+
+        th {
+          background-color: $color-ivory;
+          padding: 0.85rem 1rem;
+          font-size: 0.75rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: $color-taupe-dark;
+          border-bottom: 2px solid $color-border;
+        }
+
+        td {
+          padding: 0.95rem 1rem;
+          border-bottom: 1px solid $color-border;
+          color: $color-charcoal;
+        }
+
+        tr:hover td {
+          background-color: $color-ivory-light;
+        }
+      }
+    }
+  }
+
+  // How to measure card
+  .how-to-measure-card {
+    background-color: $color-ivory;
+    border: 1px solid $color-border;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+
+    .card-inner {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+
+      @media (max-width: $bp-tablet) {
+        flex-direction: column;
+      }
+
+      .ruler-icon {
+        color: $color-taupe-dark;
+        margin-top: 0.25rem;
+        flex-shrink: 0;
+      }
+
+      h3 {
+        font-family: $font-serif;
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin-bottom: 1.25rem;
+      }
+
+      .guidelines-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+        margin-bottom: 1.5rem;
+
+        li {
+          display: flex;
+          align-items: center;
+          gap: 0.65rem;
+          font-size: 0.92rem;
+          color: $color-charcoal;
+
+          svg {
+            color: $color-sage-dark;
+            flex-shrink: 0;
+          }
+        }
+      }
+
+      .fit-tip {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        background-color: $color-white;
+        border: 1px solid $color-border;
+        padding: 1rem 1.25rem;
+        font-size: 0.85rem;
+        color: $color-charcoal-light;
+
+        svg {
+          color: $color-taupe-dark;
+          margin-top: 0.2rem;
+          flex-shrink: 0;
+        }
+      }
+    }
+  }
+
+  // Pillars Grid
+  .content-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+
+    @media (max-width: $bp-laptop) {
+      grid-template-columns: 1fr;
+    }
+
+    .content-pillar-card {
+      background-color: $color-white;
+      border: 1px solid $color-border;
+      padding: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow: $shadow-subtle;
+
+      .step-tag {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: $color-taupe-dark;
+        margin-bottom: 1rem;
+      }
+
+      .pillar-icon {
+        color: $color-taupe-dark;
+        margin-bottom: 1.25rem;
+      }
+
+      h4 {
+        font-family: $font-serif;
+        font-size: 1.4rem;
+        margin-bottom: 0.75rem;
+      }
+
+      p {
+        font-size: 0.92rem;
+        color: $color-charcoal-light;
+        line-height: 1.6;
+        margin: 0;
+      }
+    }
+  }
+
+  .faq-snippet-box {
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+
+    h3 {
+      font-family: $font-serif;
+      font-size: 1.6rem;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: $color-charcoal-light;
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .content-page-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  // FAQs
+  .faq-categories-container {
+    padding-top: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+
+    .faq-cat-heading {
+      font-size: 1.85rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid $color-border;
+      padding-bottom: 0.65rem;
+    }
+
+    .faq-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .faq-accordion-item {
+        background-color: $color-white;
+        border: 1px solid $color-border;
+        transition: all $transition-fast;
+
+        &.open {
+          border-color: $color-charcoal;
+        }
+
+        .faq-question-btn {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1.25rem 1.75rem;
+          font-family: $font-serif;
+          font-size: 1.2rem;
+          color: $color-charcoal;
+          text-align: left;
+          gap: 1rem;
+        }
+
+        .faq-answer-content {
+          padding: 0 1.75rem 1.5rem;
+          font-size: 0.95rem;
+          color: $color-charcoal-light;
+          line-height: 1.7;
+
+          p {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .faq-footer-card {
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    padding: 3.5rem 2rem;
+    margin-top: 4rem;
+
+    h3 {
+      font-family: $font-serif;
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      font-size: 1rem;
+      color: $color-charcoal-light;
+      margin-bottom: 2rem;
+    }
+  }
+
+  // Legal
+  .legal-article-body {
+    padding-top: 3.5rem;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: $color-charcoal-light;
+
+    .effective-date {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: $color-grey;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid $color-border;
+      padding-bottom: 1rem;
+    }
+
+    h3 {
+      font-family: $font-serif;
+      font-size: 1.5rem;
+      color: $color-charcoal;
+      margin: 2.25rem 0 0.85rem;
+    }
+
+    p {
+      margin-bottom: 1.25rem;
+    }
+
+    ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+      margin-bottom: 1.5rem;
+
+      li {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+
+  // 404
+  &.not-found-page {
+    padding-top: 8rem;
+    padding-bottom: 10rem;
+
+    .not-found-content {
+      max-width: 580px;
+      margin: 0 auto;
+
+      .error-code {
+        font-family: $font-serif;
+        font-size: 7rem;
+        line-height: 1;
+        color: $color-taupe;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      .not-found-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .not-found-lead {
+        font-size: 1.1rem;
+        color: $color-charcoal-light;
+        margin-bottom: 2.5rem;
+      }
+
+      .not-found-actions {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+    }
+  }
+}

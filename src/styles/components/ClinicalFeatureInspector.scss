@@ -1,0 +1,399 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.clinical-feature-inspector-section {
+  background: #FFFFFF;
+  color: #111111;
+  border-bottom: 1px solid rgba(27, 59, 43, 0.08);
+
+  .inspector-header {
+    max-width: 760px;
+    margin: 0 auto 3.5rem;
+
+    .inspector-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #1B3B2B;
+      background: rgba(27, 59, 43, 0.08);
+      padding: 0.4rem 0.95rem;
+      border-radius: 30px;
+      margin-bottom: 1rem;
+
+      .badge-sparkle {
+        color: #C5A059;
+      }
+    }
+
+    .inspector-title {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(2.2rem, 4.2vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: #111111;
+      margin-bottom: 1rem;
+    }
+
+    .inspector-subtitle {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: #555555;
+      margin-bottom: 2rem;
+    }
+
+    .blueprint-gender-toggle {
+      display: inline-flex;
+      background: #F4F1EA;
+      padding: 0.35rem;
+      border-radius: 30px;
+
+      .toggle-btn {
+        padding: 0.55rem 1.4rem;
+        border-radius: 25px;
+        font-size: 0.86rem;
+        font-weight: 600;
+        color: #555555;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        transition: all 0.25s ease;
+
+        &:hover {
+          color: #111111;
+        }
+
+        &.active {
+          background: #1B3B2B;
+          color: #FFFFFF;
+          box-shadow: 0 4px 14px rgba(27, 59, 43, 0.25);
+        }
+      }
+    }
+  }
+
+  // Grid
+  .blueprint-stage-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    max-width: 1180px;
+    margin: 0 auto;
+
+    @media (min-width: 900px) {
+      grid-template-columns: 1.05fr 1fr;
+      align-items: center;
+      gap: 3.5rem;
+    }
+
+    // Left Viewport
+    .blueprint-model-viewport {
+      background: #F8F7F4;
+      border: 1px solid #E5E0D5;
+      border-radius: 24px;
+      height: clamp(480px, 60vh, 640px);
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.04);
+
+      .blueprint-grid-overlay {
+        position: absolute;
+        inset: 0;
+        background-image: 
+          linear-gradient(to right, rgba(27, 59, 43, 0.05) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(27, 59, 43, 0.05) 1px, transparent 1px);
+        background-size: 32px 32px;
+        pointer-events: none;
+      }
+
+      .model-figure-container {
+        position: relative;
+        height: 94%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .blueprint-model-img {
+          height: 100%;
+          width: auto;
+          object-fit: contain;
+          object-position: center bottom;
+          filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.14));
+          pointer-events: none;
+        }
+
+        // Hotspot Pins
+        .blueprint-pin {
+          position: absolute;
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          border: none;
+          background: transparent;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transform: translate(-50%, -50%);
+          z-index: 10;
+          outline: none;
+
+          .pin-pulse-ring {
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid #C5A059;
+            animation: pulse-ring 2s infinite ease-out;
+          }
+
+          .pin-core-dot {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #1B3B2B;
+            border: 2px solid #FFFFFF;
+            color: #FFFFFF;
+            font-size: 0.72rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.25s ease;
+          }
+
+          .pin-preview-tooltip {
+            position: absolute;
+            bottom: 38px;
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            background: #111111;
+            color: #FFFFFF;
+            font-size: 0.76rem;
+            font-weight: 600;
+            padding: 0.3rem 0.65rem;
+            border-radius: 6px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+            &::after {
+              content: '';
+              position: absolute;
+              top: 100%;
+              left: 50%;
+              transform: translateX(-50%);
+              border: 4px solid transparent;
+              border-top-color: #111111;
+            }
+          }
+
+          &:hover .pin-preview-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+          }
+
+          &.is-active {
+            z-index: 20;
+
+            .pin-core-dot {
+              background: #C5A059;
+              color: #1B3B2B;
+              transform: scale(1.2);
+            }
+
+            .pin-pulse-ring {
+              border-color: #1B3B2B;
+            }
+          }
+        }
+      }
+
+      .blueprint-corner-tag {
+        position: absolute;
+        bottom: 15px;
+        left: 20px;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        color: #1B3B2B;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(4px);
+        padding: 0.35rem 0.75rem;
+        border-radius: 8px;
+        border: 1px solid #E5E0D5;
+      }
+    }
+
+    // Right Detail Card
+    .blueprint-detail-card {
+      background: #FBF9F5;
+      border: 1px solid #ECE7DE;
+      border-radius: 24px;
+      padding: clamp(1.5rem, 3.5vw, 2.75rem);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.04);
+
+      .card-top-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.75rem;
+
+        .meta-category {
+          font-size: 0.78rem;
+          font-weight: 700;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: #C5A059;
+        }
+
+        .meta-spec {
+          font-size: 0.8rem;
+          font-weight: 600;
+          color: #1B3B2B;
+          background: rgba(27, 59, 43, 0.08);
+          padding: 0.25rem 0.65rem;
+          border-radius: 6px;
+        }
+      }
+
+      .detail-headline {
+        font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+        font-size: clamp(1.8rem, 2.6vw, 2.3rem);
+        font-weight: 500;
+        line-height: 1.2;
+        color: #111111;
+        margin-bottom: 0.75rem;
+      }
+
+      .detail-description {
+        font-size: 0.98rem;
+        line-height: 1.65;
+        color: #555555;
+        margin-bottom: 1.75rem;
+      }
+
+      // Macro Photo
+      .detail-photo-wrapper {
+        position: relative;
+        height: 200px;
+        border-radius: 16px;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+        border: 1px solid #ECE7DE;
+
+        .detail-macro-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s ease;
+        }
+
+        &:hover .detail-macro-img {
+          transform: scale(1.05);
+        }
+
+        .photo-lens-tag {
+          position: absolute;
+          bottom: 10px;
+          right: 10px;
+          background: rgba(17, 17, 17, 0.75);
+          backdrop-filter: blur(4px);
+          color: #FFFFFF;
+          padding: 0.3rem 0.65rem;
+          border-radius: 20px;
+          font-size: 0.72rem;
+          font-weight: 600;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+        }
+      }
+
+      .clinical-evidence-box {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        background: #FFFFFF;
+        border: 1px solid #ECE7DE;
+        padding: 0.95rem 1.15rem;
+        border-radius: 12px;
+        margin-bottom: 1.75rem;
+
+        .evidence-icon {
+          color: #2E7D32;
+          margin-top: 2px;
+        }
+
+        .evidence-text {
+          font-size: 0.88rem;
+          line-height: 1.5;
+          color: #444444;
+
+          strong {
+            color: #111111;
+            display: block;
+            margin-bottom: 0.15rem;
+          }
+        }
+      }
+
+      .hotspot-pills-selector {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+
+        .hotspot-selector-pill {
+          padding: 0.4rem 0.85rem;
+          background: #FFFFFF;
+          border: 1px solid #E0DAD0;
+          border-radius: 20px;
+          font-size: 0.8rem;
+          font-weight: 600;
+          color: #555555;
+          cursor: pointer;
+          transition: all 0.2s ease;
+
+          &:hover {
+            border-color: #1B3B2B;
+            color: #111111;
+          }
+
+          &.active {
+            background: #1B3B2B;
+            border-color: #1B3B2B;
+            color: #FFFFFF;
+          }
+        }
+      }
+
+      .detail-footer-link {
+        .detail-cta-btn {
+          width: 100%;
+          justify-content: center;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.85rem 1.5rem;
+          border-radius: 30px;
+          font-size: 0.92rem;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.9); opacity: 1; }
+  100% { transform: scale(1.7); opacity: 0; }
+}

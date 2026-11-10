@@ -1,0 +1,632 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+@use '../typography' as *;
+
+.product-detail-page {
+  padding-top: 1.5rem;
+  padding-bottom: $spacing-4xl;
+
+  &__breadcrumbs {
+    @include container;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: $text-xs;
+    color: $color-grey;
+    margin-bottom: 2rem;
+
+    a:hover {
+      color: $color-charcoal;
+      text-decoration: underline;
+    }
+
+    span.separator {
+      color: $color-grey-light;
+    }
+
+    span.current {
+      color: $color-charcoal;
+      font-weight: 600;
+    }
+  }
+
+  // Main Product Section: Gallery + Details
+  &__hero {
+    @include container;
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 4rem;
+    align-items: flex-start;
+
+    @include tablet {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  // Gallery
+  &__gallery {
+    display: flex;
+    gap: 1.25rem;
+
+    @include mobile {
+      flex-direction: column-reverse;
+    }
+  }
+
+  &__thumbnails {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 80px;
+    flex-shrink: 0;
+
+    @include mobile {
+      flex-direction: row;
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+
+    button {
+      width: 80px;
+      height: 105px;
+      border: 1px solid transparent;
+      padding: 0;
+      background: $color-ivory;
+      transition: all $transition-fast;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      &.is-active {
+        border-color: $color-charcoal;
+      }
+
+      &:hover:not(.is-active) {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &__main-image-wrap {
+    flex: 1;
+    position: relative;
+    background: $color-ivory;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $transition-editorial;
+    }
+
+    .badge-corner {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 2;
+    }
+  }
+
+  // Details Column
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: sticky;
+    top: calc(#{$header-height} + 2rem);
+
+    @include tablet {
+      position: static;
+    }
+  }
+
+  &__header-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .category-label {
+      font-size: $text-xs;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: $color-taupe-dark;
+    }
+
+    h1 {
+      @include serif-headline;
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+    }
+
+    .rating-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: $text-xs;
+      color: $color-charcoal;
+
+      .stars {
+        display: flex;
+        gap: 0.15rem;
+        color: $color-charcoal;
+      }
+
+      a {
+        color: $color-grey;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+    }
+  }
+
+  &__price-block {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+
+    .price-main {
+      font-family: $font-sans;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: $color-charcoal;
+    }
+
+    .price-compare {
+      font-size: $text-md;
+      color: $color-grey;
+      text-decoration: line-through;
+    }
+
+    .tax-pill {
+      font-size: 0.6875rem;
+      background: $color-ivory;
+      color: $color-grey;
+      padding: 0.25rem 0.5rem;
+      letter-spacing: 0.05em;
+    }
+  }
+
+  &__headline-summary {
+    font-size: $text-sm;
+    color: $color-charcoal-muted;
+    line-height: 1.6;
+    border-top: 1px solid $color-border-subtle;
+    border-bottom: 1px solid $color-border-subtle;
+    padding: 1rem 0;
+  }
+
+  // Variant Option: Color
+  &__option-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    .option-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: $text-xs;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+
+      span.selected-val {
+        color: $color-grey;
+        text-transform: none;
+        font-weight: 400;
+      }
+    }
+
+    .color-swatches-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+
+      button {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 2px solid $color-white;
+        box-shadow: 0 0 0 1px $color-grey-border;
+        transition: transform $transition-fast, box-shadow $transition-fast;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+
+        &.is-active {
+          box-shadow: 0 0 0 2px $color-charcoal;
+        }
+      }
+    }
+  }
+
+  // Variant Option: Size
+  &__size-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    .size-guide-trigger {
+      font-size: $text-xs;
+      color: $color-charcoal;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+
+      &:hover {
+        color: $color-taupe-dark;
+      }
+    }
+
+    .size-buttons-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+
+      button {
+        padding: 0.75rem 0;
+        border: 1px solid $color-grey-border;
+        background: $color-white;
+        font-size: $text-xs;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: $color-charcoal;
+        transition: all $transition-fast;
+
+        &:hover:not(.is-active) {
+          border-color: $color-charcoal;
+        }
+
+        &.is-active {
+          background: $color-charcoal;
+          color: $color-white;
+          border-color: $color-charcoal;
+        }
+      }
+    }
+
+    .stock-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: $text-xs;
+      color: $color-success;
+      font-weight: 500;
+
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background-color: $color-success;
+      }
+    }
+  }
+
+  // Action Buttons
+  &__actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+
+    .qty-picker {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid $color-grey-border;
+      background: $color-white;
+
+      button {
+        width: 44px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $color-charcoal;
+        font-size: $text-md;
+
+        &:hover {
+          background: $color-ivory;
+        }
+      }
+
+      span {
+        min-width: 36px;
+        text-align: center;
+        font-weight: 600;
+        font-size: $text-sm;
+      }
+    }
+
+    .btn-add-bag {
+      flex: 1;
+      height: 48px;
+      font-size: $text-xs;
+      letter-spacing: 0.14em;
+    }
+
+    .btn-wishlist {
+      width: 48px;
+      height: 48px;
+      border: 1px solid $color-grey-border;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $color-charcoal;
+      background: $color-white;
+      transition: all $transition-fast;
+
+      &:hover {
+        border-color: $color-charcoal;
+      }
+
+      &.is-active {
+        color: $color-error;
+        border-color: $color-error;
+      }
+    }
+  }
+
+  // Value Props Banner
+  &__value-props {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    background: $color-ivory;
+    border: 1px solid $color-border-subtle;
+    margin-top: 0.5rem;
+
+    .prop-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: $text-xs;
+      color: $color-charcoal;
+
+      svg {
+        color: $color-taupe-dark;
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  // Collapsible Accordions
+  &__accordions {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+
+    .accordion-item {
+      border-bottom: 1px solid $color-border-subtle;
+
+      button.accordion-header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.25rem 0;
+        font-family: $font-sans;
+        font-size: $text-sm;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: $color-charcoal;
+
+        svg {
+          transition: transform $transition-fast;
+        }
+
+        &.is-open svg {
+          transform: rotate(180deg);
+        }
+      }
+
+      .accordion-content {
+        padding-bottom: 1.5rem;
+        font-size: $text-sm;
+        color: $color-charcoal-muted;
+        line-height: 1.65;
+
+        ul {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          margin-top: 0.5rem;
+
+          li {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+
+            &::before {
+              content: '•';
+              color: $color-taupe;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Sticky Mobile Add-to-Bag
+  &__mobile-sticky-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $color-white;
+    padding: 0.85rem 1.25rem;
+    box-shadow: 0 -4px 16px rgba(23, 23, 23, 0.08);
+    z-index: $z-sticky;
+    border-top: 1px solid $color-border-subtle;
+
+    @include mobile {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .sticky-info {
+      h6 {
+        font-family: $font-serif;
+        font-size: 1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 160px;
+      }
+      p {
+        font-size: $text-xs;
+        font-weight: 600;
+      }
+    }
+
+    button {
+      flex: 1;
+      max-width: 180px;
+      padding: 0.85rem 1rem;
+      font-size: 0.6875rem;
+    }
+  }
+
+  // Customer Reviews Section
+  &__reviews-section {
+    @include container;
+    margin-top: $spacing-4xl;
+    padding-top: $spacing-3xl;
+    border-top: 1px solid $color-border-subtle;
+
+    .reviews-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+
+      @include mobile {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      h3 {
+        @include serif-headline;
+        font-size: clamp(2rem, 3.5vw, 2.8rem);
+      }
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+
+      @include tablet {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include mobile {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .review-card {
+      background: $color-white;
+      padding: 2rem;
+      border: 1px solid $color-border-subtle;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.25rem;
+
+      .review-stars {
+        display: flex;
+        gap: 0.2rem;
+        color: $color-charcoal;
+      }
+
+      h5 {
+        font-family: $font-serif;
+        font-size: 1.25rem;
+        color: $color-charcoal;
+        line-height: 1.3;
+      }
+
+      p.review-body {
+        font-size: $text-sm;
+        color: $color-charcoal-muted;
+        line-height: 1.6;
+      }
+
+      .review-author {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+        font-size: $text-xs;
+        border-top: 1px solid $color-border-subtle;
+        padding-top: 1rem;
+
+        strong {
+          color: $color-charcoal;
+        }
+
+        span {
+          color: $color-grey;
+        }
+
+        .verified-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.25rem;
+          color: $color-success;
+          font-weight: 600;
+          margin-top: 0.25rem;
+        }
+      }
+    }
+  }
+
+  // Related Products
+  &__related-section {
+    @include container;
+    margin-top: $spacing-4xl;
+
+    h3 {
+      @include serif-headline;
+      font-size: clamp(2rem, 3.5vw, 2.6rem);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+
+      @include tablet {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include mobile {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+    }
+  }
+}

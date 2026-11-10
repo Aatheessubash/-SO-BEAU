@@ -1,0 +1,259 @@
+[
+  {
+    "id": "sb-001",
+    "slug": "the-womens-nursing-scrub-set",
+    "name": "The Women's Scrub Set",
+    "category": "womens-scrubs",
+    "categoryName": "Women's Scrub Sets",
+    "price": 158.0,
+    "compareAtPrice": 186.0,
+    "rating": 4.98,
+    "reviewCount": 246,
+    "badge": null,
+    "headline": "Tailored V-Neck & High-Waist 7-Pocket Jogger Pant Set",
+    "description": "Certified Australian hospital-grade nursing scrubs designed specifically for female nurses, doctors, surgeons, and healthcare clinicians. Pairs an architectural contoured V-neck with an ergonomic waistband and 7-pocket clinical storage. Crafted from our signature BeauTech\u2122 4-way stretch fabric with Silvadur\u2122 antimicrobial silver technology. Soft matte finish, fluid barrier defense, anti-wrinkle resilience, and breathable moisture-wicking comfort tested across 14-hour hospital shifts.",
+    "images": [
+      "/images/female/female-navy-front.png",
+      "/images/female/female-pants-fit.jpg",
+      "/images/female/female-sage-front.png",
+      "/images/female/female-charcoal-front.png",
+      "/images/female/female-taupe-front.png",
+      "/images/female/female-surgical-blue-front.png",
+      "/images/female/female-forest-front.png",
+      "/images/female/female-terracotta-front.png",
+      "/images/female/female-plum-front.png",
+      "/images/female/female-top-pocket-detail.jpg",
+      "/images/female/female-waist-badge-detail.jpg",
+      "/images/female/female-fabric-tech.png"
+    ],
+    "relatedImages": [
+      "/images/female/female-pants-fit.jpg",
+      "/images/female/female-top-pocket-detail.jpg",
+      "/images/female/female-waist-badge-detail.jpg",
+      "/images/female/female-fabric-tech.png"
+    ],
+    "colors": [
+      {
+        "name": "French Navy",
+        "hex": "#1D2A44",
+        "code": "navy",
+        "modelImage": "/images/female/female-navy-front.png",
+        "avatarImage": "/images/female/female-navy-front.png"
+      },
+      {
+        "name": "Soft Sage",
+        "hex": "#7D9D8B",
+        "code": "sage",
+        "modelImage": "/images/female/female-sage-front.png",
+        "avatarImage": "/images/female/female-sage-front.png"
+      },
+      {
+        "name": "Deep Forest Green",
+        "hex": "#1B3B2B",
+        "code": "forest",
+        "modelImage": "/images/female/female-forest-front.png",
+        "avatarImage": "/images/female/female-forest-front.png"
+      },
+      {
+        "name": "Deep Charcoal",
+        "hex": "#1E2022",
+        "code": "charcoal",
+        "modelImage": "/images/female/female-charcoal-front.png",
+        "avatarImage": "/images/female/female-charcoal-front.png"
+      },
+      {
+        "name": "Warm Taupe",
+        "hex": "#A39382",
+        "code": "taupe",
+        "modelImage": "/images/female/female-taupe-front.png",
+        "avatarImage": "/images/female/female-taupe-front.png"
+      },
+      {
+        "name": "Terracotta Clay",
+        "hex": "#8C554F",
+        "code": "terracotta",
+        "modelImage": "/images/female/female-terracotta-front.png",
+        "avatarImage": "/images/female/female-terracotta-front.png"
+      },
+      {
+        "name": "Surgical Blue",
+        "hex": "#4A7C9B",
+        "code": "surgical-blue",
+        "modelImage": "/images/female/female-surgical-blue-front.png",
+        "avatarImage": "/images/female/female-surgical-blue-front.png"
+      },
+      {
+        "name": "Plum Noir",
+        "hex": "#4A2838",
+        "code": "plum",
+        "modelImage": "/images/female/female-plum-front.png",
+        "avatarImage": "/images/female/female-plum-front.png"
+      }
+    ],
+    "sizes": [
+      "AU 4 (XXS)",
+      "AU 6 (XS)",
+      "AU 8 (S)",
+      "AU 10 (M)",
+      "AU 12 (L)",
+      "AU 14 (XL)",
+      "AU 16 (2XL)",
+      "AU 18 (3XL)"
+    ],
+    "lengths": [
+      "Regular (Standard Inseam)",
+      "Petite / Short (-2\")",
+      "Tall (+2.5\")"
+    ],
+    "stockStatus": "in_stock",
+    "isNew": true,
+    "isFeatured": true,
+    "details": [
+      "Engineered with proprietary BeauTech\u2122 4-way recoil stretch fabric",
+      "Silvadur\u2122 antimicrobial silver-ion defense against odor and hospital microbes",
+      "Certified Australian Medical Grade Standard (TGA guidelines compliant)",
+      "Technical Composition: 63% Recycled Poly, 34% Viscose, 3% Elastane",
+      "Architectural V-neck top with contour waist darting and badge clip loop",
+      "7 deep clinical pockets including shears loop and zippered phone pocket",
+      "High-rise yoga knit comfort waistband with flat contrast drawcord",
+      "Reinforced bar-tack stress points engineered for 14-hour clinical rounds",
+      "Tested for industrial 60\u00b0C hospital sanitisation laundry cycles"
+    ],
+    "fabricCare": [
+      "Machine wash cold inside-out (tested for 60\u00b0C hospital sanitisation cycles)",
+      "Tumble dry low or line dry in shade",
+      "Naturally wrinkle-resistant and moisture-wicking",
+      "Cool iron if desired (virtually non-iron)"
+    ],
+    "fitNotes": "Tailored Australian feminine fit. Soft matte finish with a structured silhouette. Model is 175cm / 5'9\" and wears Australian Size AU 8 (S)."
+  },
+  {
+    "id": "sb-002",
+    "slug": "the-mens-nursing-scrub-set",
+    "name": "The Men's Scrub Set",
+    "category": "mens-scrubs",
+    "categoryName": "Men's Scrub Sets",
+    "price": 158.0,
+    "compareAtPrice": 186.0,
+    "rating": 4.96,
+    "reviewCount": 218,
+    "badge": null,
+    "headline": "Mandarin V-Placket & Ergonomic 10-Pocket Cargo Jogger Set",
+    "description": "Certified Australian hospital-grade nursing scrubs designed specifically for male nurses, doctors, surgeons, and specialists. Features a modern Mandarin collar with concealed V-placket and athletic broad-shoulder tailoring with zero back restriction during patient handling and resuscitation calls. Crafted from our signature BeauTech\u2122 4-way stretch fabric with Silvadur\u2122 antimicrobial defense. Equipped with 10 ergonomic pockets including dedicated side smartphone sleeve, custom cargo embroidery pocket, and jogger back zippered security compartment.",
+    "images": [
+      "/images/male/male-surgical-blue-front.png",
+      "/images/male/male-jogger-back-fit.jpg",
+      "/images/male/male-front-back.png",
+      "/images/male/male-navy-front.png",
+      "/images/male/male-charcoal-front.png",
+      "/images/male/male-sage-front.png",
+      "/images/male/male-taupe-front.png",
+      "/images/male/male-forest-front.png",
+      "/images/male/male-terracotta-front.png",
+      "/images/male/male-plum-front.png",
+      "/images/male/male-fabric-tech.png",
+      "/images/male/male-pocket-embroidery-detail.jpg",
+      "/images/male/male-side-phone-pocket-detail.jpg"
+    ],
+    "relatedImages": [
+      "/images/male/male-front-back.png",
+      "/images/male/male-jogger-back-fit.jpg",
+      "/images/male/male-pocket-embroidery-detail.jpg",
+      "/images/male/male-side-phone-pocket-detail.jpg",
+      "/images/male/male-fabric-tech.png"
+    ],
+    "colors": [
+      {
+        "name": "Surgical Blue",
+        "hex": "#4A7C9B",
+        "code": "surgical-blue",
+        "modelImage": "/images/male/male-surgical-blue-front.png",
+        "avatarImage": "/images/male/male-surgical-blue-front.png"
+      },
+      {
+        "name": "French Navy",
+        "hex": "#1D2A44",
+        "code": "navy",
+        "modelImage": "/images/male/male-navy-front.png",
+        "avatarImage": "/images/male/male-navy-front.png"
+      },
+      {
+        "name": "Deep Forest Green",
+        "hex": "#1B3B2B",
+        "code": "forest",
+        "modelImage": "/images/male/male-forest-front.png",
+        "avatarImage": "/images/male/male-forest-front.png"
+      },
+      {
+        "name": "Soft Sage",
+        "hex": "#7D9D8B",
+        "code": "sage",
+        "modelImage": "/images/male/male-sage-front.png",
+        "avatarImage": "/images/male/male-sage-front.png"
+      },
+      {
+        "name": "Deep Charcoal",
+        "hex": "#1E2022",
+        "code": "charcoal",
+        "modelImage": "/images/male/male-charcoal-front.png",
+        "avatarImage": "/images/male/male-charcoal-front.png"
+      },
+      {
+        "name": "Warm Taupe",
+        "hex": "#A39382",
+        "code": "taupe",
+        "modelImage": "/images/male/male-taupe-front.png",
+        "avatarImage": "/images/male/male-taupe-front.png"
+      },
+      {
+        "name": "Terracotta Clay",
+        "hex": "#8C554F",
+        "code": "terracotta",
+        "modelImage": "/images/male/male-terracotta-front.png",
+        "avatarImage": "/images/male/male-terracotta-front.png"
+      },
+      {
+        "name": "Plum Noir",
+        "hex": "#4A2838",
+        "code": "plum",
+        "modelImage": "/images/male/male-plum-front.png",
+        "avatarImage": "/images/male/male-plum-front.png"
+      }
+    ],
+    "sizes": [
+      "AU XS (36)",
+      "AU S (38)",
+      "AU M (40)",
+      "AU L (42)",
+      "AU XL (44)",
+      "AU 2XL (46)",
+      "AU 3XL (48)"
+    ],
+    "lengths": [
+      "Regular (Standard Inseam)",
+      "Short (-2\")",
+      "Tall (+2.5\")"
+    ],
+    "stockStatus": "in_stock",
+    "isNew": true,
+    "isFeatured": true,
+    "details": [
+      "Engineered with proprietary BeauTech\u2122 4-way recoil stretch fabric",
+      "Silvadur\u2122 antimicrobial silver-ion defense against odor and hospital microbes",
+      "Certified Australian Medical Grade Standard (TGA guidelines compliant)",
+      "Technical Composition: 63% Recycled Poly, 34% Viscose, 3% Elastane",
+      "Mandarin collar with streamlined concealed V-placket for clean clinical drape",
+      "10 ergonomic utility pockets with dedicated smartphone sleeve and pen slots",
+      "Cargo utility pocket with bar-tack reinforcement for trauma shears and pager",
+      "Athletic jogger pants with elasticated waistband, security zipper pocket, and ribbed cuffs",
+      "Tested for industrial 60\u00b0C hospital sanitisation laundry cycles"
+    ],
+    "fabricCare": [
+      "Machine wash cold inside-out (tested for 60\u00b0C hospital sanitisation cycles)",
+      "Tumble dry low or line dry in shade",
+      "Naturally wrinkle-resistant and moisture-wicking",
+      "Cool iron if desired (virtually non-iron)"
+    ],
+    "fitNotes": "Tailored Australian masculine athletic fit. Soft matte finish with structured silhouette. Single male nurse model is 185cm / 6'1\" and wears Australian Size AU L."
+  }
+]

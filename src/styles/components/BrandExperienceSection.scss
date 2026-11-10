@@ -1,0 +1,748 @@
+@use '../variables' as *;
+
+.brand-experience-section {
+  background-color: $color-warm-cream;
+  position: relative;
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+
+  .brand-exp-header {
+    max-width: 680px;
+    margin: 0 auto 2.5rem;
+
+    .brand-exp-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 0.75rem;
+    }
+
+    .brand-exp-lead {
+      font-size: 1.1rem;
+      color: $color-grey;
+      font-weight: 300;
+    }
+  }
+
+  // Interactive Tabs
+  .brand-exp-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+
+    .tab-btn {
+      padding: 0.75rem 1.6rem;
+      border-radius: 999px;
+      border: 1px solid $color-border;
+      background: $color-white;
+      color: $color-forest-green;
+      font-family: $font-sans;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all $transition-fast;
+
+      &:hover {
+        border-color: $color-muted-gold;
+        background: $color-beige-light;
+      }
+
+      &.active {
+        background: $color-forest-green;
+        color: $color-warm-cream;
+        border-color: $color-forest-green;
+        box-shadow: 0 4px 15px rgba(27, 59, 43, 0.15);
+      }
+    }
+  }
+
+  // Tab Pane 1: Concept
+  .concept-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 2.5rem;
+
+    @media (max-width: $bp-laptop) {
+      grid-template-columns: 1fr;
+    }
+
+    .concept-manifesto-card {
+      background: $color-white;
+      border: 1px solid $color-border;
+      padding: clamp(2rem, 4vw, 3.5rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .wordmark-showcase-box {
+        padding: 2rem 0;
+        border-bottom: 1px solid $color-border;
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: center;
+      }
+
+      .concept-copy-block {
+        .concept-kicker {
+          font-family: $font-sans;
+          font-size: 0.75rem;
+          font-weight: 700;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: $color-muted-gold;
+          display: block;
+          margin-bottom: 1rem;
+        }
+
+        .concept-body-text {
+          font-family: $font-serif;
+          font-size: 1.25rem;
+          line-height: 1.6;
+          color: $color-forest-green;
+          margin-bottom: 1rem;
+
+          &.secondary {
+            font-family: $font-sans;
+            font-size: 0.95rem;
+            color: $color-grey;
+            line-height: 1.6;
+          }
+        }
+      }
+
+      .concept-attributes-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid $color-border;
+
+        @media (max-width: $bp-mobile) {
+          grid-template-columns: 1fr;
+        }
+
+        .attr-item {
+          display: flex;
+          flex-direction: column;
+          gap: 0.2rem;
+
+          .attr-label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: $color-muted-gold;
+            font-weight: 600;
+          }
+
+          .attr-val {
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: $color-forest-green;
+          }
+        }
+      }
+    }
+
+    .experience-items-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+
+      .exp-card {
+        background: $color-white;
+        border: 1px solid $color-border;
+        display: grid;
+        grid-template-columns: 160px 1fr;
+        overflow: hidden;
+        transition: transform $transition-fast, box-shadow $transition-fast;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: $shadow-card;
+          border-color: $color-muted-gold;
+        }
+
+        @media (max-width: $bp-mobile) {
+          grid-template-columns: 1fr;
+        }
+
+        .exp-card-visual {
+          min-height: 140px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 1rem;
+
+          &.bg-charcoal {
+            background-color: #1A1A1A;
+          }
+
+          &.bg-forest {
+            background-color: $color-forest-green;
+          }
+
+          &.bg-forest-dark {
+            background-color: #12281D;
+          }
+
+          .tshirt-render {
+            width: 90px;
+            height: 90px;
+            background: #242424;
+            border-radius: 8px 8px 4px 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+
+            .tshirt-print {
+              text-align: center;
+              color: $color-muted-gold;
+              strong {
+                display: block;
+                font-family: $font-serif;
+                font-size: 0.85rem;
+                font-weight: 600;
+              }
+              small {
+                font-family: $font-serif;
+                font-style: italic;
+                font-size: 0.5rem;
+                opacity: 0.9;
+              }
+            }
+          }
+
+          .rigid-box-render {
+            width: 100px;
+            height: 75px;
+            background: $color-forest-green;
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            border-radius: 4px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .box-lid {
+              text-align: center;
+              color: $color-muted-gold;
+              strong {
+                display: block;
+                font-family: $font-serif;
+                font-size: 0.88rem;
+              }
+              small {
+                font-family: $font-serif;
+                font-style: italic;
+                font-size: 0.5rem;
+              }
+            }
+          }
+
+          .cap-render {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .cap-crown {
+              width: 80px;
+              height: 45px;
+              background: #173325;
+              border-radius: 40px 40px 0 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              .cap-embroidery {
+                font-family: $font-serif;
+                font-size: 0.72rem;
+                color: $color-muted-gold;
+                font-weight: 600;
+              }
+            }
+
+            .cap-visor {
+              width: 95px;
+              height: 12px;
+              background: #12281D;
+              border-radius: 0 0 16px 16px;
+            }
+          }
+        }
+
+        .exp-card-info {
+          padding: 1.25rem 1.5rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          .exp-tag {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: $color-muted-gold;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+          }
+
+          h4 {
+            font-size: 1.05rem;
+            margin-bottom: 0.35rem;
+            color: $color-forest-green;
+          }
+
+          p {
+            font-size: 0.82rem;
+            color: $color-grey;
+            line-height: 1.45;
+            margin-bottom: 0.6rem;
+          }
+
+          .exp-link {
+            font-size: 0.76rem;
+            font-weight: 700;
+            color: $color-forest-green;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+
+            &:hover {
+              color: $color-muted-gold;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Tab Pane 2: Colour System (Arch Swatches from Image 1)
+  .colors-system-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+
+    @media (max-width: $bp-laptop) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $bp-mobile-sm) {
+      grid-template-columns: 1fr;
+    }
+
+    .color-swatch-card {
+      background: $color-white;
+      border: 1px solid $color-border;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: $shadow-subtle;
+
+      .swatch-color-arch {
+        height: 160px;
+        border-radius: 80px 80px 0 0;
+        margin: 1.25rem 1.25rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+
+        .swatch-inner-label {
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+
+          .swatch-title {
+            font-family: $font-sans;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+          }
+
+          .swatch-hex-code {
+            font-family: monospace;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            opacity: 0.85;
+          }
+        }
+      }
+
+      .swatch-info-wrap {
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        .swatch-role-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 0.6rem;
+
+          .swatch-role {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: $color-forest-green;
+          }
+
+          .copy-hex-btn {
+            background: none;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: $color-grey;
+            font-size: 0.72rem;
+            cursor: pointer;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+
+            &:hover {
+              background: $color-beige-light;
+              color: $color-forest-green;
+            }
+          }
+        }
+
+        .swatch-description {
+          font-size: 0.82rem;
+          color: $color-grey;
+          line-height: 1.5;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  // Campaign Shade Spotlight
+  .campaign-color-spotlight {
+    background: $color-white;
+    border: 1px solid $color-border;
+    padding: 1.75rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+
+    @media (max-width: $bp-tablet) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .spotlight-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: $color-muted-gold;
+    }
+
+    .spotlight-content {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex: 1;
+
+      .spotlight-swatch {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #FFFFFF;
+        font-family: monospace;
+        font-size: 0.68rem;
+        flex-shrink: 0;
+        box-shadow: 0 4px 14px rgba(140, 85, 79, 0.4);
+      }
+
+      .spotlight-text {
+        h4 {
+          font-size: 1.15rem;
+          color: $color-forest-green;
+          margin-bottom: 0.25rem;
+        }
+
+        p {
+          font-size: 0.88rem;
+          color: $color-grey;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  // Tab Pane 3: Pattern & Clear Space
+  .pattern-clear-space-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+
+    @media (max-width: $bp-laptop) {
+      grid-template-columns: 1fr;
+    }
+
+    .pattern-showcase-box,
+    .clear-space-box {
+      background: $color-white;
+      border: 1px solid $color-border;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pattern-display-frame {
+      height: 280px;
+      border-radius: 8px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+      overflow: hidden;
+      border: 1px solid $color-border;
+
+      .pattern-overlay-tag {
+        background: rgba(27, 59, 43, 0.85);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        padding: 0.4rem 0.85rem;
+        border-radius: 4px;
+        border: 1px solid rgba(197, 160, 89, 0.4);
+
+        span {
+          font-size: 0.68rem;
+          color: $color-muted-gold;
+          letter-spacing: 0.12em;
+          font-weight: 700;
+        }
+      }
+    }
+
+    .pattern-meta,
+    .clear-space-meta {
+      margin-top: 1.5rem;
+
+      h4 {
+        font-size: 1.15rem;
+        color: $color-forest-green;
+        margin-bottom: 0.4rem;
+      }
+
+      p {
+        font-size: 0.88rem;
+        color: $color-grey;
+        line-height: 1.6;
+        margin: 0;
+      }
+    }
+
+    // Clear Space Diagram
+    .clear-space-diagram {
+      height: 280px;
+      border: 1px dashed $color-border-dark;
+      background: $color-warm-cream;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      .clear-space-grid-lines {
+        position: relative;
+        width: 85%;
+        height: 75%;
+        border: 1px dashed rgba(27, 59, 43, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .grid-label {
+          position: absolute;
+          font-family: monospace;
+          font-size: 0.72rem;
+          color: $color-muted-gold;
+          font-weight: 700;
+
+          &.top-left { top: 4px; left: 8px; }
+          &.top-center { top: 4px; left: 50%; transform: translateX(-50%); }
+          &.top-right { top: 4px; right: 8px; }
+          &.mid-left { left: 8px; top: 50%; transform: translateY(-50%); }
+          &.mid-right { right: 8px; top: 50%; transform: translateY(-50%); }
+          &.bot-left { bottom: 4px; left: 8px; }
+          &.bot-center { bottom: 4px; left: 50%; transform: translateX(-50%); }
+          &.bot-right { bottom: 4px; right: 8px; }
+        }
+      }
+    }
+  }
+
+  // Tab Pane 4: Mockups & Stationery
+  .mockups-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+
+    @media (max-width: $bp-laptop) {
+      grid-template-columns: 1fr;
+    }
+
+    .mockup-card {
+      background: $color-white;
+      border: 1px solid $color-border;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: $shadow-subtle;
+
+      .mockup-preview {
+        height: 220px;
+        background: $color-warm-cream;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+
+        &.stationery-preview {
+          .envelope-render {
+            position: absolute;
+            left: 20px;
+            top: 30px;
+            width: 140px;
+            height: 90px;
+            background: $color-forest-green;
+            border-radius: 4px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transform: rotate(-8deg);
+
+            .envelope-flap {
+              width: 0;
+              height: 0;
+              border-left: 70px solid transparent;
+              border-right: 70px solid transparent;
+              border-top: 40px solid $color-forest-dark;
+            }
+          }
+
+          .letterhead-render {
+            position: absolute;
+            right: 30px;
+            top: 20px;
+            width: 130px;
+            height: 170px;
+            background: #FFFFFF;
+            border: 1px solid $color-border;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .letterhead-lines {
+              display: flex;
+              flex-direction: column;
+              gap: 4px;
+              .line {
+                height: 2px;
+                background: $color-border;
+                border-radius: 2px;
+              }
+            }
+
+            .letterhead-gold-trim {
+              height: 3px;
+              background: $color-muted-gold;
+              border-radius: 2px;
+            }
+          }
+        }
+
+        &.tote-preview {
+          .tote-render {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .tote-handles {
+              width: 50px;
+              height: 45px;
+              border-top: 5px solid $color-forest-green;
+              border-left: 5px solid $color-forest-green;
+              border-right: 5px solid $color-forest-green;
+              border-radius: 25px 25px 0 0;
+            }
+
+            .tote-body {
+              width: 140px;
+              height: 120px;
+              background: $color-warm-cream;
+              border: 1px solid $color-border;
+              box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 0.5rem;
+            }
+          }
+        }
+
+        &.signage-preview {
+          background: #EFE9DC;
+          .signage-facade {
+            padding: 1.5rem 2.5rem;
+            background: #F9F6F0;
+            border: 1px solid $color-border;
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05), 0 10px 25px rgba(0, 0, 0, 0.08);
+
+            .signage-3d-letters {
+              filter: drop-shadow(2px 4px 6px rgba(27, 59, 43, 0.25));
+            }
+          }
+        }
+      }
+
+      .mockup-info {
+        padding: 1.5rem;
+
+        h4 {
+          font-size: 1.05rem;
+          color: $color-forest-green;
+          margin-bottom: 0.4rem;
+        }
+
+        p {
+          font-size: 0.85rem;
+          color: $color-grey;
+          line-height: 1.5;
+          margin-bottom: 0.75rem;
+        }
+
+        .mockup-link {
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: $color-forest-green;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          text-decoration: none;
+
+          &:hover {
+            color: $color-muted-gold;
+          }
+        }
+      }
+    }
+  }
+}

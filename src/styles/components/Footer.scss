@@ -1,0 +1,271 @@
+@use '../variables' as *;
+
+.site-footer {
+  background-color: $color-charcoal;
+  color: $color-ivory-light;
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  // Top Newsletter Bar
+  .footer-newsletter-banner {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 3.5rem 0;
+
+    .newsletter-banner-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2.5rem;
+
+      @media (max-width: $bp-tablet) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    .banner-text {
+      max-width: 520px;
+
+      .banner-tagline {
+        font-family: $font-serif;
+        font-style: italic;
+        font-size: 1.15rem;
+        color: $color-taupe;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      h3 {
+        color: $color-white;
+        font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+        font-weight: 300;
+        line-height: 1.25;
+        margin: 0;
+      }
+    }
+
+    .banner-form-wrap {
+      width: 100%;
+      max-width: 440px;
+
+      .newsletter-success-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.85rem 1.25rem;
+        background-color: rgba(216, 224, 216, 0.15);
+        color: $color-sage;
+        border: 1px solid $color-sage-dark;
+        font-size: 0.85rem;
+      }
+
+      .footer-newsletter-form {
+        display: flex;
+        gap: 0;
+        width: 100%;
+
+        input {
+          flex: 1;
+          padding: 0.95rem 1.25rem;
+          background-color: rgba(255, 255, 255, 0.06);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-right: none;
+          color: $color-white;
+          font-size: 0.88rem;
+
+          &:focus {
+            outline: none;
+            border-color: $color-taupe;
+            background-color: rgba(255, 255, 255, 0.1);
+          }
+
+          &::placeholder {
+            color: rgba(245, 242, 236, 0.4);
+          }
+        }
+
+        .newsletter-submit-btn {
+          padding: 0.95rem 1.5rem;
+          background-color: $color-taupe;
+          color: $color-charcoal;
+          font-weight: 600;
+          font-size: 0.78rem;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          transition: all $transition-fast;
+
+          &:hover {
+            background-color: $color-white;
+          }
+        }
+      }
+    }
+  }
+
+  // Main Content Columns
+  .footer-main-content {
+    padding-top: 4.5rem;
+    padding-bottom: 2.5rem;
+
+    .footer-columns-grid {
+      display: grid;
+      grid-template-columns: 2.2fr 1fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+
+      @media (max-width: $bp-desktop) {
+        grid-template-columns: 2fr repeat(4, 1fr);
+        gap: 2rem;
+      }
+
+      @media (max-width: $bp-laptop) {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+      }
+
+      @media (max-width: $bp-mobile) {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    .footer-brand-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+
+      .footer-brand-link {
+        display: inline-flex;
+        flex-direction: column;
+
+        .footer-brand-logo {
+          font-family: $font-serif;
+          font-size: 1.9rem;
+          letter-spacing: 0.18em;
+          color: $color-white;
+          font-weight: 400;
+        }
+
+        .footer-tagline {
+          font-size: 0.62rem;
+          letter-spacing: 0.26em;
+          color: $color-taupe;
+          font-weight: 600;
+          text-transform: uppercase;
+        }
+      }
+
+      .footer-mission-text {
+        font-size: 0.88rem;
+        color: rgba(245, 242, 236, 0.65);
+        line-height: 1.65;
+        max-width: 360px;
+        margin: 0;
+      }
+
+      .brand-location-badge {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: $color-taupe;
+      }
+
+      .social-links-row {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 0.5rem;
+
+        .social-icon-btn {
+          width: 38px;
+          height: 38px;
+          border-radius: 50%;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: $color-ivory;
+          transition: all $transition-fast;
+
+          &:hover {
+            border-color: $color-white;
+            color: $color-white;
+            transform: translateY(-2px);
+          }
+        }
+      }
+    }
+
+    .footer-nav-col {
+      .col-header {
+        font-family: $font-sans;
+        font-size: 0.76rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: $color-white;
+        margin-bottom: 1.35rem;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+
+        li a {
+          font-size: 0.84rem;
+          color: rgba(245, 242, 236, 0.65);
+          transition: color $transition-fast;
+
+          &:hover {
+            color: $color-white;
+          }
+        }
+      }
+    }
+
+    // Bottom Bar
+    .footer-bottom-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      flex-wrap: wrap;
+      gap: 1.5rem;
+
+      .bottom-left {
+        p {
+          font-size: 0.75rem;
+          color: rgba(245, 242, 236, 0.5);
+          margin: 0 0 0.35rem;
+          line-height: 1.5;
+        }
+
+        .acknowledgement-text {
+          font-size: 0.7rem;
+          color: rgba(245, 242, 236, 0.35);
+          max-width: 550px;
+        }
+      }
+
+      .payment-badges-row {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+
+        .payment-badge {
+          font-size: 0.65rem;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          padding: 0.25rem 0.6rem;
+          background-color: rgba(255, 255, 255, 0.08);
+          color: rgba(245, 242, 236, 0.8);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+      }
+    }
+  }
+}

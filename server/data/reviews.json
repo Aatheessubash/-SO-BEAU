@@ -1,0 +1,72 @@
+[
+  {
+    "id": "rev-1",
+    "productId": "sb-001",
+    "author": "Dr. Sarah Mitchell",
+    "role": "Emergency Medicine Registrar, Royal Melbourne Hospital",
+    "location": "Melbourne, VIC",
+    "rating": 5,
+    "title": "Finally, scrubs that fit like high-end designer pieces",
+    "content": "I've worked 70-hour weeks in hospital scrubs for six years and always hated the boxy potato-sack look. The Women's Tailored Scrub Set in Charcoal is sublime. The drape is so flattering, the fabric breathes during high-stress resus calls, and not a single wrinkle after a 14-hour night shift. The yoga waistband does not slide down when bending over patient beds.",
+    "date": "2026-10-24",
+    "verified": true,
+    "colorPurchased": "Deep Charcoal",
+    "sizePurchased": "AU 8 (S)"
+  },
+  {
+    "id": "rev-2",
+    "productId": "sb-002",
+    "author": "Marcus Evans",
+    "role": "Trauma Resuscitation Nurse, St Vincent's Hospital",
+    "location": "Sydney, NSW",
+    "rating": 5,
+    "title": "Athletic shoulder reach and incredible pockets",
+    "content": "The Men's Athletic Set is genuinely the best scrub set in Australia. Performing CPR compressions or reaching over anaesthetic carts used to rip seams in cheap scrubs. The 4-way BeauTech stretch has no resistance whatsoever. The dedicated shears pocket and phone zip pocket are perfectly positioned.",
+    "date": "2026-10-18",
+    "verified": true,
+    "colorPurchased": "Deep Charcoal",
+    "sizePurchased": "AU L (42)"
+  },
+  {
+    "id": "rev-3",
+    "productId": "sb-001",
+    "author": "Dr. Anika Patel",
+    "role": "Surgical Registrar, Princess Alexandra Hospital",
+    "location": "Brisbane, QLD",
+    "rating": 5,
+    "title": "Stands up to 8-hour theatre procedures with pure comfort",
+    "content": "Standing in theatre for an 8-hour laparotomy requires fabric that doesn't hold moisture or restrict your shoulder reach. Soft Sage is stunning and calm. Antimicrobial silver really works — no mid-shift perspiration odour. Will be outfitting my whole surgical registrar cohort.",
+    "date": "2026-10-12",
+    "verified": true,
+    "colorPurchased": "Soft Sage",
+    "sizePurchased": "AU 10 (M)"
+  },
+  {
+    "id": "rev-4",
+    "productId": "sb-002",
+    "author": "Dr. Alexander Chen",
+    "role": "Anaesthetist, Alfred Health",
+    "location": "Melbourne, VIC",
+    "rating": 5,
+    "title": "Australian hospital standard perfection",
+    "content": "Clean, sharp, and modern. You look professional walking through private suites and comfortable running to code blues in ICU. The French Navy is rich and deep. Wash after wash at 60 degrees, the color holds like new.",
+    "date": "2026-09-30",
+    "verified": true,
+    "colorPurchased": "French Navy",
+    "sizePurchased": "AU M (40)"
+  },
+  {
+    "id": "rev-5",
+    "productId": "sb-001",
+    "author": "Chloe Jenkins",
+    "role": "Paediatric Nurse, Perth Children's Hospital",
+    "location": "Perth, WA",
+    "rating": 5,
+    "title": "Warm Taupe is gentle and the stretch is unreal",
+    "content": "In paediatrics, kneeling on the floor to comfort scared kids is a constant requirement. The 4-way stretch knees and waistband make this effortless. Plus the kids love the softer aesthetic over harsh institutional green.",
+    "date": "2026-09-15",
+    "verified": true,
+    "colorPurchased": "Warm Taupe",
+    "sizePurchased": "AU 6 (XS)"
+  }
+]

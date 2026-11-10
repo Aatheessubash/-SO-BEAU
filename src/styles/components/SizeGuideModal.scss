@@ -1,0 +1,148 @@
+@use '../variables' as *;
+
+.size-guide-modal-content {
+  background-color: $color-white;
+  width: 100%;
+  max-width: 760px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: $shadow-elevated;
+  padding: 2.5rem;
+  animation: fadeInUp 300ms ease forwards;
+
+  @media (max-width: $bp-tablet) {
+    padding: 1.5rem;
+  }
+
+  .size-guide-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $color-border;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+
+    .title-row {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+
+      h3 {
+        font-family: $font-serif;
+        font-size: 1.6rem;
+        margin: 0;
+      }
+    }
+
+    .close-btn {
+      color: $color-charcoal;
+      padding: 0.35rem;
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
+
+  .size-guide-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .tab-buttons {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+
+      .tab-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.76rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border: 1px solid $color-border;
+        background-color: $color-ivory;
+        color: $color-charcoal;
+        transition: all $transition-fast;
+
+        &.active {
+          background-color: $color-charcoal;
+          color: $color-white;
+          border-color: $color-charcoal;
+        }
+      }
+    }
+
+    .unit-toggle {
+      display: flex;
+      border: 1px solid $color-charcoal;
+
+      .unit-btn {
+        padding: 0.35rem 0.75rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: $color-charcoal;
+
+        &.active {
+          background-color: $color-charcoal;
+          color: $color-white;
+        }
+      }
+    }
+  }
+
+  .size-table-container {
+    overflow-x: auto;
+    margin-bottom: 2rem;
+
+    .size-table {
+      width: 100%;
+      text-align: left;
+      font-size: 0.88rem;
+
+      th {
+        background-color: $color-ivory;
+        padding: 0.75rem 1rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: $color-taupe-dark;
+        border-bottom: 2px solid $color-border;
+      }
+
+      td {
+        padding: 0.85rem 1rem;
+        border-bottom: 1px solid $color-border;
+        color: $color-charcoal;
+      }
+
+      tr:hover td {
+        background-color: $color-ivory-light;
+      }
+    }
+  }
+
+  .size-guide-footer-note {
+    background-color: $color-ivory-light;
+    padding: 1.25rem 1.5rem;
+    border-left: 3px solid $color-taupe;
+
+    h4 {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      font-family: $font-serif;
+    }
+
+    p {
+      font-size: 0.82rem;
+      color: $color-charcoal-light;
+      line-height: 1.6;
+      margin: 0;
+    }
+  }
+}

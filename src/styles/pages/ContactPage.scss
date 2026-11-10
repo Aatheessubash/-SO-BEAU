@@ -1,0 +1,209 @@
+@use '../variables' as *;
+
+.contact-page {
+  background-color: $color-ivory-light;
+
+  .contact-hero-banner {
+    background-color: $color-ivory;
+    border-bottom: 1px solid $color-border;
+    padding: clamp(4rem, 7vw, 6.5rem) 0 4rem;
+
+    .contact-main-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: 1rem;
+    }
+
+    .contact-hero-sub {
+      font-size: 1.1rem;
+      color: $color-charcoal-light;
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 4rem;
+    align-items: flex-start;
+
+    @media (max-width: $bp-laptop) {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+
+  .contact-form-card {
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    padding: clamp(2rem, 5vw, 3.5rem);
+    box-shadow: $shadow-card;
+
+    .card-title {
+      font-family: $font-serif;
+      font-size: 1.85rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-sub {
+      font-size: 0.92rem;
+      color: $color-grey;
+      margin-bottom: 2rem;
+    }
+
+    .contact-success-state {
+      text-align: center;
+      padding: 3rem 1.5rem;
+
+      .success-icon {
+        color: $color-sage-dark;
+        margin-bottom: 1rem;
+      }
+
+      h4 {
+        font-family: $font-serif;
+        font-size: 1.75rem;
+        margin-bottom: 0.75rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+        color: $color-charcoal-light;
+        line-height: 1.6;
+        margin-bottom: 1.75rem;
+      }
+    }
+
+    .contact-form {
+      .submit-btn {
+        height: 50px;
+        margin-top: 0.5rem;
+      }
+    }
+  }
+
+  .contact-info-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .info-card {
+      background-color: $color-white;
+      border: 1px solid $color-border;
+      padding: 2.25rem;
+
+      h4 {
+        font-family: $font-serif;
+        font-size: 1.45rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid $color-border;
+        padding-bottom: 0.75rem;
+      }
+
+      .info-items {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+
+        .info-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 1rem;
+
+          .icon {
+            color: $color-taupe-dark;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+          }
+
+          div {
+            display: flex;
+            flex-direction: column;
+
+            strong {
+              font-size: 0.88rem;
+              color: $color-charcoal;
+            }
+
+            span {
+              font-size: 0.84rem;
+              color: $color-charcoal-light;
+            }
+          }
+        }
+      }
+    }
+
+    .hospital-teams-card {
+      background-color: $color-charcoal;
+      color: $color-ivory;
+      padding: 2.5rem;
+      box-shadow: $shadow-card;
+
+      .card-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: $color-taupe;
+        margin-bottom: 1rem;
+      }
+
+      h4 {
+        font-family: $font-serif;
+        font-size: 1.6rem;
+        color: $color-white;
+        margin-bottom: 0.85rem;
+      }
+
+      p {
+        font-size: 0.88rem;
+        color: rgba(245, 242, 236, 0.75);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .hospital-perks {
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+        font-size: 0.82rem;
+        color: $color-taupe-light;
+        margin-bottom: 1.75rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        padding-top: 1rem;
+      }
+    }
+
+    .faq-prompt-card {
+      background-color: $color-ivory;
+      border: 1px solid $color-border;
+      padding: 1.75rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+
+      svg {
+        color: $color-taupe-dark;
+        margin-top: 0.2rem;
+        flex-shrink: 0;
+      }
+
+      h4 {
+        font-family: $font-serif;
+        font-size: 1.25rem;
+        margin-bottom: 0.35rem;
+      }
+
+      p {
+        font-size: 0.85rem;
+        color: $color-charcoal-light;
+        margin-bottom: 0.75rem;
+      }
+    }
+  }
+}

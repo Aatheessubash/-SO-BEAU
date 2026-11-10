@@ -1,0 +1,354 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+// Search Modal
+.search-modal {
+  position: fixed;
+  inset: 0;
+  z-index: $z-modal;
+  display: flex;
+  flex-direction: column;
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(23, 23, 23, 0.65);
+    backdrop-filter: blur(8px);
+  }
+
+  &__content {
+    position: relative;
+    background: $color-white;
+    width: 100%;
+    max-height: 85vh;
+    box-shadow: $shadow-lg;
+    display: flex;
+    flex-direction: column;
+    animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  &__header {
+    @include container($container-editorial-width);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid $color-border-subtle;
+  }
+
+  &__input-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    svg {
+      color: $color-grey;
+      flex-shrink: 0;
+    }
+
+    input {
+      width: 100%;
+      border: none;
+      outline: none;
+      font-family: $font-serif;
+      font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+      color: $color-charcoal;
+      background: transparent;
+
+      &::placeholder {
+        color: $color-taupe;
+        font-style: italic;
+      }
+    }
+  }
+
+  &__close-btn {
+    padding: 0.5rem;
+    color: $color-charcoal;
+    &:hover { color: $color-charcoal-light; }
+  }
+
+  &__body {
+    @include container($container-editorial-width);
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+    overflow-y: auto;
+    @include custom-scrollbar;
+  }
+
+  &__suggestions {
+    margin-bottom: 2rem;
+
+    h5 {
+      font-size: $text-xs;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: $color-grey;
+      margin-bottom: 0.75rem;
+    }
+
+    .search-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+
+      button {
+        padding: 0.45rem 0.85rem;
+        background: $color-ivory;
+        font-size: $text-xs;
+        color: $color-charcoal;
+        border: 1px solid $color-ivory-dark;
+        transition: all $transition-fast;
+
+        &:hover {
+          background: $color-charcoal;
+          color: $color-white;
+          border-color: $color-charcoal;
+        }
+      }
+    }
+  }
+
+  &__results-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+
+    @include tablet {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include mobile {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+  }
+
+  &__no-results {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: $color-grey;
+
+    h4 {
+      font-family: $font-serif;
+      font-size: 1.8rem;
+      color: $color-charcoal;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+// Quick View Modal
+.quick-view-modal {
+  position: fixed;
+  inset: 0;
+  z-index: $z-modal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(23, 23, 23, 0.65);
+    backdrop-filter: blur(6px);
+  }
+
+  &__dialog {
+    position: relative;
+    background: $color-white;
+    width: 100%;
+    max-width: 940px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: $shadow-lg;
+    animation: fadeIn 0.3s ease;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    @include custom-scrollbar;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+    width: 36px;
+    height: 36px;
+    background: $color-white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: $shadow-sm;
+    color: $color-charcoal;
+  }
+
+  &__gallery {
+    background: $color-ivory;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      max-height: 560px;
+      object-fit: cover;
+    }
+  }
+
+  &__details {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.25rem;
+
+    @include mobile {
+      padding: 1.5rem;
+    }
+  }
+
+  &__view-full {
+    font-size: $text-xs;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    color: $color-charcoal;
+    margin-top: 0.5rem;
+  }
+}
+
+// Size Guide Modal
+.size-guide-modal {
+  position: fixed;
+  inset: 0;
+  z-index: $z-modal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(23, 23, 23, 0.65);
+    backdrop-filter: blur(6px);
+  }
+
+  &__dialog {
+    position: relative;
+    background: $color-white;
+    width: 100%;
+    max-width: 760px;
+    max-height: 88vh;
+    overflow-y: auto;
+    box-shadow: $shadow-lg;
+    padding: 2.5rem;
+    animation: fadeIn 0.3s ease;
+    @include custom-scrollbar;
+
+    @include mobile {
+      padding: 1.5rem;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    color: $color-charcoal;
+  }
+
+  &__table-wrapper {
+    overflow-x: auto;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: $text-sm;
+    text-align: left;
+
+    th, td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid $color-border-subtle;
+    }
+
+    th {
+      font-size: $text-xs;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: $color-ivory;
+      color: $color-charcoal;
+    }
+
+    tr:hover td {
+      background: $color-ivory-light;
+    }
+  }
+}
+
+// Toast Notifications
+.toast-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: $z-toast;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  pointer-events: none;
+
+  @include mobile {
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+  }
+}
+
+.toast-item {
+  pointer-events: auto;
+  background: $color-charcoal;
+  color: $color-white;
+  padding: 1rem 1.25rem;
+  box-shadow: $shadow-lg;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  min-width: 320px;
+  animation: fadeIn 0.25s ease;
+  border-left: 3px solid $color-taupe;
+
+  &__content {
+    h6 {
+      font-family: $font-sans;
+      font-size: $text-sm;
+      font-weight: 600;
+      color: $color-white;
+    }
+    p {
+      font-size: $text-xs;
+      color: rgba($color-white, 0.75);
+      margin-top: 0.2rem;
+    }
+  }
+
+  &__close {
+    color: rgba($color-white, 0.6);
+    &:hover { color: $color-white; }
+  }
+}

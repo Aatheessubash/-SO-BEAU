@@ -1,0 +1,350 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.cart-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: $z-drawer;
+  visibility: hidden;
+  transition: visibility $transition-base;
+
+  &.is-open {
+    visibility: visible;
+
+    .cart-drawer__backdrop {
+      opacity: 1;
+    }
+
+    .cart-drawer__panel {
+      transform: translateX(0);
+    }
+  }
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(23, 23, 23, 0.55);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    transition: opacity $transition-base;
+  }
+
+  &__panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 480px;
+    height: 100vh;
+    background-color: $color-white;
+    box-shadow: $shadow-drawer;
+    transform: translateX(100%);
+    transition: transform $transition-editorial;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    border-bottom: 1px solid $color-border-subtle;
+
+    h3 {
+      font-family: $font-serif;
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: $color-charcoal;
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+
+      span {
+        font-family: $font-sans;
+        font-size: $text-xs;
+        color: $color-grey;
+        font-weight: 600;
+      }
+    }
+  }
+
+  &__close-btn {
+    padding: 0.5rem;
+    color: $color-charcoal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform $transition-fast;
+
+    &:hover {
+      transform: rotate(90deg);
+    }
+  }
+
+  // Shipping progress indicator
+  &__shipping-meter {
+    background-color: $color-ivory;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid $color-border-subtle;
+
+    p {
+      font-size: $text-xs;
+      color: $color-charcoal;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+
+      strong {
+        font-weight: 700;
+      }
+    }
+  }
+
+  &__progress-bar-bg {
+    width: 100%;
+    height: 4px;
+    background-color: $color-grey-border;
+    overflow: hidden;
+  }
+
+  &__progress-bar-fill {
+    height: 100%;
+    background-color: $color-charcoal;
+    transition: width $transition-slow;
+  }
+
+  // Items List
+  &__body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+    @include custom-scrollbar;
+  }
+
+  &__items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &__item {
+    display: flex;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid $color-border-subtle;
+  }
+
+  &__item-image {
+    width: 90px;
+    height: 115px;
+    object-fit: cover;
+    background-color: $color-ivory;
+    flex-shrink: 0;
+  }
+
+  &__item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  &__item-name {
+    font-family: $font-serif;
+    font-size: 1.15rem;
+    color: $color-charcoal;
+    line-height: 1.25;
+  }
+
+  &__item-meta {
+    font-size: $text-xs;
+    color: $color-grey;
+    margin-top: 0.25rem;
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  &__item-price {
+    font-size: $text-sm;
+    font-weight: 600;
+    color: $color-charcoal;
+    margin-top: 0.4rem;
+  }
+
+  &__item-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.75rem;
+  }
+
+  &__qty-stepper {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid $color-grey-border;
+    background: $color-white;
+
+    button {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $color-charcoal;
+      font-size: $text-sm;
+      transition: background $transition-fast;
+
+      &:hover {
+        background: $color-ivory;
+      }
+    }
+
+    span {
+      font-size: $text-xs;
+      font-weight: 600;
+      min-width: 24px;
+      text-align: center;
+    }
+  }
+
+  &__remove-btn {
+    font-size: $text-xs;
+    color: $color-grey;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover {
+      color: $color-error;
+    }
+  }
+
+  // Empty Cart State
+  &__empty {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1.25rem;
+    padding: 2rem;
+
+    svg {
+      color: $color-taupe;
+    }
+
+    h4 {
+      font-family: $font-serif;
+      font-size: 1.6rem;
+      color: $color-charcoal;
+    }
+
+    p {
+      font-size: $text-sm;
+      color: $color-grey;
+      max-width: 280px;
+    }
+  }
+
+  // Footer & Checkout
+  &__footer {
+    padding: 1.5rem;
+    background-color: $color-white;
+    border-top: 1px solid $color-border-subtle;
+    box-shadow: 0 -4px 16px rgba(23, 23, 23, 0.04);
+  }
+
+  &__promo-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+
+    input {
+      flex: 1;
+      padding: 0.65rem 0.85rem;
+      font-size: $text-xs;
+    }
+
+    button {
+      padding: 0.65rem 1rem;
+      font-size: $text-xs;
+    }
+  }
+
+  &__promo-tag {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem 0.75rem;
+    background: $color-sage-light;
+    color: $color-charcoal;
+    font-size: $text-xs;
+    margin-bottom: 1rem;
+
+    button {
+      color: $color-grey;
+      &:hover { color: $color-charcoal; }
+    }
+  }
+
+  &__summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: $text-sm;
+    color: $color-grey;
+    margin-bottom: 0.4rem;
+
+    &.is-total {
+      font-size: $text-md;
+      font-weight: 700;
+      color: $color-charcoal;
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid $color-border-subtle;
+    }
+
+    &.is-discount {
+      color: $color-success;
+    }
+  }
+
+  &__tax-note {
+    font-size: 0.7rem;
+    color: $color-grey-light;
+    margin-bottom: 1rem;
+    text-align: right;
+  }
+
+  &__checkout-btn {
+    width: 100%;
+    padding: 1.1rem;
+    font-size: $text-xs;
+    letter-spacing: 0.14em;
+  }
+
+  &__guarantee-badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 0.85rem;
+    font-size: 0.6875rem;
+    color: $color-grey;
+
+    span {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+  }
+}

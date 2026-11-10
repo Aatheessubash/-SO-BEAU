@@ -1,0 +1,658 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+@use '../typography' as *;
+
+.home-page {
+  // Hero Section
+  .hero-section {
+    position: relative;
+    min-height: calc(100vh - #{$header-height});
+    background-color: $color-ivory;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    @include mobile {
+      min-height: auto;
+      padding-top: 3rem;
+      padding-bottom: 3.5rem;
+    }
+
+    &__grid {
+      @include container;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 4rem;
+      align-items: center;
+
+      @include tablet {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      @include mobile {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.75rem;
+    }
+
+    &__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.85rem;
+      background: rgba($color-charcoal, 0.06);
+      border-radius: 100px;
+      font-size: $text-xs;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: $color-charcoal;
+    }
+
+    &__title {
+      @include serif-headline;
+      font-size: clamp(3rem, 6.5vw, 5.2rem);
+      line-height: 1.02;
+
+      span.italic {
+        font-style: italic;
+        font-weight: 300;
+      }
+    }
+
+    &__description {
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      color: $color-charcoal-muted;
+      line-height: 1.6;
+      max-width: 520px;
+    }
+
+    &__cta-group {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+
+      @include mobile {
+        width: 100%;
+        flex-direction: column;
+
+        a {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+
+    &__trust-strip {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid $color-border-subtle;
+      font-size: $text-xs;
+      color: $color-grey;
+
+      div {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+
+        strong {
+          font-size: $text-sm;
+          color: $color-charcoal;
+        }
+      }
+    }
+
+    &__media {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 580px;
+
+      @include mobile {
+        min-height: 420px;
+      }
+    }
+
+    &__image-primary {
+      width: 100%;
+      height: 100%;
+      max-height: 640px;
+      object-fit: cover;
+      box-shadow: $shadow-lg;
+    }
+
+    &__floating-card {
+      position: absolute;
+      bottom: 2rem;
+      left: -2rem;
+      background: rgba($color-white, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1.25rem 1.5rem;
+      box-shadow: $shadow-md;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border: 1px solid rgba(23, 23, 23, 0.06);
+
+      @include mobile {
+        left: 1rem;
+        bottom: 1rem;
+        padding: 0.85rem 1rem;
+      }
+
+      .floating-icon {
+        width: 40px;
+        height: 40px;
+        background: $color-ivory;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $color-charcoal;
+      }
+
+      .floating-text {
+        h6 {
+          font-family: $font-serif;
+          font-size: 1.05rem;
+          color: $color-charcoal;
+        }
+        p {
+          font-size: $text-xs;
+          color: $color-grey;
+        }
+      }
+    }
+  }
+
+  // Brand Philosophy Strip
+  .philosophy-section {
+    padding: $spacing-4xl 0;
+    background-color: $color-white;
+    border-top: 1px solid $color-border-subtle;
+    border-bottom: 1px solid $color-border-subtle;
+
+    &__inner {
+      @include container($container-editorial-width);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    &__headline {
+      @include serif-headline;
+      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+      max-width: 820px;
+    }
+
+    &__body {
+      font-size: clamp(1rem, 1.6vw, 1.2rem);
+      color: $color-charcoal-muted;
+      line-height: 1.7;
+      max-width: 760px;
+    }
+
+    &__pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      margin-top: 3rem;
+      width: 100%;
+      text-align: left;
+
+      @include mobile {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    &__pillar-card {
+      padding: 2rem;
+      background-color: $color-ivory;
+      border: 1px solid $color-border-subtle;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+
+      .pillar-num {
+        font-family: $font-serif;
+        font-size: 1.8rem;
+        color: $color-taupe;
+      }
+
+      h4 {
+        font-family: $font-serif;
+        font-size: 1.4rem;
+        color: $color-charcoal;
+      }
+
+      p {
+        font-size: $text-sm;
+        color: $color-grey;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  // Featured Collection Section
+  .featured-collection-section {
+    padding: $spacing-4xl 0;
+    background-color: $color-ivory-light;
+
+    &__header {
+      @include container;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+
+      @include mobile {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+      }
+    }
+
+    &__tabs {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+
+      button {
+        padding: 0.6rem 1.25rem;
+        font-family: $font-sans;
+        font-size: $text-xs;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        border: 1px solid $color-grey-border;
+        background: transparent;
+        color: $color-charcoal;
+        transition: all $transition-fast;
+
+        &.is-active, &:hover {
+          background: $color-charcoal;
+          color: $color-white;
+          border-color: $color-charcoal;
+        }
+      }
+    }
+
+    &__grid {
+      @include container;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+
+      @include tablet {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      @include mobile {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+    }
+
+    &__footer-cta {
+      @include container;
+      text-align: center;
+      margin-top: 3.5rem;
+    }
+  }
+
+  // Fabric Innovation & Functional Details Section
+  .innovation-section {
+    padding: $spacing-4xl 0;
+    background-color: $color-charcoal;
+    color: $color-white;
+
+    &__inner {
+      @include container;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 4.5rem;
+      align-items: center;
+
+      @include tablet {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      @include mobile {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    &__media-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+
+      img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+      }
+
+      img:nth-child(2) {
+        transform: translateY(2rem);
+      }
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+
+      h2 {
+        @include serif-headline;
+        color: $color-white;
+        font-size: clamp(2.2rem, 4vw, 3.5rem);
+      }
+
+      p.lead {
+        font-size: $text-md;
+        color: rgba($color-white, 0.8);
+        line-height: 1.7;
+      }
+    }
+
+    &__specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1rem;
+
+      @include mobile {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .spec-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        h5 {
+          font-family: $font-serif;
+          font-size: 1.25rem;
+          color: $color-taupe-light;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        p {
+          font-size: $text-sm;
+          color: rgba($color-white, 0.7);
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+
+  // Our Story Preview Section
+  .story-preview-section {
+    padding: $spacing-4xl 0;
+    background-color: $color-ivory;
+
+    &__inner {
+      @include container($container-editorial-width);
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+
+      @include tablet {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      @include mobile {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+
+      h2 {
+        @include serif-headline;
+        font-size: clamp(2.2rem, 4vw, 3.4rem);
+      }
+
+      p {
+        font-size: $text-base;
+        color: $color-charcoal-muted;
+        line-height: 1.75;
+      }
+
+      blockquote {
+        font-family: $font-serif;
+        font-style: italic;
+        font-size: 1.35rem;
+        color: $color-charcoal;
+        border-left: 2px solid $color-taupe;
+        padding-left: 1.25rem;
+        margin: 0.5rem 0;
+      }
+    }
+
+    &__image-collage {
+      position: relative;
+
+      img.main-img {
+        width: 100%;
+        height: 520px;
+        object-fit: cover;
+      }
+
+      .quote-badge {
+        position: absolute;
+        bottom: -1.5rem;
+        right: -1.5rem;
+        background: $color-white;
+        padding: 1.5rem;
+        max-width: 260px;
+        box-shadow: $shadow-md;
+        border: 1px solid $color-border-subtle;
+
+        @include mobile {
+          right: 0;
+          bottom: 0;
+        }
+
+        p {
+          font-family: $font-serif;
+          font-size: 1rem;
+          font-style: italic;
+          color: $color-charcoal;
+        }
+
+        span {
+          display: block;
+          margin-top: 0.5rem;
+          font-family: $font-sans;
+          font-size: $text-xs;
+          font-weight: 600;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: $color-taupe-dark;
+        }
+      }
+    }
+  }
+
+  // Community Section
+  .community-section {
+    padding: $spacing-4xl 0;
+    background-color: $color-white;
+
+    &__header {
+      @include container;
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 3.5rem auto;
+
+      h2 {
+        @include serif-headline;
+        font-size: clamp(2.2rem, 4vw, 3.4rem);
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: $text-md;
+        color: $color-grey;
+      }
+    }
+
+    &__stories-grid {
+      @include container;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+
+      @include tablet {
+        grid-template-columns: 1fr;
+      }
+
+      @include mobile {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &__story-card {
+      background: $color-ivory;
+      padding: 2.25rem;
+      border: 1px solid $color-border-subtle;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.5rem;
+
+      p.quote {
+        font-family: $font-serif;
+        font-size: 1.25rem;
+        font-style: italic;
+        line-height: 1.5;
+        color: $color-charcoal;
+      }
+
+      .author-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        img {
+          width: 52px;
+          height: 52px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        h6 {
+          font-family: $font-sans;
+          font-size: $text-sm;
+          font-weight: 700;
+          color: $color-charcoal;
+        }
+
+        span {
+          font-size: $text-xs;
+          color: $color-grey;
+        }
+      }
+    }
+
+    &__cta {
+      @include container;
+      text-align: center;
+      margin-top: 3.5rem;
+    }
+  }
+
+  // Newsletter Section
+  .newsletter-section {
+    padding: $spacing-4xl 0;
+    background-color: $color-ivory-dark;
+    text-align: center;
+
+    &__inner {
+      @include container($container-narrative-width);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+
+      h2 {
+        @include serif-headline;
+        font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+      }
+
+      p {
+        font-size: $text-md;
+        color: $color-charcoal-muted;
+        max-width: 540px;
+        line-height: 1.6;
+      }
+    }
+
+    &__form {
+      display: flex;
+      width: 100%;
+      max-width: 520px;
+      margin-top: 1rem;
+
+      @include mobile {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      input {
+        flex: 1;
+        padding: 1.1rem 1.25rem;
+        background: $color-white;
+        border: 1px solid $color-charcoal;
+        font-size: $text-sm;
+        outline: none;
+      }
+
+      button {
+        padding: 1.1rem 2rem;
+        background: $color-charcoal;
+        color: $color-white;
+        font-family: $font-sans;
+        font-size: $text-xs;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        border: 1px solid $color-charcoal;
+        transition: all $transition-fast;
+
+        &:hover {
+          background: $color-charcoal-light;
+        }
+      }
+    }
+  }
+}

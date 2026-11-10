@@ -1,0 +1,440 @@
+@use '../variables' as *;
+
+.community-page {
+  background-color: $color-ivory-light;
+
+  .community-hero-section {
+    background-color: $color-ivory;
+    border-bottom: 1px solid $color-border;
+    padding: clamp(4.5rem, 8vw, 7.5rem) 0 4.5rem;
+    text-align: center;
+
+    .community-hero-inner {
+      max-width: 780px;
+      margin: 0 auto;
+
+      .community-hero-title {
+        font-size: clamp(2.8rem, 6vw, 4.8rem);
+        margin-bottom: 0.75rem;
+
+        em {
+          font-style: italic;
+          color: $color-taupe-dark;
+        }
+      }
+
+      .community-hero-tagline {
+        font-family: $font-serif;
+        font-style: italic;
+        font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+        color: $color-charcoal;
+        margin-bottom: 1.5rem;
+      }
+
+      .community-hero-lead {
+        font-size: 1.1rem;
+        color: $color-charcoal-light;
+        line-height: 1.7;
+        margin: 0;
+      }
+    }
+  }
+
+  // Stats bar
+  .community-stats-bar {
+    background-color: $color-charcoal;
+    color: $color-ivory;
+    padding: 3rem 0;
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+
+      @media (max-width: $bp-laptop) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: $bp-mobile) {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-card {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+
+        .stat-num {
+          font-family: $font-serif;
+          font-size: clamp(2.5rem, 4vw, 3.2rem);
+          color: $color-taupe;
+          line-height: 1;
+        }
+
+        .stat-label {
+          font-size: 0.76rem;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: rgba(245, 242, 236, 0.7);
+        }
+      }
+    }
+  }
+
+  // Stages
+  .codesign-stages-section {
+    background-color: $color-white;
+
+    .section-head-center {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .stages-timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.75rem;
+
+      @media (max-width: $bp-desktop) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: $bp-mobile) {
+        grid-template-columns: 1fr;
+      }
+
+      .stage-step-card {
+        background-color: $color-ivory-light;
+        border: 1px solid $color-border;
+        padding: 2.25rem 1.75rem;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+
+        .step-badge {
+          font-size: 0.68rem;
+          font-weight: 700;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: $color-taupe-dark;
+          margin-bottom: 1.25rem;
+        }
+
+        .step-icon {
+          color: $color-charcoal;
+          margin-bottom: 1.25rem;
+        }
+
+        h4 {
+          font-family: $font-serif;
+          font-size: 1.35rem;
+          margin-bottom: 0.75rem;
+        }
+
+        p {
+          font-size: 0.88rem;
+          color: $color-charcoal-light;
+          line-height: 1.6;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  // Ideas Board
+  .community-ideas-section {
+    background-color: $color-ivory-light;
+
+    .ideas-header-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+
+      .ideas-sub {
+        font-size: 1.05rem;
+        color: $color-charcoal-light;
+        max-width: 640px;
+        margin-top: 0.5rem;
+        margin-bottom: 0;
+      }
+    }
+
+    .ideas-board-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+
+      @media (max-width: $bp-laptop) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: $bp-mobile) {
+        grid-template-columns: 1fr;
+      }
+
+      .idea-card {
+        background-color: $color-white;
+        border: 1px solid $color-border;
+        padding: 2.25rem;
+        display: flex;
+        flex-direction: column;
+        box-shadow: $shadow-subtle;
+        transition: all $transition-base;
+
+        &:hover {
+          transform: translateY(-3px);
+          box-shadow: $shadow-card;
+        }
+
+        .idea-card-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 1rem;
+
+          .idea-status-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.6rem;
+
+            &.status-in-prototyping {
+              background-color: rgba(216, 224, 216, 0.4);
+              color: $color-sage-dark;
+              border: 1px solid $color-sage;
+            }
+
+            &.status-under-review {
+              background-color: $color-ivory;
+              color: $color-taupe-dark;
+              border: 1px solid $color-border;
+            }
+
+            &.status-launched {
+              background-color: $color-charcoal;
+              color: $color-white;
+            }
+
+            &.status-beta-testing {
+              background-color: rgba(183, 169, 154, 0.3);
+              color: $color-charcoal;
+              border: 1px solid $color-taupe;
+            }
+          }
+        }
+
+        .idea-title {
+          font-family: $font-serif;
+          font-size: 1.45rem;
+          margin-bottom: 0.75rem;
+          line-height: 1.25;
+        }
+
+        .idea-desc {
+          font-size: 0.92rem;
+          color: $color-charcoal-light;
+          line-height: 1.6;
+          margin-bottom: 1.75rem;
+          flex: 1;
+        }
+
+        .idea-card-footer {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-top: 1px solid $color-border;
+          padding-top: 1rem;
+
+          .submitter-info {
+            display: flex;
+            flex-direction: column;
+
+            .label {
+              font-size: 0.68rem;
+              color: $color-grey;
+              text-transform: uppercase;
+            }
+
+            .name {
+              font-size: 0.82rem;
+              color: $color-charcoal;
+            }
+          }
+
+          .vote-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.45rem 0.85rem;
+            border: 1px solid $color-border;
+            background-color: $color-ivory;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: $color-charcoal;
+            transition: all $transition-fast;
+
+            &:hover {
+              border-color: $color-charcoal;
+              background-color: $color-white;
+            }
+
+            &.voted {
+              background-color: $color-charcoal;
+              color: $color-white;
+              border-color: $color-charcoal;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Submit Idea Form
+  .submit-idea-section {
+    background-color: $color-white;
+
+    .submit-idea-card {
+      background-color: $color-ivory-light;
+      border: 1px solid $color-border;
+      padding: clamp(2.5rem, 5vw, 4rem);
+      box-shadow: $shadow-card;
+
+      .submit-card-title {
+        font-family: $font-serif;
+        font-size: 2.2rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .submit-card-lead {
+        font-size: 1.05rem;
+        color: $color-charcoal-light;
+        margin-bottom: 2.5rem;
+      }
+
+      .submission-success-banner {
+        text-align: center;
+        padding: 3rem 1.5rem;
+
+        .success-icon {
+          color: $color-sage-dark;
+          margin-bottom: 1rem;
+        }
+
+        h3 {
+          font-family: $font-serif;
+          font-size: 1.8rem;
+          margin-bottom: 0.5rem;
+        }
+
+        p {
+          color: $color-grey;
+          margin-bottom: 1.5rem;
+        }
+      }
+
+      .idea-form {
+        .submit-btn {
+          height: 52px;
+          margin-top: 1rem;
+        }
+      }
+    }
+  }
+
+  // Clinician Stories
+  .community-stories-section {
+    background-color: $color-ivory-light;
+
+    .section-head-center {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+
+      @media (max-width: $bp-laptop) {
+        grid-template-columns: 1fr;
+      }
+
+      .story-item-card {
+        background-color: $color-white;
+        border: 1px solid $color-border;
+        overflow: hidden;
+        box-shadow: $shadow-subtle;
+
+        .story-img-wrap {
+          position: relative;
+          aspect-ratio: 4/3;
+          background-color: $color-ivory;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+
+          .story-badge-tag {
+            position: absolute;
+            bottom: 0.75rem;
+            left: 0.75rem;
+            background-color: rgba(23, 23, 23, 0.8);
+            color: $color-white;
+            font-size: 0.68rem;
+            padding: 0.25rem 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+          }
+        }
+
+        .story-card-body {
+          padding: 2rem;
+
+          .story-quote {
+            font-family: $font-serif;
+            font-style: italic;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: $color-charcoal;
+            margin-bottom: 1.5rem;
+          }
+
+          .story-author-details {
+            border-top: 1px solid $color-border;
+            padding-top: 1rem;
+
+            h4 {
+              font-family: $font-sans;
+              font-size: 0.95rem;
+              margin-bottom: 0.15rem;
+            }
+
+            .role {
+              font-size: 0.8rem;
+              color: $color-grey;
+              margin: 0;
+            }
+
+            .scrub {
+              font-size: 0.72rem;
+              color: $color-taupe-dark;
+              display: block;
+              margin-top: 0.25rem;
+              font-weight: 600;
+              text-transform: uppercase;
+            }
+          }
+        }
+      }
+    }
+  }
+}

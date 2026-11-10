@@ -1,0 +1,220 @@
+@use '../variables' as *;
+
+.order-confirmation-page {
+  background-color: $color-ivory-light;
+  padding: 4rem 0 7rem;
+
+  .confirmation-container {
+    max-width: 1040px;
+  }
+
+  .confirmation-header-card {
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    padding: clamp(2.5rem, 5vw, 4rem);
+    text-align: center;
+    margin-bottom: 3rem;
+    box-shadow: $shadow-card;
+
+    .success-icon {
+      color: $color-sage-dark;
+      margin: 0 auto 1.25rem;
+    }
+
+    .order-num-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: $color-taupe-dark;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .confirmation-title {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      margin-bottom: 1rem;
+    }
+
+    .confirmation-lead {
+      font-size: 1.05rem;
+      color: $color-charcoal-light;
+      max-width: 620px;
+      margin: 0 auto;
+
+      strong {
+        color: $color-charcoal;
+      }
+    }
+  }
+
+  .order-details-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 3rem;
+    align-items: flex-start;
+
+    @media (max-width: $bp-laptop) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .order-items-col {
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    padding: 2.25rem;
+
+    .col-title {
+      font-family: $font-serif;
+      font-size: 1.45rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid $color-border;
+      padding-bottom: 0.75rem;
+    }
+
+    .items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid $color-border;
+      padding-bottom: 1.5rem;
+
+      .order-item-row {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+
+        .item-img-wrap {
+          width: 70px;
+          height: 90px;
+          background-color: $color-ivory;
+          flex-shrink: 0;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .item-details {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+
+          .item-name {
+            font-family: $font-serif;
+            font-size: 1.05rem;
+            margin-bottom: 0.25rem;
+          }
+
+          .item-specs {
+            font-size: 0.78rem;
+            color: $color-grey;
+            margin-bottom: 0.35rem;
+          }
+
+          .item-price {
+            font-weight: 600;
+            font-size: 0.92rem;
+          }
+        }
+      }
+    }
+
+    .order-financial-breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+
+      .fin-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.88rem;
+        color: $color-charcoal-light;
+
+        &.discount {
+          color: $color-success;
+        }
+
+        &.total {
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: $color-charcoal;
+          border-top: 1px solid $color-border;
+          padding-top: 0.75rem;
+          margin-top: 0.35rem;
+        }
+      }
+
+      .gst-note {
+        font-size: 0.72rem;
+        color: $color-grey;
+        margin-top: 0.25rem;
+      }
+    }
+  }
+
+  .order-shipping-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+
+    .info-box {
+      background-color: $color-white;
+      border: 1px solid $color-border;
+      padding: 2rem;
+
+      .box-head {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.25rem;
+        color: $color-charcoal;
+
+        h4 {
+          font-family: $font-serif;
+          font-size: 1.35rem;
+          margin: 0;
+        }
+      }
+
+      .address-block {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        font-size: 0.88rem;
+        color: $color-charcoal-light;
+        margin-bottom: 1.25rem;
+
+        strong {
+          color: $color-charcoal;
+          margin-bottom: 0.25rem;
+        }
+      }
+
+      .delivery-timing-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        background-color: $color-ivory-light;
+        border: 1px solid $color-border;
+        font-size: 0.78rem;
+        color: $color-charcoal;
+      }
+
+      .guarantee-text {
+        font-size: 0.88rem;
+        color: $color-charcoal-light;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .next-actions-row {
+      margin-top: 0.5rem;
+    }
+  }
+}

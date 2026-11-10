@@ -1,0 +1,279 @@
+@use '../variables' as *;
+
+.horizontal-lookbook-section {
+  background: radial-gradient(ellipse 130% 90% at 50% 15%, #244C38 0%, #1B3B2B 55%, #12281D 100%);
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+  border-top: 1px solid rgba(197, 160, 80, 0.2);
+  border-bottom: 1px solid rgba(197, 160, 80, 0.2);
+
+  .lookbook-header-container {
+    margin-bottom: 2.5rem;
+
+    .lookbook-header-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.75rem;
+
+      .lookbook-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.35rem 0.85rem;
+        background: rgba(197, 160, 80, 0.12);
+        border: 1px solid rgba(197, 160, 80, 0.3);
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #C5A050;
+        margin-bottom: 1rem;
+      }
+
+      .lookbook-title {
+        font-family: $font-serif;
+        font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+        font-weight: 400;
+        line-height: 1.1;
+        color: #fff;
+        margin: 0;
+
+        em {
+          font-style: italic;
+          color: #E7DEC2;
+        }
+      }
+
+      .lookbook-controls-group {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+
+        .lookbook-counter {
+          font-size: 0.85rem;
+          letter-spacing: 0.1em;
+          color: rgba(255, 255, 255, 0.5);
+
+          strong {
+            color: #C5A050;
+            font-size: 1.1rem;
+          }
+        }
+
+        .lookbook-arrows {
+          display: flex;
+          gap: 0.6rem;
+
+          .lookbook-nav-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            cursor: pointer;
+
+            &:hover {
+              background: #C5A050;
+              color: #1B3B2B;
+              border-color: #C5A050;
+              transform: scale(1.08);
+            }
+          }
+        }
+      }
+    }
+
+    // Scroll Progress Bar
+    .lookbook-progress-track {
+      width: 100%;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.12);
+      position: relative;
+      overflow: hidden;
+
+      .lookbook-progress-bar {
+        height: 100%;
+        background: #C5A050;
+        transition: width 0.25s ease-out;
+      }
+    }
+  }
+
+  // Horizontal Scrolling Gallery Track
+  .lookbook-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 max(1.5rem, calc((100vw - #{$max-width-content}) / 2)) 2.5rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .lookbook-track {
+      display: flex;
+      gap: 1.75rem;
+      width: max-content;
+
+      .lookbook-card {
+        scroll-snap-align: start;
+        width: 380px;
+        position: relative;
+        flex-shrink: 0;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+        @media (max-width: $bp-mobile) {
+          width: 310px;
+        }
+
+        .card-photo-viewport {
+          position: relative;
+          aspect-ratio: 3/4.4;
+          border-radius: 8px;
+          overflow: hidden;
+          background: #14281E;
+          border: 1px solid rgba(231, 222, 194, 0.2);
+          box-shadow: 0 16px 40px rgba(10, 25, 17, 0.5);
+
+          .lookbook-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+          }
+
+          .card-photo-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+              to top,
+              rgba(18, 40, 29, 0.95) 0%,
+              rgba(18, 40, 29, 0.6) 45%,
+              transparent 75%
+            );
+          }
+
+          .card-top-tag {
+            position: absolute;
+            top: 1.25rem;
+            left: 1.25rem;
+            right: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 3;
+
+            .shift-hours-chip {
+              padding: 0.3rem 0.75rem;
+              background: rgba(18, 40, 29, 0.75);
+              backdrop-filter: blur(8px);
+              border: 1px solid rgba(231, 222, 194, 0.3);
+              border-radius: 999px;
+              font-size: 0.68rem;
+              font-weight: 600;
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+              color: #FDFBF7;
+            }
+
+            .swatch-dot {
+              width: 14px;
+              height: 14px;
+              border-radius: 50%;
+              border: 2px solid #fff;
+              box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+            }
+          }
+
+          .card-info-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.75rem;
+            z-index: 3;
+            color: #fff;
+
+            .slide-tag {
+              font-size: 0.68rem;
+              letter-spacing: 0.18em;
+              text-transform: uppercase;
+              color: #C5A050;
+              display: block;
+              margin-bottom: 0.35rem;
+              font-weight: 700;
+            }
+
+            .slide-title {
+              font-family: $font-serif;
+              font-size: 2rem;
+              margin: 0 0 0.25rem 0;
+              font-weight: 400;
+              color: #fff;
+            }
+
+            .slide-subtitle {
+              font-size: 0.8rem;
+              color: #E7DEC2;
+              font-weight: 500;
+              display: block;
+              margin-bottom: 0.75rem;
+            }
+
+            .slide-desc {
+              font-size: 0.86rem;
+              color: rgba(253, 251, 247, 0.8);
+              line-height: 1.5;
+              margin-bottom: 1.25rem;
+              display: -webkit-box;
+              -webkit-line-clamp: 2;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+            }
+
+            .slide-link-btn {
+              display: inline-flex;
+              align-items: center;
+              gap: 0.45rem;
+              font-size: 0.76rem;
+              font-weight: 600;
+              letter-spacing: 0.12em;
+              text-transform: uppercase;
+              color: #fff;
+              text-decoration: none;
+              padding-bottom: 0.2rem;
+              border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+              transition: all 0.25s ease;
+
+              &:hover {
+                color: #C5A050;
+                border-color: #C5A050;
+                transform: translateX(4px);
+              }
+            }
+          }
+
+          &:hover {
+            .lookbook-photo {
+              transform: scale(1.08);
+            }
+          }
+        }
+      }
+    }
+  }
+}

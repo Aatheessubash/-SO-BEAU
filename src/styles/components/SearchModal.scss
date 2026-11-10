@@ -1,0 +1,218 @@
+@use '../variables' as *;
+
+.search-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(23, 23, 23, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: $z-modal;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: clamp(2rem, 8vh, 6rem);
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  .search-modal-box {
+    background-color: $color-white;
+    width: 100%;
+    max-width: 780px;
+    box-shadow: $shadow-elevated;
+    overflow: hidden;
+  }
+
+  .search-bar-row {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem 1.75rem;
+    border-bottom: 1px solid $color-border;
+    gap: 1rem;
+
+    .search-icon {
+      color: $color-charcoal;
+      flex-shrink: 0;
+    }
+
+    .search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 1.15rem;
+      font-family: $font-serif;
+      color: $color-charcoal;
+      background: transparent;
+
+      &::placeholder {
+        color: $color-grey-light;
+        font-family: $font-sans;
+        font-size: 0.95rem;
+      }
+    }
+
+    .clear-btn {
+      color: $color-grey;
+      padding: 0.25rem;
+
+      &:hover {
+        color: $color-charcoal;
+      }
+    }
+
+    .close-search-btn {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 0.35rem 0.6rem;
+      border: 1px solid $color-border;
+      color: $color-grey;
+
+      &:hover {
+        background-color: $color-charcoal;
+        color: $color-white;
+        border-color: $color-charcoal;
+      }
+    }
+  }
+
+  .search-suggestions {
+    padding: 1.5rem 1.75rem;
+    background-color: $color-ivory-light;
+
+    .suggestions-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: $color-taupe-dark;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .suggestions-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+
+      .suggestion-pill {
+        padding: 0.4rem 0.85rem;
+        background: $color-white;
+        border: 1px solid $color-border;
+        font-size: 0.78rem;
+        color: $color-charcoal;
+        transition: all $transition-fast;
+
+        &:hover {
+          border-color: $color-charcoal;
+          background-color: $color-charcoal;
+          color: $color-white;
+        }
+      }
+    }
+  }
+
+  .search-results-area {
+    max-height: 480px;
+    overflow-y: auto;
+    padding: 1.5rem 1.75rem;
+
+    .search-loading, .search-empty {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: $color-grey;
+      font-size: 0.92rem;
+
+      .search-tip {
+        display: block;
+        margin-top: 0.5rem;
+        font-size: 0.8rem;
+        color: $color-grey-light;
+      }
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+
+      @media (max-width: $bp-mobile) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .search-result-card {
+      display: flex;
+      gap: 1rem;
+      padding: 0.75rem;
+      border: 1px solid transparent;
+      transition: all $transition-fast;
+
+      &:hover {
+        background-color: $color-ivory-light;
+        border-color: $color-border;
+      }
+
+      .result-img-wrap {
+        width: 70px;
+        height: 90px;
+        background-color: $color-ivory;
+        flex-shrink: 0;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .result-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .result-category {
+          font-size: 0.68rem;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: $color-grey;
+        }
+
+        .result-name {
+          font-family: $font-serif;
+          font-size: 1.05rem;
+          color: $color-charcoal;
+          margin: 0.2rem 0 0.35rem;
+          line-height: 1.25;
+        }
+
+        .result-price {
+          font-size: 0.85rem;
+          font-weight: 600;
+          color: $color-charcoal;
+        }
+      }
+    }
+
+    .view-all-results {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid $color-border;
+      margin-top: 1rem;
+
+      .view-all-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: $color-charcoal;
+
+        &:hover {
+          color: $color-taupe-dark;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+@use '../variables' as *;
+
+// Brand Pattern Utility Class
+.brand-pattern-bg {
+  background-color: $color-forest-green;
+  background-image: url('/images/brand-pattern.svg');
+  background-repeat: repeat;
+  background-size: 100px 100px;
+  color: $color-warm-cream;
+}
+
+// Subtle light variant of the pattern
+.brand-pattern-subtle {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/images/brand-pattern.svg');
+    background-repeat: repeat;
+    background-size: 120px 120px;
+    opacity: 0.06;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+// Gold Foil Accent Borders & Badges
+.gold-foil-border {
+  border: 1px solid $color-muted-gold;
+  box-shadow: 0 0 12px rgba(197, 160, 89, 0.15);
+}
+
+.gold-accent-line {
+  display: inline-block;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, $color-muted-gold 50%, transparent 100%);
+  width: 100%;
+}
+
+.pill-campaign-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(253, 251, 247, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  font-family: $font-serif;
+  font-style: italic;
+  font-size: 0.88rem;
+  color: $color-forest-green;
+  box-shadow: 0 4px 15px rgba(27, 59, 43, 0.06);
+}

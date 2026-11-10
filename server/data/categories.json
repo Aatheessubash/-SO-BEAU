@@ -1,0 +1,32 @@
+[
+  {
+    "id": "all",
+    "slug": "scrubs",
+    "name": "All Scrub Sets",
+    "tagline": "Contemporary medical scrubs engineered for clinical excellence.",
+    "description": "Rooted in individual expression, confidence, and modern sophistication. Australian designed medical scrub sets with proprietary 4-way stretch and antimicrobial defense.",
+    "image": "/images/female/female-navy-front.jpg",
+    "featured": true,
+    "productCount": 2
+  },
+  {
+    "id": "womens-scrubs",
+    "slug": "womens-scrubs",
+    "name": "Women's Scrub Sets",
+    "tagline": "Tailored V-neck & high-waist 7-pocket jogger set in 7 colorways.",
+    "description": "Designed for female nurses, doctors, and clinicians. Soft matte finish, structured silhouette, contoured waist darting, and supportive waistband.",
+    "image": "/images/female/female-navy-front.jpg",
+    "featured": true,
+    "productCount": 1
+  },
+  {
+    "id": "mens-scrubs",
+    "slug": "mens-scrubs",
+    "name": "Men's Scrub Sets",
+    "tagline": "Mandarin collar & ergonomic 10-pocket cargo jogger set in 8 colorways.",
+    "description": "Designed for male healthcare professionals. Athletic shoulder reach, clean concealed placket, and dedicated smartphone/shears utility pockets.",
+    "image": "/images/male/male-navy-front.jpg",
+    "featured": true,
+    "productCount": 1
+  }
+]

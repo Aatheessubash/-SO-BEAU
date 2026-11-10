@@ -1,0 +1,180 @@
+@use 'variables' as *;
+
+// Keyframe Animations
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+// 01. Cinematic Slow Zoom (Ken Burns)
+@keyframes kenBurnsZoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.07);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// 04. Scroll Reveal Line-by-Line Slide
+@keyframes revealLineUp {
+  0% {
+    transform: translateY(115%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// 04. Masked Curtain Image Reveal
+@keyframes maskCurtainWipe {
+  0% {
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+    opacity: 0;
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    opacity: 1;
+  }
+}
+
+// 02. Wishlist Heart Pop
+@keyframes heartPop {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(0.72);
+  }
+  55% {
+    transform: scale(1.38);
+  }
+  75% {
+    transform: scale(0.92);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// 05. Cart Bag Bouncy Pop
+@keyframes cartBounce {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.4) rotate(-6deg);
+  }
+  45% {
+    transform: scale(0.88) rotate(4deg);
+  }
+  70% {
+    transform: scale(1.15) rotate(-2deg);
+  }
+  88% {
+    transform: scale(0.97);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseGently {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Utility Classes
+.animate-fade-in {
+  animation: fadeIn 400ms $transition-base forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 550ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-spin {
+  animation: spin 900ms linear infinite;
+}
+
+.animate-ken-burns {
+  animation: kenBurnsZoom 18s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.animate-cart-bounce {
+  animation: cartBounce 650ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-heart-pop {
+  animation: heartPop 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+// Line mask container
+.line-reveal-wrapper {
+  display: block;
+  overflow: hidden;
+  line-height: 1.15;
+
+  .line-reveal-inner {
+    display: block;
+    animation: revealLineUp 750ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+.reveal-mask-image {
+  animation: maskCurtainWipe 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

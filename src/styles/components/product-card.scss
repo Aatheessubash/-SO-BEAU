@@ -1,0 +1,256 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  transition: transform $transition-fast;
+
+  &__media-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background-color: $color-ivory;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $transition-editorial, opacity $transition-base;
+    }
+
+    .product-card__hover-image {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+    }
+
+    &:hover {
+      img.product-card__primary-image {
+        transform: scale(1.04);
+      }
+
+      .product-card__hover-image {
+        opacity: 1;
+        transform: scale(1.04);
+      }
+
+      .product-card__quick-actions {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+    }
+  }
+
+  &__badge-tag {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 2;
+  }
+
+  &__wishlist-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 34px;
+    height: 34px;
+    background: rgba($color-white, 0.85);
+    backdrop-filter: blur(4px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-charcoal;
+    z-index: 2;
+    transition: all $transition-fast;
+
+    &:hover {
+      background: $color-white;
+      transform: scale(1.1);
+    }
+
+    &.is-active {
+      color: $color-error;
+      background: $color-white;
+    }
+  }
+
+  // Quick Action Buttons on Card (Desktop hover, visible on mobile)
+  &__quick-actions {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    display: flex;
+    gap: 0.5rem;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all $transition-base;
+    pointer-events: none;
+    z-index: 3;
+
+    @include mobile {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    button {
+      flex: 1;
+      padding: 0.65rem 0.5rem;
+      background: rgba($color-white, 0.95);
+      backdrop-filter: blur(4px);
+      color: $color-charcoal;
+      font-family: $font-sans;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid rgba(23, 23, 23, 0.1);
+      transition: all $transition-fast;
+
+      &:hover {
+        background: $color-charcoal;
+        color: $color-white;
+      }
+    }
+  }
+
+  // Content Information
+  &__info {
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  &__category {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $color-grey;
+  }
+
+  &__title {
+    font-family: $font-serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: $color-charcoal;
+    line-height: 1.25;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+
+  &__price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-top: 0.15rem;
+  }
+
+  &__price {
+    font-family: $font-sans;
+    font-size: $text-sm;
+    font-weight: 600;
+    color: $color-charcoal;
+  }
+
+  &__compare-price {
+    font-size: $text-xs;
+    color: $color-grey;
+    text-decoration: line-through;
+  }
+
+  // Swatches
+  &__swatches {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.4rem;
+  }
+
+  &__swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    position: relative;
+    transition: transform $transition-fast;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+
+    &.is-selected::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 1px solid $color-charcoal;
+    }
+  }
+
+  &__swatch-more {
+    font-size: 0.6875rem;
+    color: $color-grey;
+    margin-left: 0.25rem;
+  }
+
+  // Quick Add Size Popover
+  &__size-popover {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $color-white;
+    padding: 1rem;
+    box-shadow: $shadow-md;
+    border: 1px solid $color-border-subtle;
+    z-index: 5;
+    animation: fadeIn 0.2s ease;
+
+    h5 {
+      font-size: $text-xs;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.65rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__size-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.4rem;
+
+    button {
+      padding: 0.45rem 0;
+      border: 1px solid $color-grey-border;
+      font-size: $text-xs;
+      font-weight: 600;
+      background: $color-white;
+      transition: all $transition-fast;
+
+      &:hover {
+        border-color: $color-charcoal;
+        background: $color-charcoal;
+        color: $color-white;
+      }
+    }
+  }
+}

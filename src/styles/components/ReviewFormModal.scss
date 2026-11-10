@@ -1,0 +1,80 @@
+@use '../variables' as *;
+
+.review-modal-box {
+  background-color: $color-white;
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: $shadow-elevated;
+  padding: 2.5rem;
+  animation: fadeInUp 300ms ease forwards;
+
+  @media (max-width: $bp-tablet) {
+    padding: 1.5rem;
+  }
+
+  .review-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-bottom: 1px solid $color-border;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+
+    .modal-overline {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: $color-taupe-dark;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    h3 {
+      font-family: $font-serif;
+      font-size: 1.6rem;
+      margin: 0;
+    }
+
+    .close-btn {
+      color: $color-charcoal;
+      padding: 0.35rem;
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
+
+  .star-picker {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    .star-btn {
+      padding: 0.2rem;
+      transition: transform $transition-fast;
+
+      &:hover {
+        transform: scale(1.15);
+      }
+    }
+
+    .rating-label {
+      font-size: 0.82rem;
+      color: $color-grey;
+      margin-left: 0.5rem;
+    }
+  }
+
+  .review-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    border-top: 1px solid $color-border;
+    padding-top: 1.25rem;
+  }
+}

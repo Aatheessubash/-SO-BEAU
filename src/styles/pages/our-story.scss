@@ -1,0 +1,211 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+@use '../typography' as *;
+
+.our-story-page {
+  padding-bottom: $spacing-4xl;
+
+  &__hero {
+    background-color: $color-ivory;
+    padding: $spacing-4xl 0 3.5rem 0;
+    text-align: center;
+    border-bottom: 1px solid $color-border-subtle;
+
+    .hero-inner {
+      @include container($container-editorial-width);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+
+      h1 {
+        @include serif-headline;
+        font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+        max-width: 860px;
+      }
+
+      p.tagline-sub {
+        font-family: $font-sans;
+        font-size: $text-xs;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: $color-taupe-dark;
+      }
+    }
+  }
+
+  &__lead-split {
+    @include container($container-editorial-width);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4.5rem;
+    align-items: center;
+    margin-top: 4.5rem;
+    margin-bottom: 5rem;
+
+    @include tablet {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .lead-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+
+      h2 {
+        @include serif-headline;
+        font-size: clamp(2rem, 3.8vw, 3rem);
+      }
+
+      p {
+        font-size: 1.125rem;
+        color: $color-charcoal-muted;
+        line-height: 1.8;
+      }
+
+      .quote-block {
+        font-family: $font-serif;
+        font-size: 1.45rem;
+        font-style: italic;
+        color: $color-charcoal;
+        line-height: 1.45;
+        border-left: 2px solid $color-taupe;
+        padding-left: 1.5rem;
+        margin: 0.5rem 0;
+      }
+    }
+
+    .lead-media {
+      position: relative;
+
+      img {
+        width: 100%;
+        height: 560px;
+        object-fit: cover;
+        box-shadow: $shadow-lg;
+      }
+
+      .media-caption {
+        position: absolute;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        background: rgba($color-white, 0.95);
+        padding: 0.75rem 1.25rem;
+        font-size: $text-xs;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  // The Philosophy Narrative
+  &__narrative {
+    background: $color-white;
+    padding: $spacing-4xl 0;
+    border-top: 1px solid $color-border-subtle;
+    border-bottom: 1px solid $color-border-subtle;
+
+    .narrative-inner {
+      @include container($container-narrative-width);
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+
+      h3 {
+        @include serif-headline;
+        font-size: clamp(2rem, 3.5vw, 2.8rem);
+        text-align: center;
+      }
+
+      p {
+        font-size: 1.15rem;
+        color: $color-charcoal-muted;
+        line-height: 1.85;
+      }
+
+      .highlight-card {
+        background: $color-ivory;
+        padding: 2.5rem;
+        border: 1px solid $color-border-subtle;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        margin: 1.5rem 0;
+
+        h4 {
+          font-family: $font-serif;
+          font-size: 1.85rem;
+          color: $color-charcoal;
+        }
+
+        p {
+          font-size: 1.05rem;
+          color: $color-charcoal;
+        }
+      }
+    }
+  }
+
+  // Co-Creation Banner
+  &__co-creation {
+    @include container($container-editorial-width);
+    margin-top: 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+
+    @include tablet {
+      grid-template-columns: 1fr;
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+
+    .co-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+
+      h2 {
+        @include serif-headline;
+        font-size: clamp(2.2rem, 4vw, 3.2rem);
+      }
+
+      p {
+        font-size: 1.1rem;
+        color: $color-charcoal-muted;
+        line-height: 1.7;
+      }
+
+      .tagline-callout {
+        font-family: $font-serif;
+        font-size: 1.75rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: $color-charcoal;
+        margin-top: 0.5rem;
+      }
+    }
+
+    .co-image {
+      img {
+        width: 100%;
+        height: 480px;
+        object-fit: cover;
+      }
+    }
+  }
+}

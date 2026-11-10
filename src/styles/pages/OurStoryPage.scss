@@ -1,0 +1,326 @@
+@use '../variables' as *;
+
+.our-story-page {
+  background-color: $color-ivory-light;
+
+  .story-hero-section {
+    background-color: $color-ivory;
+    border-bottom: 1px solid $color-border;
+    padding: clamp(4rem, 8vw, 7rem) 0 4rem;
+    text-align: center;
+
+    .story-hero-inner {
+      max-width: 740px;
+      margin: 0 auto;
+
+      .story-main-title {
+        font-size: clamp(2.8rem, 6vw, 4.8rem);
+        margin-bottom: 1.25rem;
+
+        em {
+          font-style: italic;
+          color: $color-taupe-dark;
+        }
+      }
+
+      .story-subtitle {
+        font-size: 1.15rem;
+        color: $color-charcoal-light;
+        line-height: 1.6;
+        margin: 0;
+      }
+    }
+  }
+
+  .story-narrative-section {
+    background-color: $color-white;
+
+    .story-text-body {
+      font-size: 1.12rem;
+      line-height: 1.8;
+      color: $color-charcoal-light;
+
+      p {
+        margin-bottom: 1.5rem;
+      }
+
+      .drop-cap-paragraph {
+        font-size: 1.25rem;
+        line-height: 1.7;
+        color: $color-charcoal;
+
+        &::first-letter {
+          font-family: $font-serif;
+          font-size: 4rem;
+          float: left;
+          line-height: 0.8;
+          padding-right: 0.75rem;
+          padding-top: 0.25rem;
+          color: $color-charcoal;
+        }
+      }
+
+      .highlight-callout {
+        font-family: $font-serif;
+        font-style: italic;
+        font-size: clamp(1.4rem, 2.8vw, 1.95rem);
+        color: $color-charcoal;
+        border-left: 3px solid $color-taupe;
+        padding-left: 2rem;
+        margin: 2.5rem 0;
+        line-height: 1.45;
+      }
+
+      .story-photo-break {
+        margin: 3.5rem 0;
+
+        .photo-frame {
+          box-shadow: $shadow-card;
+          background-color: $color-ivory;
+
+          img {
+            width: 100%;
+            height: auto;
+            max-height: 480px;
+            object-fit: cover;
+          }
+
+          .caption {
+            display: block;
+            font-size: 0.75rem;
+            color: $color-grey;
+            padding: 0.75rem 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background: $color-white;
+            border-top: 1px solid $color-border;
+          }
+        }
+      }
+
+      .section-subheading {
+        font-family: $font-serif;
+        font-size: 2rem;
+        color: $color-charcoal;
+        margin: 3rem 0 1.25rem;
+        line-height: 1.25;
+      }
+
+      .manifesto-card {
+        background-color: $color-charcoal;
+        color: $color-ivory;
+        padding: clamp(2rem, 5vw, 3.5rem);
+        margin: 3.5rem 0 2rem;
+        text-align: center;
+        box-shadow: $shadow-elevated;
+
+        .manifesto-tagline {
+          font-size: 0.72rem;
+          font-weight: 700;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: $color-taupe;
+          display: block;
+          margin-bottom: 1rem;
+        }
+
+        .manifesto-text {
+          font-family: $font-serif;
+          font-style: italic;
+          font-size: clamp(1.5rem, 3vw, 2.2rem);
+          color: $color-white;
+          line-height: 1.35;
+          margin-bottom: 1.5rem;
+        }
+
+        .manifesto-closer {
+          display: block;
+          font-size: 0.95rem;
+          color: $color-taupe-light;
+          margin-bottom: 1rem;
+        }
+
+        .manifesto-signature {
+          display: inline-block;
+          font-size: 0.82rem;
+          font-weight: 700;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: $color-white;
+          border-top: 1px solid rgba(255, 255, 255, 0.2);
+          padding-top: 0.85rem;
+        }
+      }
+    }
+  }
+
+  // Two Worlds
+  .two-worlds-section {
+    background-color: $color-ivory-light;
+    padding: 5rem 0;
+
+    .two-worlds-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+
+      @media (max-width: $bp-tablet) {
+        grid-template-columns: 1fr;
+      }
+
+      .world-card {
+        background: $color-white;
+        border: 1px solid $color-border;
+        padding: 3rem 2.5rem;
+        box-shadow: $shadow-subtle;
+
+        .world-num {
+          font-size: 0.72rem;
+          font-weight: 700;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: $color-taupe-dark;
+          display: block;
+          margin-bottom: 1rem;
+        }
+
+        h3 {
+          font-family: $font-serif;
+          font-size: 1.85rem;
+          margin-bottom: 1rem;
+        }
+
+        p {
+          font-size: 0.95rem;
+          color: $color-charcoal-light;
+          line-height: 1.65;
+          margin-bottom: 1.5rem;
+        }
+
+        .world-features {
+          display: flex;
+          flex-direction: column;
+          gap: 0.4rem;
+          font-size: 0.82rem;
+          color: $color-taupe-dark;
+          font-weight: 600;
+          border-top: 1px solid $color-border;
+          padding-top: 1rem;
+        }
+      }
+    }
+  }
+
+  // Future Horizons
+  .future-horizons-section {
+    background-color: $color-white;
+
+    .horizons-header {
+      max-width: 650px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .horizons-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.75rem;
+
+      @media (max-width: $bp-desktop) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: $bp-mobile) {
+        grid-template-columns: 1fr;
+      }
+
+      .horizon-tile {
+        background-color: $color-ivory;
+        border: 1px solid $color-border;
+        padding: 2.25rem 1.75rem;
+        display: flex;
+        flex-direction: column;
+        transition: all $transition-base;
+
+        &:hover {
+          transform: translateY(-3px);
+          box-shadow: $shadow-card;
+          border-color: $color-taupe;
+        }
+
+        .tile-category {
+          font-size: 0.68rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.14em;
+          color: $color-taupe-dark;
+          margin-bottom: 0.75rem;
+        }
+
+        h4 {
+          font-family: $font-serif;
+          font-size: 1.35rem;
+          margin-bottom: 0.75rem;
+        }
+
+        p {
+          font-size: 0.88rem;
+          color: $color-charcoal-light;
+          line-height: 1.55;
+          margin-bottom: 1.5rem;
+          flex: 1;
+        }
+
+        .tile-link {
+          font-size: 0.78rem;
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: $color-charcoal;
+
+          &:hover {
+            color: $color-taupe-dark;
+          }
+        }
+      }
+    }
+  }
+
+  // CTA
+  .story-co-design-cta {
+    background-color: $color-ivory;
+    padding: 5rem 0;
+
+    .cta-box-card {
+      max-width: 680px;
+      margin: 0 auto;
+      background: $color-white;
+      border: 1px solid $color-border;
+      padding: clamp(2.5rem, 5vw, 4rem);
+      box-shadow: $shadow-card;
+
+      .sparkle-icon {
+        color: $color-taupe-dark;
+        margin-bottom: 1rem;
+      }
+
+      h3 {
+        font-family: $font-serif;
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.05rem;
+        color: $color-charcoal-light;
+        margin-bottom: 2rem;
+      }
+
+      .cta-btn-group {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+    }
+  }
+}

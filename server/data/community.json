@@ -1,0 +1,116 @@
+{
+  "featuredStories": [
+    {
+      "id": "story-1",
+      "author": "Dr. Sophie Campbell",
+      "role": "Paediatric Fellow, Royal Children's Hospital",
+      "city": "Melbourne",
+      "quote": "In paediatrics, your scrub top is often the first thing a terrified child looks at. The softer, warm taupe and sage hues feel calm and human rather than clinical and sterile.",
+      "image": "/dummy_images/female-doctor-taupe-suit.png",
+      "scrubStyle": "The Women's Nursing Scrub Set in Warm Taupe"
+    },
+    {
+      "id": "story-2",
+      "author": "Marcus Evans",
+      "role": "Trauma Resuscitation Nurse",
+      "city": "Sydney",
+      "quote": "I suggested the dedicated phone pocket and custom cargo embroidery option during the clinical trial. Seeing it implemented with heavy-duty bar-tacks blew my mind. SO BEAU genuinely listens.",
+      "image": "/dummy_images/insta-male-doctor-scrubs.png",
+      "scrubStyle": "The Men's Nursing Scrub Set in Deep Charcoal"
+    },
+    {
+      "id": "story-3",
+      "author": "Dr. Anika Patel",
+      "role": "Surgical Registrar",
+      "city": "Brisbane",
+      "quote": "Standing in theatre for an 8-hour laparotomy requires fabric that doesn't hold sweat or restrict your torso. SO BEAU gave me back my personal style without compromising on surgical sterility.",
+      "image": "/dummy_images/modern-nurse-scrub-styles.png",
+      "scrubStyle": "The Women's Nursing Scrub Set in Soft Sage"
+    },
+    {
+      "id": "story-4",
+      "author": "Liam O’Connor",
+      "role": "Flight Retrieval Paramedic, CareFlight",
+      "city": "Darwin",
+      "quote": "During rapid aeromedical retrievals, equipment accessibility is everything. The deep zippered jogger compartments and breathable raglan seams keep me calm and agile when seconds matter.",
+      "image": "/dummy_images/burgundy-emergency-scrubs.png",
+      "scrubStyle": "The Men's Nursing Scrub Set in Burgundy"
+    }
+  ],
+  "communityIdeas": [
+    {
+      "id": "idea-101",
+      "title": "Magnetic Hem Snap for Jogger Pockets",
+      "description": "A low-profile magnetic catch inside the cargo pocket so trauma shears or phones don't spill out when crouching beside low beds.",
+      "submittedBy": "Ben C., Flight Paramedic",
+      "votes": 342,
+      "status": "In Development",
+      "badge": "Coming in Spring '27"
+    },
+    {
+      "id": "idea-102",
+      "title": "Water-Repellent Oversized Scrub Cape / Lab Poncho",
+      "description": "A stylish, ultra-lightweight water-repellent layer for running between hospital wings in the Melbourne drizzle without a bulky winter coat.",
+      "submittedBy": "Dr. Claire L., Oncology",
+      "votes": 289,
+      "status": "Under Review",
+      "badge": "Trending"
+    },
+    {
+      "id": "idea-103",
+      "title": "Muted Lavender & French Clay Colorway",
+      "description": "More grounding earth tones! A dusty French lavender or terracotta clay shade would be gorgeous in dental and dermatology clinics.",
+      "submittedBy": "Nurse Tahlia, Cosmetic Nurse",
+      "votes": 418,
+      "status": "Fabric Testing",
+      "badge": "Approved"
+    },
+    {
+      "id": "idea-104",
+      "title": "Petite & Tall Inseam Options as Standard",
+      "description": "Scrub pants with explicit 26\" petite and 32\" tall options so shorter and taller healthcare staff don't have to visit a tailor.",
+      "submittedBy": "Sasha R., Radiographer",
+      "votes": 512,
+      "status": "In Production",
+      "badge": "Launching Soon"
+    }
+  ],
+  "instagramFeed": [
+    {
+      "id": "ig-1",
+      "handle": "@the_resus_nurse",
+      "image": "/dummy_images/insta-male-doctor-scrubs.png",
+      "caption": "Shift #3 done in @sobeau.official. When workwear feels this good, 12 hours goes by faster. #SoBeauFam #DoctorStyle"
+    },
+    {
+      "id": "ig-2",
+      "handle": "@dr.sarah.melb",
+      "image": "/dummy_images/female-doctor-navy-portrait.png",
+      "caption": "Pockets for everything: smartphone, trauma shears, tape, penlight, and notes. @sobeau.official #scrubstyle"
+    },
+    {
+      "id": "ig-3",
+      "handle": "@cosmetic.dr.mia",
+      "image": "/dummy_images/insta-terracotta-scrubs.png",
+      "caption": "The tailored V-Neck in Terracotta Clay with reinforced utility pockets. Redefining clinical aesthetics. ✨ #SoBeau"
+    },
+    {
+      "id": "ig-4",
+      "handle": "@paeds_chloe",
+      "image": "/dummy_images/modern-nurse-scrub-styles.png",
+      "caption": "Modern Hospital Fit in Heather Navy. Certified Australian Medical Grade. #SoBeauFamily"
+    },
+    {
+      "id": "ig-5",
+      "handle": "@dermal_atelier_syd",
+      "image": "/dummy_images/insta-rose-clay-scrubs.png",
+      "caption": "Rose clay soft tones for clinical precision and aesthetic practice. @sobeau.official #scrubs"
+    },
+    {
+      "id": "ig-6",
+      "handle": "@anaesthetic_alex",
+      "image": "/dummy_images/burgundy-emergency-scrubs.png",
+      "caption": "Deep Burgundy emergency edition. 14-hour tested comfort. #SoBeauShift"
+    }
+  ]
+}
