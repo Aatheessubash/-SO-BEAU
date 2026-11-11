@@ -3,15 +3,16 @@
 .curated-collections-section {
   background-color: #FDFBF7; // Brand Warm Cream
   border-bottom: 1px solid rgba(27, 59, 43, 0.08);
+  padding: clamp(2.5rem, 5vw, 4rem) 0;
 
   .section-header-row {
     display: flex;
     justify-content: center;
-    margin-bottom: 3.5rem;
+    margin-bottom: 2rem;
     text-align: center;
 
     .header-text-block {
-      max-width: 780px;
+      max-width: 680px;
       margin: 0 auto;
 
       .overline {
@@ -26,7 +27,7 @@
         background: rgba(27, 59, 43, 0.06);
         padding: 0.35rem 0.85rem;
         border-radius: 999px;
-        margin-bottom: 0.85rem;
+        margin-bottom: 0.75rem;
 
         .sparkle-icon {
           color: #C5A050;
@@ -35,24 +36,32 @@
 
       .text-section-title {
         color: #1B3B2B;
-        margin-bottom: 0.85rem;
+        font-size: clamp(1.75rem, 3.2vw, 2.4rem);
+        margin-bottom: 0.65rem;
       }
 
       .header-desc {
         color: #555555;
-        font-size: 1.05rem;
-        line-height: 1.65;
+        font-size: 0.95rem;
+        line-height: 1.55;
         margin: 0 auto;
       }
     }
   }
 
+  // Balanced Medium-Sized Cards (Compactable & Proper Fit on Screen)
   .collection-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
-    gap: clamp(2rem, 4.5vw, 4rem);
-    max-width: 1080px;
-    margin: 0 auto 3.5rem;
+    grid-template-columns: repeat(2, minmax(0, 360px));
+    justify-content: center;
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+    max-width: 780px;
+    margin: 0 auto 2.25rem;
+
+    @media (max-width: 720px) {
+      grid-template-columns: minmax(0, 340px);
+      gap: 1.5rem;
+    }
 
     .product-card {
       transform: none !important;
@@ -60,6 +69,12 @@
       .product-image-container {
         box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04) !important;
         border-color: $color-border !important;
+        max-height: 360px !important;
+        aspect-ratio: 3/3.6 !important;
+
+        @media (max-width: 640px) {
+          max-height: 320px !important;
+        }
 
         &:hover {
           box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04) !important;
@@ -68,6 +83,9 @@
 
         .product-image-link .product-flip-img {
           transform: scale(1) !important;
+          object-fit: contain !important;
+          object-position: center center !important;
+          padding: 0.5rem !important;
         }
 
         .card-quickview-circle-btn,
@@ -84,9 +102,9 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: clamp(1.5rem, 3vw, 3rem);
-    margin-top: 3.5rem;
-    padding-top: 2.5rem;
+    gap: clamp(1.25rem, 2.5vw, 2.5rem);
+    margin-top: 2rem;
+    padding-top: 1.75rem;
     border-top: 1px solid rgba(27, 59, 43, 0.08);
 
     .guarantee-item {
@@ -94,7 +112,7 @@
       align-items: center;
       gap: 0.55rem;
       color: #1B3B2B;
-      font-size: 0.84rem;
+      font-size: 0.82rem;
       font-weight: 600;
       letter-spacing: 0.02em;
 

@@ -4,6 +4,7 @@
   display: flex;
   gap: 1.25rem;
   width: 100%;
+  min-width: 0;
 
   @media (max-width: $bp-tablet) {
     flex-direction: column-reverse;
@@ -23,9 +24,17 @@
     @media (max-width: $bp-tablet) {
       flex-direction: row;
       width: 100%;
+      min-width: 0;
+      max-width: 100%;
       max-height: none;
       overflow-x: auto;
       padding-bottom: 0.5rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
 
     .gallery-thumb-btn {
@@ -58,6 +67,7 @@
   .gallery-main-viewport {
     flex: 1;
     position: relative;
+    min-width: 0;
     aspect-ratio: 3/4;
     background-color: $color-ivory;
     overflow: hidden;

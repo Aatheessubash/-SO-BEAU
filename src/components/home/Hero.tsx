@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import '../../styles/components/Hero.scss';
 
 export const Hero: React.FC = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // Ensure video autoplays on mobile browsers
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {
+        // Autoplay policy prevented playback, video will play on first interaction
+      });
+    }
+  }, []);
+
   return (
     <section className="hero-section skims-hero-style">
       {/* Ambient Cinematic Background Video with Directional Gradient Blur */}
       <div className="hero-bg-video-wrapper" aria-hidden="true">
         <video
+          ref={videoRef}
           src="/video/VN20261109_081100.mp4"
           poster="/images/campaign-video-poster.jpg"
           autoPlay

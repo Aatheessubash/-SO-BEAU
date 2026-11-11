@@ -433,7 +433,8 @@
 .floating-interaction-dock {
   position: fixed;
   bottom: 24px;
-  left: 24px;
+  right: 24px;
+  left: auto;
   z-index: 90;
   display: flex;
   align-items: center;
@@ -441,8 +442,35 @@
   pointer-events: auto;
 
   @media (max-width: 640px) {
-    bottom: 16px;
-    left: 16px;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    right: 16px;
+    left: auto;
+
+    body:has(.product-detail-page) & {
+      display: none;
+    }
+
+    .dock-pill-btn.sound-toggle-pill {
+      display: none;
+    }
+
+    .fit-finder-pill {
+      width: 48px;
+      height: 48px;
+      justify-content: center;
+      padding: 0;
+      border-radius: 50%;
+      font-size: 0;
+
+      .sparkle-icon {
+        width: 18px;
+        height: 18px;
+      }
+
+      span {
+        display: none;
+      }
+    }
   }
 
   .dock-pill-btn {

@@ -22,6 +22,7 @@ export const GlobalInteractiveOverlays: React.FC = () => {
             sounds.playSwatchClick();
             openFitFinder();
           }}
+          aria-label="Find your fit in 30 seconds"
           title="Find your tailored size in 30 seconds"
         >
           <Sparkles size={14} className="sparkle-icon" />

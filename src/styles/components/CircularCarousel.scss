@@ -33,12 +33,12 @@
 
   // Individual Card Wrapper (Centered on the Cylinder Axis X = 0)
   .circular-carousel-card-wrapper {
-    --card-w: clamp(260px, 22vw, 340px);
-    --card-h: clamp(480px, 64vh, 640px);
+    --card-w: clamp(190px, 16vw, 240px);
+    --card-h: clamp(340px, 44vh, 440px);
 
     position: absolute;
     left: calc(var(--card-w) * -0.5); // Perfectly centers card on cylinder rotation axis
-    bottom: 24px;
+    bottom: 20px;
     width: var(--card-w);
     height: var(--card-h);
     display: flex;
@@ -51,15 +51,15 @@
     transition: filter 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
 
     @media (max-width: 1024px) {
-      --card-w: clamp(200px, 26vw, 260px);
-      --card-h: clamp(400px, 52vh, 520px);
-      bottom: 18px;
+      --card-w: clamp(160px, 20vw, 210px);
+      --card-h: clamp(290px, 38vh, 370px);
+      bottom: 16px;
     }
 
     @media (max-width: 768px) {
-      --card-w: clamp(160px, 36vw, 210px);
-      --card-h: clamp(340px, 46vh, 440px);
-      bottom: 14px;
+      --card-w: clamp(130px, 32vw, 170px);
+      --card-h: clamp(240px, 34vh, 300px);
+      bottom: 12px;
     }
 
     &.card-center-selected {

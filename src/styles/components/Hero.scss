@@ -16,11 +16,10 @@
 
   @media (max-width: $bp-tablet) {
     height: auto;
-    min-height: calc(100vh - 98px);
-    min-height: calc(100dvh - 98px);
-    padding-top: 2rem;
-    padding-bottom: 0;
-    justify-content: flex-start;
+    min-height: auto;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    justify-content: center;
   }
 
   @media (max-height: 600px) and (min-width: $bp-tablet) {
@@ -337,6 +336,147 @@
   }
 }
 
+@media (max-width: $bp-tablet) {
+  .hero-section {
+    height: calc(100svh - var(--header-total-height, 70px));
+    height: calc(100dvh - var(--header-total-height, 70px));
+    min-height: 540px;
+    max-height: 760px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    .hero-bg-video-wrapper {
+      .hero-bg-video {
+        opacity: 1 !important;
+        filter: contrast(1.08) brightness(0.96) saturate(1.08) !important;
+        transform: scale(1.02);
+      }
+
+      .hero-blur-center,
+      .hero-blur-left {
+        display: none;
+      }
+
+      // Elegant cinematic bottom gradient so video remains clear and visible
+      .hero-bg-video-overlay {
+        background: linear-gradient(
+          180deg,
+          rgba(10, 24, 17, 0.22) 0%,
+          rgba(10, 24, 17, 0.08) 35%,
+          rgba(10, 24, 17, 0.5) 70%,
+          rgba(10, 24, 17, 0.88) 100%
+        ) !important;
+      }
+    }
+
+    .hero-watermark-typography {
+      top: 2%;
+
+      span {
+        opacity: 0.35;
+        color: rgba(255, 255, 255, 0.45);
+      }
+    }
+
+    .hero-container {
+      align-items: flex-end;
+      width: 100%;
+      height: auto;
+      padding: 0 1.25rem 2rem;
+      z-index: 5;
+    }
+
+    .hero-text-card {
+      max-width: 100%;
+      width: 100%;
+      padding: 0 !important;
+      border: none !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      box-shadow: none !important;
+
+      .hero-headline {
+        font-size: clamp(1.5rem, 6.5vw, 2.2rem);
+        color: #FFFFFF !important;
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
+        line-height: 1.15;
+        margin-bottom: 1.1rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
+
+        .line-reveal-wrapper {
+          white-space: normal;
+
+          .line-reveal-inner {
+            white-space: normal;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            color: #FFFFFF !important;
+            text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
+          }
+        }
+      }
+
+      // Hide heavy text and perks on mobile so video is visible and not blocked
+      .hero-supporting-text {
+        display: none !important;
+      }
+
+      .hero-cta-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0;
+
+        .skims-btn {
+          flex: 1;
+          width: auto;
+          min-height: 46px;
+          padding: 0.65rem 0.95rem;
+          font-size: 0.82rem;
+          font-weight: 700;
+          letter-spacing: 0.04em;
+          border-radius: 999px;
+          justify-content: center;
+          gap: 0.45rem;
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+
+          &.btn-primary {
+            background-color: #FFFFFF !important;
+            color: #1B3B2B !important;
+            border: 1px solid #FFFFFF !important;
+
+            &:hover {
+              background-color: #F4EFE2 !important;
+            }
+          }
+
+          &.btn-outline {
+            background-color: rgba(255, 255, 255, 0.16) !important;
+            color: #FFFFFF !important;
+            border: 1px solid rgba(255, 255, 255, 0.5) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+
+            &:hover {
+              background-color: rgba(255, 255, 255, 0.28) !important;
+            }
+          }
+        }
+      }
+
+      .hero-perks-row {
+        display: none !important;
+      }
+    }
+  }
+}
+
 // Campaign Video Modal
 .campaign-video-modal-overlay {
   position: fixed;
@@ -467,5 +607,6 @@
         }
       }
     }
+
   }
 }

@@ -6,8 +6,6 @@ import { Hero } from '../components/home/Hero';
 import { TryTheLookStudio } from '../components/home/TryTheLookStudio';
 import { CuratedCollections } from '../components/home/CuratedCollections';
 import { ClinicalFeatureInspector } from '../components/home/ClinicalFeatureInspector';
-import { HorizontalLookbook } from '../components/home/HorizontalLookbook';
-import { PhilosophySection } from '../components/home/PhilosophySection';
 import { InstagramFeed } from '../components/home/InstagramFeed';
 
 export const HomePage: React.FC = () => {
@@ -45,13 +43,7 @@ export const HomePage: React.FC = () => {
       {/* 5. Anatomical Clinical Blueprint & Feature Inspector with Pulse Hotspots */}
       <ClinicalFeatureInspector />
 
-      {/* 6. Brand Value & Founder Philosophy Manifesto */}
-      <PhilosophySection />
-
-      {/* 7. Draggable Editorial Hospital Ward Lookbook */}
-      <HorizontalLookbook />
-
-      {/* 8. Interactive Instagram & Hospital Ward Shifts Feed */}
+      {/* 6. Interactive Instagram & Hospital Ward Shifts Feed */}
       <InstagramFeed />
     </div>
   );

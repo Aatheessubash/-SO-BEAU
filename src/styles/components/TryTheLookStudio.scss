@@ -11,16 +11,16 @@
   // Desktop: Fit comfortably into screen viewport bounds
   @media (min-width: 1121px) {
     height: calc(100vh - 72px);
-    min-height: 700px;
-    max-height: 960px;
-    padding: clamp(0.5rem, 1.2vh, 1rem) 0;
+    min-height: 580px;
+    max-height: 840px;
+    padding: clamp(0.4rem, 1vh, 0.8rem) 0;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
   @media (max-width: 1120px) {
-    padding: 2.5rem 0 3.5rem;
+    padding: 2rem 0 2.5rem;
     min-height: auto;
   }
 
