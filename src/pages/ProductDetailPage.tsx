@@ -13,14 +13,12 @@ import {
   Heart,
 } from 'lucide-react';
 import { api } from '../services/api';
-import { Product, ProductColor, Review, CartItemCustomization } from '../types';
+import { Product, ProductColor, CartItemCustomization } from '../types';
 import { useCart } from '../context/CartContext';
 import { sounds } from '../utils/soundEffects';
 import { ProductGallery } from '../components/product/ProductGallery';
 import { ProductCard } from '../components/product/ProductCard';
-import { ColorAvatarScroll } from '../components/common/ColorAvatarScroll';
 import { SizeGuideModal } from '../components/common/SizeGuideModal';
-import { ReviewFormModal } from '../components/product/ReviewFormModal';
 import { CustomEmbroideryModal } from '../components/product/CustomEmbroideryModal';
 import '../styles/pages/ProductDetailPage.scss';
 
@@ -29,7 +27,6 @@ export const ProductDetailPage: React.FC = () => {
   const { addToCart, toggleWishlist, isInWishlist, showToast, openFitFinder } = useCart();
 
   const [product, setProduct] = useState<Product | null>(null);
-  const [reviews, setReviews] = useState<Review[]>([]);
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -42,12 +39,11 @@ export const ProductDetailPage: React.FC = () => {
 
   // Modals
   const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
-  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [isEmbroideryModalOpen, setIsEmbroideryModalOpen] = useState(false);
 
-  // Accordion toggles
+  // Accordion toggles: ALL CLOSED by default for clean, uncluttered presentation
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({
-    description: true,
+    description: false,
     fabric: false,
     fit: false,
     care: false,
@@ -68,13 +64,7 @@ export const ProductDetailPage: React.FC = () => {
           setSelectedColor(res.data.colors[0]);
           setSelectedSize(res.data.sizes[1] || res.data.sizes[0] || 'S');
 
-          // Fetch reviews and related products
-          const [revRes, prodRes] = await Promise.all([
-            api.getReviews(res.data.id),
-            api.getProducts(),
-          ]);
-
-          if (revRes.data) setReviews(revRes.data);
+          const prodRes = await api.getProducts();
           if (prodRes.data) {
             setRelatedProducts(
               prodRes.data
@@ -169,7 +159,7 @@ export const ProductDetailPage: React.FC = () => {
 
       <div className="container pdp-main-container">
         <div className="pdp-grid">
-          {/* Left Column: Multi-Image Gallery */}
+          {/* Left Column: Clean Spacious Image Showcase (No thumbnails sidebar) */}
           <div className="pdp-gallery-column">
             <ProductGallery 
               key={selectedColor ? selectedColor.code : 'default'} 
@@ -192,22 +182,20 @@ export const ProductDetailPage: React.FC = () => {
 
               <h1 className="pdp-title">{product.name}</h1>
 
-              {/* Rating */}
+              {/* Clean Rating Row */}
               <div className="pdp-rating-row">
                 <div className="star-rating">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      size={15}
-                      fill={i < Math.floor(product.rating) ? '#D4AF37' : 'none'}
-                      color="#D4AF37"
+                      size={14}
+                      fill={i < Math.floor(product.rating) ? '#C5A050' : 'none'}
+                      color="#C5A050"
                     />
                   ))}
                   <span className="rating-num">{product.rating}</span>
                 </div>
-                <a href="#reviews" className="review-count-link">
-                  ({reviews.length > 0 ? reviews.length : product.reviewCount} clinician reviews)
-                </a>
+                <span className="rating-standard-badge">Australian Hospital Grade Certified</span>
               </div>
 
               {/* Price & Installment */}
@@ -227,16 +215,36 @@ export const ProductDetailPage: React.FC = () => {
             {/* Headline Hook */}
             <p className="pdp-headline-hook">{product.headline}</p>
 
-            {/* Animated Avatar Horizontal Color Scroll */}
+            {/* Clean Luxury Color Swatches Picker (Spacious & uncluttered) */}
             {selectedColor && (
-              <div className="pdp-option-block">
-                <ColorAvatarScroll
-                  colors={product.colors}
-                  selectedColor={selectedColor}
-                  onSelectColor={setSelectedColor}
-                  size="lg"
-                  showLabel={true}
-                />
+              <div className="pdp-color-picker-block">
+                <div className="color-header-line">
+                  <span className="color-label">
+                    Shade: <strong className="active-shade-name">{selectedColor.name}</strong>
+                  </span>
+                  <span className="color-shades-tally">{product.colors.length} Signature Shades</span>
+                </div>
+                <div className="color-swatches-grid" role="radiogroup" aria-label="Select Color Shade">
+                  {product.colors.map((c) => {
+                    const isSelected = selectedColor.code === c.code;
+                    return (
+                      <button
+                        key={c.code}
+                        type="button"
+                        role="radio"
+                        aria-checked={isSelected}
+                        className={`pdp-color-swatch-btn ${isSelected ? 'active' : ''}`}
+                        onClick={() => {
+                          sounds.playSwatchClick();
+                          setSelectedColor(c);
+                        }}
+                        title={c.name}
+                      >
+                        <span className="swatch-inner-circle" style={{ backgroundColor: c.hex }} />
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             )}
 
@@ -257,7 +265,7 @@ export const ProductDetailPage: React.FC = () => {
                     style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: '#1B3B2B', fontWeight: 600 }}
                   >
                     <Sparkles size={12} color="#C5A059" />
-                    <span>Find My Size (30s Quiz)</span>
+                    <span>Find My Size</span>
                   </button>
                   <span style={{ color: '#DDD' }}>•</span>
                   <button
@@ -287,9 +295,9 @@ export const ProductDetailPage: React.FC = () => {
 
             {/* Pant Inseam Length Variant Selector */}
             {product.lengths && product.lengths.length > 0 && (
-              <div className="pdp-option-group pdp-length-selector" style={{ marginBottom: '1.75rem' }}>
-                <div className="option-header-row" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.6rem' }}>
-                  <span className="option-label" style={{ fontWeight: 600, fontSize: '0.85rem' }}>
+              <div className="pdp-option-group pdp-length-selector" style={{ marginBottom: '1.25rem' }}>
+                <div className="option-header-row" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                  <span className="option-label" style={{ fontWeight: 600, fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                     Pant Inseam: <strong style={{ color: '#1B3B2B' }}>{selectedLength}</strong>
                   </span>
                 </div>
@@ -308,7 +316,7 @@ export const ProductDetailPage: React.FC = () => {
               </div>
             )}
 
-            {/* Custom Embroidery Personalization Bar (Inspired by photo 6 & Ralph Lauren Customize) */}
+            {/* Custom Embroidery Personalization Bar */}
             <div className="pdp-embroidery-box">
               {customization ? (
                 <div className="embroidery-active-card">
@@ -400,7 +408,7 @@ export const ProductDetailPage: React.FC = () => {
               </button>
             </div>
 
-            {/* Ralph Lauren Luxury Action Bar */}
+            {/* Luxury Quick Links Bar */}
             <div className="pdp-luxury-action-bar">
               <button
                 type="button"
@@ -417,10 +425,6 @@ export const ProductDetailPage: React.FC = () => {
               >
                 CUSTOMIZE EMBROIDERY
               </button>
-              <span className="luxury-link-divider">•</span>
-              <a href="#reviews" className="luxury-link-item">
-                CLINICIAN REVIEWS ({reviews.length > 0 ? reviews.length : product.reviewCount})
-              </a>
             </div>
 
             {/* Trust Perks Banner */}
@@ -448,7 +452,7 @@ export const ProductDetailPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Collapsible Accordions */}
+            {/* Clean Collapsible Accordions (Closed by default so page remains clean and spacious) */}
             <div className="pdp-accordions-group">
               {/* Description */}
               <div className="accordion-item">
@@ -564,86 +568,7 @@ export const ProductDetailPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Customer Reviews Section */}
-        <section className="pdp-reviews-section" id="reviews">
-          <div className="reviews-section-header">
-            <div>
-              <span className="overline">Clinician Reviews</span>
-              <h2 className="reviews-title">Shift Feedback &amp; Experiences</h2>
-            </div>
-            <button
-              onClick={() => setIsReviewModalOpen(true)}
-              className="btn btn-outline"
-            >
-              Write a Review
-            </button>
-          </div>
-
-          <div className="reviews-summary-bar">
-            <div className="overall-score-box">
-              <span className="big-rating">{product.rating}</span>
-              <div className="stars-col">
-                <div className="star-rating">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={16}
-                      fill={i < Math.floor(product.rating) ? '#D4AF37' : 'none'}
-                      color="#D4AF37"
-                    />
-                  ))}
-                </div>
-                <span className="based-on">Based on {reviews.length || product.reviewCount} verified reviews</span>
-              </div>
-            </div>
-            <div className="clinician-badges-highlight">
-              <div className="highlight-pill">
-                <span>98% True to Size</span>
-              </div>
-              <div className="highlight-pill">
-                <span>100% Wrinkle Resistant</span>
-              </div>
-              <div className="highlight-pill">
-                <span>14-Hour Breathability Rated</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="reviews-list-grid">
-            {reviews.map((rev) => (
-              <div key={rev.id} className="review-card">
-                <div className="review-card-top">
-                  <div className="star-rating">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        size={13}
-                        fill={i < rev.rating ? '#D4AF37' : 'none'}
-                        color="#D4AF37"
-                      />
-                    ))}
-                  </div>
-                  <span className="review-date">{rev.date}</span>
-                </div>
-
-                <h4 className="review-card-title">"{rev.title}"</h4>
-                <p className="review-card-content">{rev.content}</p>
-
-                <div className="review-card-author">
-                  <strong>{rev.author}</strong>
-                  <span>{rev.role} • {rev.location}</span>
-                  {rev.colorPurchased && (
-                    <span className="verified-purchase-tag">
-                      Verified Purchase • {rev.colorPurchased}, Size {rev.sizePurchased}
-                    </span>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Related Nursing Shift & Detail Imagery */}
+        {/* Clinical Details & Movement In Action (USER VERIFIED - KEPT & BEAUTIFIED) */}
         {product.relatedImages && product.relatedImages.length > 0 && (
           <section className="pdp-related-imagery-section section-padding-sm">
             <div className="section-head text-center" style={{ marginBottom: '2.5rem' }}>
@@ -660,13 +585,14 @@ export const ProductDetailPage: React.FC = () => {
                   'Ergonomic 4-Way Stretch Performance',
                   'Hospital Ward In-Action Mobility',
                   'Reinforced Scissor & Tool Pockets',
-                  'Atelier Tailored Flatlock Seams',
+                  'Contoured Feminine Silhouette',
                 ];
                 return (
-                  <div key={idx} className="related-image-card" style={{ position: 'relative', overflow: 'hidden', backgroundColor: '#f5f2ec', border: '1px solid #e5e0d8', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
+                  <div key={idx} className="related-image-card" style={{ position: 'relative', overflow: 'hidden', borderRadius: '8px', boxShadow: '0 4px 18px rgba(0,0,0,0.06)' }}>
                     <img
                       src={imgUrl}
-                      alt={`${product.name} clinical detail ${idx + 1}`}
+                      alt={captions[idx] || `Detail ${idx + 1}`}
+                      loading="lazy"
                       style={{ width: '100%', height: '340px', objectFit: 'cover', display: 'block' }}
                     />
                     <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '1rem', background: 'linear-gradient(to top, rgba(26,25,24,0.85) 0%, transparent 100%)', color: '#fff' }}>
@@ -722,14 +648,6 @@ export const ProductDetailPage: React.FC = () => {
 
       {/* Sizing Modal */}
       <SizeGuideModal isOpen={isSizeGuideOpen} onClose={() => setIsSizeGuideOpen(false)} />
-
-      {/* Review Writing Modal */}
-      <ReviewFormModal
-        product={product}
-        isOpen={isReviewModalOpen}
-        onClose={() => setIsReviewModalOpen(false)}
-        onReviewAdded={(newRev) => setReviews((prev) => [newRev, ...prev])}
-      />
 
       {/* Custom Hospital Embroidery Modal */}
       <CustomEmbroideryModal
