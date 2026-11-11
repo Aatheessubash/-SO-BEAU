@@ -11,12 +11,16 @@ interface ProductCardProps {
   product: Product;
   index?: number;
   disableHover?: boolean;
+  showOffersAndRatings?: boolean;
+  showPrice?: boolean;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
   index = 0,
   disableHover = false,
+  showOffersAndRatings = false,
+  showPrice = true,
 }) => {
   const { openQuickView, toggleWishlist, isInWishlist, addToCart } = useCart();
   const [selectedColor, setSelectedColor] = useState<ProductColor>(product.colors[0]);
@@ -199,25 +203,40 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <Link to={`/products/${product.slug}`}>{product.name}</Link>
         </h3>
 
-        {/* Price & Rating */}
-        <div className="card-footer-row">
-          <div className="price-display">
-            <span className="price-current">${product.price.toFixed(2)} AUD</span>
-            {product.compareAtPrice && (
-              <span className="price-compare">${product.compareAtPrice.toFixed(2)}</span>
+        {/* Price & Rating: Offers and ratings are shown on Shop page only */}
+        {showPrice ? (
+          <div className="card-footer-row">
+            <div className="price-display">
+              <span className="price-current">${product.price.toFixed(2)} AUD</span>
+              {showOffersAndRatings && product.compareAtPrice && (
+                <span className="price-compare">${product.compareAtPrice.toFixed(2)}</span>
+              )}
+              {showOffersAndRatings && product.compareAtPrice && product.compareAtPrice > product.price && (
+                <span className="price-save-badge">Save ${(product.compareAtPrice - product.price).toFixed(0)}</span>
+              )}
+            </div>
+
+            {showOffersAndRatings && (
+              <div className="star-rating">
+                <Star size={13} fill="#D4AF37" color="#D4AF37" />
+                <span className="star-rating-val">{product.rating}</span>
+                <span className="star-count">({product.reviewCount})</span>
+              </div>
             )}
           </div>
-
-          <div className="star-rating">
-            <Star size={12} fill="#D4AF37" color="#D4AF37" />
-            <span className="star-rating-val">{product.rating}</span>
-            <span className="star-count">({product.reviewCount})</span>
+        ) : (
+          <div className="card-footer-row no-price-footer">
+            <Link to={`/products/${product.slug}`} className="card-explore-action">
+              Explore Silhouette &rarr;
+            </Link>
           </div>
-        </div>
+        )}
 
-        <div className="card-afterpay-row">
-          <span>or 4 payments of ${(product.price / 4).toFixed(2)} with Afterpay</span>
-        </div>
+        {showOffersAndRatings && (
+          <div className="card-afterpay-row">
+            <span>or 4 payments of <strong>${(product.price / 4).toFixed(2)}</strong> with Afterpay</span>
+          </div>
+        )}
       </div>
     </div>
   );

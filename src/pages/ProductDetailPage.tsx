@@ -159,13 +159,10 @@ export const ProductDetailPage: React.FC = () => {
 
       <div className="container pdp-main-container">
         <div className="pdp-grid">
-          {/* Left Column: Clean Spacious Image Showcase (No thumbnails sidebar) */}
+          {/* Left Column: Clean Spacious Image Showcase with Perspectives */}
           <div className="pdp-gallery-column">
             <ProductGallery 
-              key={selectedColor ? selectedColor.code : 'default'} 
-              images={(selectedColor && selectedColor.modelImage)
-                ? [selectedColor.modelImage, ...product.images.filter((img) => img !== selectedColor.modelImage)]
-                : product.images} 
+              images={product.images} 
               productName={product.name} 
             />
           </div>
@@ -182,33 +179,10 @@ export const ProductDetailPage: React.FC = () => {
 
               <h1 className="pdp-title">{product.name}</h1>
 
-              {/* Clean Rating Row */}
-              <div className="pdp-rating-row">
-                <div className="star-rating">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={14}
-                      fill={i < Math.floor(product.rating) ? '#C5A050' : 'none'}
-                      color="#C5A050"
-                    />
-                  ))}
-                  <span className="rating-num">{product.rating}</span>
-                </div>
-                <span className="rating-standard-badge">Australian Hospital Grade Certified</span>
-              </div>
-
-              {/* Price & Installment */}
+              {/* Clean Direct Price Only (Ratings and price offers are strictly on Shop page only) */}
               <div className="price-display pdp-price">
                 <span className="price-current">${unitPrice.toFixed(2)} AUD</span>
-                {product.compareAtPrice && (
-                  <span className="price-compare">${product.compareAtPrice.toFixed(2)}</span>
-                )}
                 <span className="price-currency">AUD (GST included)</span>
-              </div>
-              <div className="afterpay-callout">
-                <span>or 4 interest-free payments of <strong>${(unitPrice / 4).toFixed(2)} AUD</strong> with</span>
-                <span className="afterpay-badge">afterpay ↗</span>
               </div>
             </div>
 
@@ -617,7 +591,7 @@ export const ProductDetailPage: React.FC = () => {
             </div>
             <div style={{ maxWidth: '440px', margin: '0 auto' }}>
               {relatedProducts.map((relProduct) => (
-                <ProductCard key={relProduct.id} product={relProduct} />
+                <ProductCard key={relProduct.id} product={relProduct} showOffersAndRatings={false} />
               ))}
             </div>
           </section>

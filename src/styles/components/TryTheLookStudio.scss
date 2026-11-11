@@ -144,6 +144,18 @@
       border-radius: 30px;
       border: 1px solid rgba(27, 59, 43, 0.12);
 
+      @media (max-width: 480px) {
+        width: 100%;
+        display: flex;
+
+        .gender-tab-btn {
+          flex: 1;
+          text-align: center;
+          padding: 0.42rem 0.4rem;
+          font-size: 0.74rem;
+        }
+      }
+
       .gender-tab-btn {
         background: transparent;
         border: none;
@@ -427,14 +439,16 @@
     border: 1px solid #E7DEC2; // Soft Beige
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: clamp(0.65rem, 1.2vh, 1.15rem);
     transition: all 0.3s ease;
     box-sizing: border-box;
 
     @media (min-width: 1121px) {
-      height: 100%;
+      height: auto;
+      max-height: 100%;
       min-height: 0;
-      overflow-y: auto;
+      overflow: hidden;
     }
 
     @media (max-width: 768px) {

@@ -410,6 +410,19 @@
           color: $color-grey;
           text-decoration: line-through;
         }
+
+        .price-save-badge {
+          display: inline-block;
+          font-size: 0.68rem;
+          font-weight: 600;
+          letter-spacing: 0.03em;
+          text-transform: uppercase;
+          color: #1B3B2B;
+          background: rgba(27, 59, 43, 0.08);
+          border: 1px solid rgba(27, 59, 43, 0.14);
+          border-radius: 4px;
+          padding: 0.12rem 0.38rem;
+        }
       }
 
       .star-rating {
@@ -426,6 +439,27 @@
         .star-count {
           font-size: 0.7rem;
           color: $color-grey;
+        }
+      }
+
+      &.no-price-footer {
+        padding-top: 0.2rem;
+      }
+
+      .card-explore-action {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #1B3B2B;
+        transition: all 0.2s ease;
+
+        &:hover {
+          color: #12281D;
+          transform: translateX(2px);
         }
       }
     }

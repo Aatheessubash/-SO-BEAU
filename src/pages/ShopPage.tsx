@@ -152,7 +152,12 @@ export const ShopPage: React.FC = () => {
         ) : (
           <div className="shop-products-grid">
             {filteredProducts.map((product, idx) => (
-              <ProductCard key={product.id} product={product} index={idx} />
+              <ProductCard
+                key={product.id}
+                product={product}
+                index={idx}
+                showOffersAndRatings={true}
+              />
             ))}
           </div>
         )}

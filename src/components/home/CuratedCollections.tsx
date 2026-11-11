@@ -43,7 +43,7 @@ export const CuratedCollections: React.FC<CuratedCollectionsProps> = ({ products
         {/* 2-Column Luxury Grid for the 2 Sets */}
         <div className={`collection-grid ${isVisible ? 'reveal-mask-image' : ''}`}>
           {scrubProducts.map((product, idx) => (
-            <ProductCard key={product.id} product={product} index={idx} disableHover />
+            <ProductCard key={product.id} product={product} index={idx} disableHover showPrice={false} />
           ))}
         </div>
 

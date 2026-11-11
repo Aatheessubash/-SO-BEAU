@@ -229,30 +229,12 @@ export const TryTheLookStudio: React.FC<TryTheLookStudioProps> = ({ products }) 
           </div>
         </div>
 
-        {/* Right Column (1/4): Selected Variant Details & Bag Action */}
+        {/* Right Column (1/4): Selected Variant Details & Bag Action (Clean, un-cluttered & responsive) */}
         <aside className="selected-variant-detail-panel" aria-label="Selected Look Details">
           {/* Product Identity Block */}
           <div className="panel-title-block">
             <span className="collection-kicker">AUSTRALIAN MEDICAL ATELIER • 14-HR SHIFT READY</span>
             <h3 className="product-heading">{activeProduct.name}</h3>
-            
-            <div className="product-rating-row">
-              <div className="star-rating" aria-label="Rated 4.9 out of 5 stars">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={13} className="star-icon filled" fill="#C5A050" stroke="#C5A050" />
-                ))}
-              </div>
-              <span className="rating-score">4.9</span>
-              <span className="rating-count">({activeProduct.reviewCount || 128} verified reviews)</span>
-            </div>
-
-            <div className="price-row">
-              <span className="current-price">${activeProduct.price}.00 AUD</span>
-              {activeProduct.compareAtPrice && (
-                <span className="compare-price">${activeProduct.compareAtPrice}.00 AUD</span>
-              )}
-              <span className="shipping-perk-tag">Free AU Express</span>
-            </div>
           </div>
 
           <div className="panel-divider" />
@@ -321,28 +303,9 @@ export const TryTheLookStudio: React.FC<TryTheLookStudioProps> = ({ products }) 
                 );
               })}
             </div>
-            <div className="size-fit-footnote">
-              <span>Tailored medical drape &bull; True to AU size</span>
-            </div>
           </div>
 
-          {/* Fabric & Tech Highlights */}
-          <div className="panel-features-card">
-            <div className="feature-item">
-              <span className="feature-bullet" />
-              <span><strong>SilkFlex™</strong> 4-Way Stretch Proprietary Weave</span>
-            </div>
-            <div className="feature-item">
-              <span className="feature-bullet" />
-              <span><strong>Antimicrobial (AATCC 22)</strong> & Fluid Shield</span>
-            </div>
-            <div className="feature-item">
-              <span className="feature-bullet" />
-              <span><strong>Hospital Laundry Tested:</strong> 60°C Cycle Safe</span>
-            </div>
-          </div>
-
-          {/* Action CTAs */}
+          {/* Action CTAs (Clean, sleek, no price) */}
           <div className="panel-cta-group">
             <button
               ref={addButtonRef}
@@ -358,31 +321,10 @@ export const TryTheLookStudio: React.FC<TryTheLookStudioProps> = ({ products }) 
               ) : (
                 <>
                   <ShoppingBag size={18} />
-                  <span>Add Look to Bag &bull; ${activeProduct.price}.00 AUD</span>
+                  <span>Add Look to Bag</span>
                 </>
               )}
             </button>
-
-            <button
-              type="button"
-              className="atelier-quick-view-btn"
-              onClick={() => openQuickView(activeProduct)}
-            >
-              <Eye size={15} />
-              <span>Quick View & Full Specs</span>
-            </button>
-          </div>
-
-          {/* Reassurance Micro Footer */}
-          <div className="panel-reassurance-row">
-            <div className="reassurance-pill">
-              <Truck size={13} />
-              <span>Complimentary AU Express &gt;$120</span>
-            </div>
-            <div className="reassurance-pill">
-              <RotateCcw size={13} />
-              <span>30-Day Free Fit Exchange</span>
-            </div>
           </div>
         </aside>
 

@@ -38,7 +38,32 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ images, productN
 
   return (
     <div className="product-gallery-container clean-spacious-gallery">
-      {/* Main Large Image Viewport (Thumbnails sidebar removed for clean spacious framing) */}
+      {/* Clean Angle Thumbnails (From blue_scrub_female / blue_scrub_male) */}
+      {validImages.length > 1 && (
+        <div className="gallery-thumbnails-strip" role="tablist" aria-label="Product photoshoot perspectives">
+          {validImages.map((imgUrl, idx) => (
+            <button
+              key={idx}
+              type="button"
+              role="tab"
+              aria-selected={activeIndex === idx}
+              className={`gallery-thumb-btn ${activeIndex === idx ? 'active' : ''}`}
+              onClick={() => {
+                sounds.playSwatchClick();
+                setActiveIndex(idx);
+              }}
+              onMouseEnter={() => {
+                setActiveIndex(idx);
+              }}
+              title={`Perspective 0${idx + 1}`}
+            >
+              <img src={imgUrl} alt={`${productName} Angle ${idx + 1}`} loading="lazy" />
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Main Large Image Viewport */}
       <div 
         className="gallery-main-viewport"
         onMouseEnter={() => setIsZoomed(true)}
@@ -76,35 +101,18 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ images, productN
               type="button"
               className="gallery-floating-arrow prev"
               onClick={handlePrev}
-              aria-label="Previous image"
+              aria-label="Previous angle"
             >
-              <ChevronLeft size={22} />
+              <ChevronLeft size={20} />
             </button>
             <button
               type="button"
               className="gallery-floating-arrow next"
               onClick={handleNext}
-              aria-label="Next image"
+              aria-label="Next angle"
             >
-              <ChevronRight size={22} />
+              <ChevronRight size={20} />
             </button>
-
-            {/* Clean Floating Pagination Dots */}
-            <div className="gallery-pagination-dots">
-              {validImages.slice(0, 5).map((_, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  className={`dot-pill ${activeIndex === idx ? 'active' : ''}`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    sounds.playSwatchClick();
-                    setActiveIndex(idx);
-                  }}
-                  aria-label={`Go to slide ${idx + 1}`}
-                />
-              ))}
-            </div>
           </>
         )}
       </div>
