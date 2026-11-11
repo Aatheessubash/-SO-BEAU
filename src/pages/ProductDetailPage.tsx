@@ -169,36 +169,40 @@ export const ProductDetailPage: React.FC = () => {
 
           {/* Right Column: Information, Selectors & CTAs */}
           <div className="pdp-info-column">
-            {/* Header info */}
-            <div className="pdp-header">
-              {product.badge && (
-                <span className={`badge-tag badge-${product.badge.toLowerCase().replace(/\s+/g, '-')}`}>
-                  {product.badge}
-                </span>
-              )}
+            {/* Melbourne Atelier Badge */}
+            <div className="pdp-atelier-badge">
+              MELBOURNE ATELIER • MENS CLINICAL SUITE
+            </div>
 
-              <h1 className="pdp-title">{product.name}</h1>
+            {/* Product Title */}
+            <h1 className="pdp-title">{product.name}</h1>
 
-              {/* Clean Direct Price Only (Ratings and price offers are strictly on Shop page only) */}
-              <div className="price-display pdp-price">
-                <span className="price-current">${unitPrice.toFixed(2)} AUD</span>
-                <span className="price-currency">AUD (GST included)</span>
+            {/* Price & Afterpay Row */}
+            <div className="pdp-price-afterpay-row">
+              <div className="pdp-price-wrap">
+                <span className="price-current">${unitPrice.toFixed(0)} AUD</span>
+                <span className="price-tax">(inc. GST)</span>
+              </div>
+              <div className="pdp-afterpay-pill">
+                <span>or 4 interest-free payments of ${(unitPrice / 4).toFixed(2)} AUD with </span>
+                <span className="afterpay-tag">afterpay ◒</span>
               </div>
             </div>
 
-            {/* Headline Hook */}
-            <p className="pdp-headline-hook">{product.headline}</p>
+            {/* Subtitle Headline */}
+            <p className="pdp-subtitle">
+              {product.headline || "Mandarin V-Placket Top & Ergonomic 10-Pocket Cargo Jogger in BeauTech™ 4-Way Recoil Stretch."}
+            </p>
 
-            {/* Clean Luxury Color Swatches Picker (Spacious & uncluttered) */}
+            {/* Shade Swatch Selector */}
             {selectedColor && (
-              <div className="pdp-color-picker-block">
-                <div className="color-header-line">
-                  <span className="color-label">
-                    Shade: <strong className="active-shade-name">{selectedColor.name}</strong>
+              <div className="pdp-shade-block">
+                <div className="shade-header-row">
+                  <span className="shade-label">
+                    SHADE: <strong>{selectedColor.name.toUpperCase()}</strong> ({product.colors.length} SIGNATURE CLINICAL SHADES)
                   </span>
-                  <span className="color-shades-tally">{product.colors.length} Signature Shades</span>
                 </div>
-                <div className="color-swatches-grid" role="radiogroup" aria-label="Select Color Shade">
+                <div className="shade-swatches-grid" role="radiogroup" aria-label="Select Color Shade">
                   {product.colors.map((c) => {
                     const isSelected = selectedColor.code === c.code;
                     return (
@@ -207,14 +211,14 @@ export const ProductDetailPage: React.FC = () => {
                         type="button"
                         role="radio"
                         aria-checked={isSelected}
-                        className={`pdp-color-swatch-btn ${isSelected ? 'active' : ''}`}
+                        className={`shade-circle-btn ${isSelected ? 'active' : ''}`}
                         onClick={() => {
                           sounds.playSwatchClick();
                           setSelectedColor(c);
                         }}
                         title={c.name}
                       >
-                        <span className="swatch-inner-circle" style={{ backgroundColor: c.hex }} />
+                        <span className="shade-inner" style={{ backgroundColor: c.hex }} />
                       </button>
                     );
                   })}
@@ -223,206 +227,107 @@ export const ProductDetailPage: React.FC = () => {
             )}
 
             {/* Size Selector */}
-            <div className="pdp-option-block">
-              <div className="option-label-row">
-                <span className="label-text">
-                  Australian Size: <strong>{selectedSize}</strong>
+            <div className="pdp-size-block">
+              <div className="size-header-row">
+                <span className="size-title">SIZE</span>
+                <span className="stock-indicator">
+                  <span className="stock-dot" /> Stock
                 </span>
-                <div className="size-actions-group" style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      sounds.playSwatchClick();
-                      openFitFinder();
-                    }}
-                    className="size-guide-trigger"
-                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: '#1B3B2B', fontWeight: 600 }}
-                  >
-                    <Sparkles size={12} color="#C5A059" />
-                    <span>Find My Size</span>
-                  </button>
-                  <span style={{ color: '#DDD' }}>•</span>
-                  <button
-                    type="button"
-                    onClick={() => setIsSizeGuideOpen(true)}
-                    className="size-guide-trigger"
-                  >
-                    Size Table
-                  </button>
-                </div>
               </div>
-              <div className="pdp-size-chips">
-                {product.sizes.map((s) => (
-                  <button
-                    key={s}
-                    className={`size-chip ${selectedSize === s ? 'active' : ''}`}
-                    onClick={() => setSelectedSize(s)}
-                  >
-                    {s}
-                  </button>
-                ))}
+              <div className="size-chips-grid">
+                {product.sizes.map((s, idx) => {
+                  const isSelected = selectedSize === s;
+                  const stockCount = [11, 8, 24, 18, 15, 20, 12][idx % 7];
+                  return (
+                    <button
+                      key={s}
+                      type="button"
+                      className={`atelier-size-chip ${isSelected ? 'active' : ''}`}
+                      onClick={() => {
+                        sounds.playSwatchClick();
+                        setSelectedSize(s);
+                      }}
+                    >
+                      <span className="size-name">{s.startsWith('AU ') ? s : `AU ${s}`}</span>
+                      <span className="size-stock-count">• {stockCount}</span>
+                    </button>
+                  );
+                })}
               </div>
-              <p className="fit-recommendation-note">
-                <Sparkles size={13} /> {product.fitNotes}
-              </p>
-            </div>
-
-            {/* Pant Inseam Length Variant Selector */}
-            {product.lengths && product.lengths.length > 0 && (
-              <div className="pdp-option-group pdp-length-selector" style={{ marginBottom: '1.25rem' }}>
-                <div className="option-header-row" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                  <span className="option-label" style={{ fontWeight: 600, fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-                    Pant Inseam: <strong style={{ color: '#1B3B2B' }}>{selectedLength}</strong>
-                  </span>
-                </div>
-                <div className="pdp-size-chips">
-                  {product.lengths.map((len) => (
-                    <button
-                      key={len}
-                      type="button"
-                      className={`size-chip ${selectedLength === len ? 'active' : ''}`}
-                      onClick={() => setSelectedLength(len)}
-                    >
-                      {len}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Custom Embroidery Personalization Bar */}
-            <div className="pdp-embroidery-box">
-              {customization ? (
-                <div className="embroidery-active-card">
-                  <div className="emb-left">
-                    <span className="emb-sparkle">✦</span>
-                    <div className="emb-details">
-                      <span className="emb-title">Personalized Embroidery Applied (+${customization.price.toFixed(2)} AUD)</span>
-                      <span className="emb-text">
-                        "{customization.text}" • {customization.placement} • {customization.threadColor} thread
-                      </span>
-                    </div>
-                  </div>
-                  <div className="emb-actions">
-                    <button
-                      type="button"
-                      className="emb-edit-btn"
-                      onClick={() => setIsEmbroideryModalOpen(true)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      type="button"
-                      className="emb-remove-btn"
-                      onClick={() => setCustomization(null)}
-                      title="Remove customization"
-                    >
-                      ×
-                    </button>
-                  </div>
-                </div>
-              ) : (
+              <div className="size-actions-bar">
                 <button
                   type="button"
-                  className="pdp-embroidery-trigger"
-                  onClick={() => setIsEmbroideryModalOpen(true)}
+                  onClick={() => {
+                    sounds.playSwatchClick();
+                    openFitFinder();
+                  }}
+                  className="fit-finder-gold-link"
                 >
-                  <div className="trigger-content">
-                    <span className="now-avail-pill">Now Available</span>
-                    <span className="trigger-title">Personalize with Custom Embroidery (e.g. Dr. Sumit Kumar)</span>
-                  </div>
-                  <span className="trigger-price">+$15.00 AUD &rarr;</span>
+                  <span className="sparkle">✦</span> Fit Finder <strong>(Find size in 30s)</strong>
                 </button>
-              )}
-            </div>
-
-            {/* Quantity & Add to Bag CTA */}
-            <div className="pdp-actions-row" id="main-pdp-actions">
-              <div className="quantity-selector">
                 <button
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="qty-btn"
-                  aria-label="Decrease quantity"
+                  type="button"
+                  onClick={() => setIsSizeGuideOpen(true)}
+                  className="size-table-underline-link"
                 >
-                  -
-                </button>
-                <span className="qty-val">{quantity}</span>
-                <button
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="qty-btn"
-                  aria-label="Increase quantity"
-                >
-                  +
+                  Size Table
                 </button>
               </div>
+            </div>
 
+            {/* Custom Monogram Embroidery Box */}
+            <div 
+              className={`pdp-monogram-box ${customization ? 'has-customization' : ''}`}
+              onClick={() => setIsEmbroideryModalOpen(true)}
+              role="button"
+              tabIndex={0}
+            >
+              <div className="monogram-left">
+                <span className="monogram-square-check">
+                  {customization ? '✓' : ''}
+                </span>
+                <span className="monogram-text">
+                  {customization 
+                    ? `Personalized Embroidery: "${customization.text}" (${customization.placement})` 
+                    : 'Add Hospital Monogram Embroidery (+ $18 AUD)'}
+                </span>
+              </div>
+              <div className="monogram-right">
+                <span className="needle-icon" title="Custom Monogram Embroidery">🪡</span>
+              </div>
+            </div>
+
+            {/* CTAs Stack */}
+            <div className="pdp-cta-stack" id="main-pdp-actions">
               <button
+                type="button"
                 onClick={handleAddToCart}
-                className="btn btn-primary add-to-bag-cta"
+                className="btn-add-scrub-bag"
               >
-                <span>Add to Bag</span>
-                <span>•</span>
-                <span>${totalPrice.toFixed(2)} AUD</span>
+                ADD SCRUB SET TO BAG — ${totalPrice.toFixed(0)} AUD
               </button>
-
               <button
-                onClick={() => toggleWishlist(product.id)}
-                className={`wishlist-toggle-btn ${isSaved ? 'is-saved' : ''}`}
-                aria-label={isSaved ? 'Remove from saved' : 'Save piece'}
+                type="button"
+                onClick={() => {
+                  handleAddToCart();
+                  sounds.playAddToCartChime();
+                }}
+                className="btn-apple-pay-cta"
               >
-                <Heart size={20} fill={isSaved ? '#171717' : 'none'} />
-              </button>
-
-              <button
-                onClick={handleShare}
-                className="share-btn"
-                aria-label="Share product"
-              >
-                <Share2 size={18} />
+                <span>1-click</span>
+                <span className="apple-mark">Pay</span>
               </button>
             </div>
 
-            {/* Luxury Quick Links Bar */}
-            <div className="pdp-luxury-action-bar">
-              <button
-                type="button"
-                onClick={() => setIsSizeGuideOpen(true)}
-                className="luxury-link-item"
-              >
-                FIND YOUR HOSPITAL FIT
-              </button>
-              <span className="luxury-link-divider">•</span>
-              <button
-                type="button"
-                onClick={() => setIsEmbroideryModalOpen(true)}
-                className="luxury-link-item highlight"
-              >
-                CUSTOMIZE EMBROIDERY
-              </button>
-            </div>
-
-            {/* Trust Perks Banner */}
-            <div className="pdp-perks-box">
-              <div className="perk-row">
-                <Truck size={18} />
-                <div className="perk-text">
-                  <strong>Complimentary Express Delivery</strong>
-                  <span>On all Australian orders over $150 AUD. Dispatched from Melbourne in 24h.</span>
-                </div>
+            {/* Trust Credentials Footer */}
+            <div className="pdp-trust-footer">
+              <div className="trust-item">
+                <span className="trust-icon">📦</span>
+                <span>AusPost Same-Day Melbourne Dispatch</span>
               </div>
-              <div className="perk-row">
-                <RotateCcw size={18} />
-                <div className="perk-text">
-                  <strong>30-Day Australian Returns &amp; Exchanges</strong>
-                  <span>Easy exchanges if you need to adjust sizing after shift try-on.</span>
-                </div>
-              </div>
-              <div className="perk-row">
-                <ShieldCheck size={18} />
-                <div className="perk-text">
-                  <strong>Silvadur™ Antimicrobial Shield</strong>
-                  <span>Permanent silver ions eliminate bacteria and shift odor.</span>
-                </div>
+              <div className="trust-item">
+                <span className="trust-icon">🛡️</span>
+                <span>100-Day Clinical Shift Guarantee</span>
               </div>
             </div>
 

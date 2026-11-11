@@ -86,8 +86,17 @@ $z-modal: 900;
 $z-drawer: 1000;
 $z-toast: 1100;
 
+// Border Radius System (Concentric hierarchy)
+$radius-xs: 4px;
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 18px;
+$radius-xl: 24px;
+$radius-full: 9999px;
+
 // Shadows (Refined luxury feel with subtle warm forest tint)
-$shadow-subtle: 0 4px 20px rgba(27, 59, 43, 0.05);
-$shadow-card: 0 8px 30px rgba(27, 59, 43, 0.08);
-$shadow-elevated: 0 20px 45px rgba(27, 59, 43, 0.12);
-$shadow-drawer: -10px 0 40px rgba(27, 59, 43, 0.15);
+$shadow-subtle: 0 2px 6px rgba(27, 59, 43, 0.05), 0 1px 2px rgba(27, 59, 43, 0.03);
+$shadow-card: 0 8px 20px -2px rgba(27, 59, 43, 0.08), 0 3px 8px -2px rgba(27, 59, 43, 0.04);
+$shadow-elevated: 0 20px 36px -4px rgba(27, 59, 43, 0.12), 0 8px 16px -4px rgba(27, 59, 43, 0.05);
+$shadow-drawer: -12px 0 36px rgba(18, 40, 29, 0.18);
+$shadow-gold: 0 4px 18px rgba(197, 160, 80, 0.22);

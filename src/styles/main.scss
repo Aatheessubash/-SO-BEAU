@@ -69,10 +69,21 @@
   transition: all $transition-base;
   text-decoration: none;
   border: 1px solid transparent;
+  border-radius: $radius-full;
   cursor: pointer;
   position: relative;
   overflow: hidden;
   white-space: nowrap;
+  max-width: 100%;
+
+  &:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+
+  @media (max-width: 480px) {
+    white-space: normal;
+    text-align: center;
+  }
 
   &:disabled {
     opacity: 0.45;
@@ -81,26 +92,40 @@
 }
 
 .btn-primary {
-  background-color: $color-charcoal;
+  background-color: $color-forest-green;
   color: $color-ivory-light;
-  border-color: $color-charcoal;
+  border-color: $color-forest-green;
 
   &:hover:not(:disabled) {
-    background-color: $color-charcoal-light;
-    border-color: $color-charcoal-light;
+    background-color: $color-forest-light;
+    border-color: $color-forest-light;
     transform: translateY(-1px);
     box-shadow: $shadow-subtle;
   }
 }
 
 .btn-secondary {
-  background-color: $color-taupe;
-  color: $color-charcoal;
-  border-color: $color-taupe;
+  background-color: $color-soft-beige;
+  color: $color-forest-dark;
+  border-color: $color-border;
 
   &:hover:not(:disabled) {
-    background-color: $color-taupe-dark;
-    color: $color-white;
+    background-color: $color-border;
+    color: $color-forest-dark;
+  }
+}
+
+.btn-gold {
+  background-color: $color-muted-gold;
+  color: $color-forest-dark;
+  border-color: $color-muted-gold;
+  font-weight: 700;
+
+  &:hover:not(:disabled) {
+    background-color: $color-gold-light;
+    border-color: $color-gold-light;
+    box-shadow: $shadow-gold;
+    transform: translateY(-1px);
   }
 }
 
