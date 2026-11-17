@@ -78,6 +78,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             alt={`${product.name} Front View`}
             className={`product-flip-img front-view ${showBack ? 'hide' : 'show'}`}
             loading="lazy"
+            width={400}
+            height={500}
           />
 
           {/* Back Image (Reveals on Hover or Click Flip) */}
@@ -87,6 +89,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               alt={`${product.name} Back Movement View`}
               className={`product-flip-img back-view ${showBack ? 'show' : 'hide'}`}
               loading="lazy"
+              width={400}
+              height={500}
             />
           )}
 

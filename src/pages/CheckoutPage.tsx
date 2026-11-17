@@ -142,7 +142,7 @@ export const CheckoutPage: React.FC = () => {
         {/* Top Header */}
         <div className="checkout-top-header">
           <Link to="/" className="checkout-brand-logo" aria-label="SO BEAU Home">
-            <BrandLogo variant="full" theme="forest" height={40} />
+            <BrandLogo variant="wordmark" theme="navy" height={40} />
           </Link>
           <div className="secure-badge">
             <Lock size={15} />

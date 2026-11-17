@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Maximize2, X, ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react';
 import { sounds } from '../../utils/soundEffects';
 import '../../styles/components/ProductGallery.scss';
 
@@ -11,18 +11,9 @@ interface ProductGalleryProps {
 export const ProductGallery: React.FC<ProductGalleryProps> = ({ images, productName }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  const [isZoomed, setIsZoomed] = useState(false);
-  const [zoomCoords, setZoomCoords] = useState({ x: 0, y: 0 });
 
   const validImages = images && images.length > 0 ? images : ['/images/placeholder.jpg'];
   const currentImage = validImages[activeIndex] || validImages[0];
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - left) / width) * 100;
-    const y = ((e.clientY - top) / height) * 100;
-    setZoomCoords({ x, y });
-  };
 
   const handlePrev = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
@@ -41,7 +32,7 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ images, productN
       {/* Clean Angle Thumbnails (From blue_scrub_female / blue_scrub_male) */}
       {validImages.length > 1 && (
         <div className="gallery-thumbnails-strip" role="tablist" aria-label="Product photoshoot perspectives">
-          {validImages.map((imgUrl, idx) => (
+          {validImages.slice(0, 5).map((imgUrl, idx) => (
             <button
               key={idx}
               type="button"
@@ -57,32 +48,38 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ images, productN
               }}
               title={`Perspective 0${idx + 1}`}
             >
-              <img src={imgUrl} alt={`${productName} Angle ${idx + 1}`} loading="lazy" />
+              <img src={imgUrl} alt={`${productName} Angle ${idx + 1}`} width={72} height={92} loading="lazy" />
             </button>
           ))}
+
+          {/* Scroll / Next Chevron Button matching reference */}
+          <button
+            type="button"
+            className="gallery-thumb-scroll-btn"
+            onClick={handleNext}
+            aria-label="View next photoshoot angle"
+          >
+            <ChevronDown size={16} />
+          </button>
         </div>
       )}
 
       {/* Main Large Image Viewport */}
-      <div 
-        className="gallery-main-viewport"
-        onMouseEnter={() => setIsZoomed(true)}
-        onMouseLeave={() => setIsZoomed(false)}
-        onMouseMove={handleMouseMove}
-      >
+      <div className="gallery-main-viewport">
         <img 
           src={currentImage} 
           alt={productName}
           className="gallery-main-image"
-          style={
-            isZoomed
-              ? {
-                  transformOrigin: `${zoomCoords.x}% ${zoomCoords.y}%`,
-                  transform: 'scale(1.75)',
-                }
-              : undefined
-          }
+          width={600}
+          height={760}
         />
+
+        {/* Counter Badge (e.g. 1 / 6) */}
+        {validImages.length > 0 && (
+          <div className="gallery-counter-badge" aria-label={`Image ${activeIndex + 1} of ${validImages.length}`}>
+            {activeIndex + 1} / {validImages.length}
+          </div>
+        )}
 
         {/* Enlarge Lightbox Trigger */}
         <button 

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, ShoppingBag, Heart, Menu, X, Sparkles } from 'lucide-react';
+import { Search, ShoppingBag, Heart, Menu, X, ChevronDown } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { BrandLogo } from './BrandLogo';
-import { sounds } from '../../utils/soundEffects';
 import '../../styles/components/Navbar.scss';
 
 export const Navbar: React.FC = () => {
@@ -11,7 +10,7 @@ export const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
-  const { totalItems, openCart, openSearch, wishlist, isCartBouncing, openFitFinder } = useCart();
+  const { totalItems, openCart, openSearch, wishlist, isCartBouncing } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,47 +33,59 @@ export const Navbar: React.FC = () => {
           className="mobile-menu-trigger"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+          type="button"
         >
           {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
 
         {/* Brand Logo */}
         <div className="header-brand">
-          <Link to="/" className="brand-logo-link" aria-label="SO BEAU Home">
-            <BrandLogo variant="full" theme="forest" height={38} />
+          <Link to="/" className="brand-logo-link" aria-label="SOBEAU Home">
+            <BrandLogo variant="wordmark" theme="navy" height={36} />
           </Link>
         </div>
 
         {/* Desktop Primary Nav */}
         <nav className="desktop-nav" aria-label="Main Navigation">
-          <Link to="/collections/scrubs" className="nav-link">
-            Shop
-          </Link>
-          <button
-            type="button"
-            className="nav-link fit-finder-nav-btn"
-            onClick={() => {
-              sounds.playSwatchClick();
-              openFitFinder();
-            }}
+          <Link 
+            to="/collections/scrubs" 
+            className="nav-link with-chevron"
           >
-            <Sparkles size={12} style={{ display: 'inline', marginRight: 4, color: '#C5A059' }} />
-            <span>Fit Quiz</span>
-          </button>
-          <Link to="/pages/our-story" className="nav-link">
-            Our Story
+            <span>Shop Collections</span>
+            <ChevronDown size={14} className="chevron-icon" />
           </Link>
-          <Link to="/pages/community" className="nav-link">
-            Community
+          <Link 
+            to="/collections/scrubs?category=womens-scrubs" 
+            className="nav-link with-chevron"
+          >
+            <span>Women's</span>
+            <ChevronDown size={14} className="chevron-icon" />
           </Link>
-          <Link to="/pages/contact" className="nav-link">
-            Contact
+          <Link 
+            to="/collections/scrubs?category=mens-scrubs" 
+            className="nav-link with-chevron"
+          >
+            <span>Men's</span>
+            <ChevronDown size={14} className="chevron-icon" />
+          </Link>
+          <a 
+            href="/#try-the-look" 
+            className="nav-link"
+          >
+            Try The Look Studio
+          </a>
+          <Link 
+            to="/pages/our-story" 
+            className="nav-link"
+          >
+            About Atelier
           </Link>
         </nav>
 
         {/* Header Right Actions */}
         <div className="header-actions">
           <button 
+            type="button"
             className="action-btn" 
             onClick={openSearch}
             aria-label="Search collection"
@@ -96,6 +107,7 @@ export const Navbar: React.FC = () => {
           </Link>
 
           <button 
+            type="button"
             id="navbar-cart-btn"
             className={`action-btn cart-btn ${isCartBouncing ? 'animate-cart-bounce' : ''}`} 
             onClick={openCart}
@@ -114,7 +126,7 @@ export const Navbar: React.FC = () => {
       <div className={`mobile-nav-drawer ${isMobileMenuOpen ? 'open' : ''}`}>
         <nav className="mobile-nav-inner">
           <Link to="/collections/scrubs" className="mobile-nav-link">
-            Shop All Scrubs
+            Shop Collections
           </Link>
           <Link to="/collections/scrubs?category=womens-scrubs" className="mobile-nav-sublink">
             Women's Scrubs
@@ -122,22 +134,23 @@ export const Navbar: React.FC = () => {
           <Link to="/collections/scrubs?category=mens-scrubs" className="mobile-nav-sublink">
             Men's Scrubs
           </Link>
+          <a href="/#try-the-look" className="mobile-nav-sublink" onClick={() => setIsMobileMenuOpen(false)}>
+            Try The Look Studio
+          </a>
           <Link to="/pages/size-guide" className="mobile-nav-sublink">
-            Size Guide
+            Australian Sizing Guide
           </Link>
           <div className="mobile-nav-divider" />
           <Link to="/pages/our-story" className="mobile-nav-link">
-            Our Story
-          </Link>
-          <Link to="/pages/community" className="mobile-nav-link">
-            Community
+            About Atelier
           </Link>
           <Link to="/pages/contact" className="mobile-nav-link">
-            Contact
+            Contact &amp; Hospital Teams
           </Link>
           <div className="mobile-nav-divider" />
           <div className="mobile-nav-extras">
             <button 
+              type="button"
               className="mobile-action-btn" 
               onClick={() => { setIsMobileMenuOpen(false); openSearch(); }}
             >

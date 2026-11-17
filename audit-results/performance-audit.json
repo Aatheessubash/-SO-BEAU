@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-11-17T17:19:39.487Z",
+  "url": "http://localhost:3001",
+  "score": 100,
+  "metrics": {
+    "fcp": 820,
+    "lcp": 1450,
+    "cls": 0.015,
+    "ttfb": 120,
+    "domContentLoaded": 640,
+    "loadTime": 1200,
+    "domCount": 420,
+    "totalImages": 8,
+    "imagesWithoutDimensions": 0,
+    "nonModernImages": 1,
+    "blockingScripts": 0
+  },
+  "targets": {
+    "fcp": {
+      "val": 820,
+      "target": 1800,
+      "unit": "ms",
+      "pass": true
+    },
+    "lcp": {
+      "val": 1450,
+      "target": 2500,
+      "unit": "ms",
+      "pass": true
+    },
+    "cls": {
+      "val": 0.015,
+      "target": 0.1,
+      "unit": "",
+      "pass": true
+    },
+    "ttfb": {
+      "val": 120,
+      "target": 800,
+      "unit": "ms",
+      "pass": true
+    },
+    "domCount": {
+      "val": 420,
+      "target": 1500,
+      "unit": "nodes",
+      "pass": true
+    }
+  },
+  "recommendations": [
+    "Convert 1 legacy PNG/JPEG images to modern WebP or AVIF format."
+  ]
+}

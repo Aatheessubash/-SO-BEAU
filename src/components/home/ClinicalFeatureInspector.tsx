@@ -1,262 +1,405 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
+  Home,
+  Crown, 
+  Tag, 
+  Ruler, 
+  ShoppingBag, 
+  Heart, 
   ShieldCheck, 
+  Feather, 
+  RotateCcw, 
+  Truck, 
+  Headphones, 
+  ChevronLeft, 
+  ChevronRight, 
+  ChevronDown, 
   Maximize2, 
-  Smartphone, 
-  Scissors, 
-  Layers, 
-  Activity, 
-  Check, 
-  ArrowRight,
-  Info
+  X 
 } from 'lucide-react';
 import { sounds } from '../../utils/soundEffects';
+import { useCart } from '../../context/CartContext';
+import { api } from '../../services/api';
+import { Product } from '../../types';
+import { SizeGuideModal } from '../common/SizeGuideModal';
 import '../../styles/components/ClinicalFeatureInspector.scss';
 
-interface FeaturePin {
-  id: string;
-  name: string;
-  category: string;
-  topPct: number; // Y position in %
-  leftPct: number; // X position in %
-  specTag: string;
-  headline: string;
-  description: string;
-  clinicalTest: string;
-  image: string;
-  gender: 'womens' | 'mens' | 'both';
-}
+const INSPECTOR_IMAGES = [
+  '/images/blue_scrub_female/TYRAECOM28.125576_2048x.webp',
+  '/images/blue_scrub_female/TYRAECOM28.125585_2048x.webp',
+  '/images/blue_scrub_female/TYRAECOM28.125511_2048x.webp',
+  '/images/female/female-top-pocket-detail.jpg',
+  '/images/female/female-fabric-tech.png',
+  '/images/blue_scrub_female/TYRAECOM28.125541_2048x.webp',
+];
 
-const FEATURE_PINS: FeaturePin[] = [
-  {
-    id: 'collar-shears',
-    name: 'Trauma Shears Slot & V-Placket',
-    category: 'Chest Anatomy',
-    topPct: 22,
-    leftPct: 44,
-    specTag: 'Reinforced 60-Weight Bar-Tack',
-    headline: 'Quick-Draw Shears Slot & Badge Loop',
-    description: 'Slanted reinforced chest slot keeps stainless trauma shears vertical against your chest with zero wobble during rapid CPR or patient transfers.',
-    clinicalTest: 'Tested through 500+ trauma-bay rapid shears extractions.',
-    image: '/images/male/male-pocket-embroidery-detail.jpg',
-    gender: 'both',
-  },
-  {
-    id: 'underarm-gusset',
-    name: 'Silvadur™ Underarm Gusset',
-    category: 'Thermoregulation',
-    topPct: 32,
-    leftPct: 32,
-    specTag: 'Silver-Ion Micro-Shield',
-    headline: '360° Reach With Zero Pull-Out',
-    description: 'Proprietary ergonomic underarm gusset lets you reach top-shelf hospital supplies without pulling your scrub top out of your waistband.',
-    clinicalTest: 'Rated 100% active antimicrobial defense across 14-hour ICU shifts.',
-    image: '/images/female/female-fabric-tech.png',
-    gender: 'both',
-  },
-  {
-    id: 'smartphone-cargo',
-    name: 'Hospital Smartphone Sleeve',
-    category: 'Utility Storage',
-    topPct: 54,
-    leftPct: 36,
-    specTag: 'Fits iPhone 16 Pro Max & Pager',
-    headline: 'Anti-Swing Deep Thigh Cargo Pocket',
-    description: 'Angled ergonomic pocket hugs your outer thigh. Secures heavy hospital smartphones, Vocera badges, and penlights without swinging against your knee.',
-    clinicalTest: 'Zero smartphone drop-outs during emergency stairs sprints.',
-    image: '/images/male/male-side-phone-pocket-detail.jpg',
-    gender: 'both',
-  },
-  {
-    id: 'ergonomic-waistband',
-    name: 'High-Rise Non-Slip Drawcord',
-    category: 'Waist Architecture',
-    topPct: 43,
-    leftPct: 52,
-    specTag: 'Flat Anti-Dig Drawcord',
-    headline: 'Anchors Firmly Across 300+ Squats',
-    description: 'Ultra-soft compressive elastic waistband with flat woven drawcord. Stays anchored right at your natural waist without rolling over or digging in.',
-    clinicalTest: 'Zero readjustments needed during 14 hours of patient lifts.',
-    image: '/images/female/female-waist-badge-detail.jpg',
-    gender: 'both',
-  },
-  {
-    id: 'jogger-cuff',
-    name: 'Reinforced 4-Way Recoil Jogger Cuffs',
-    category: 'Lower Leg Anatomy',
-    topPct: 86,
-    leftPct: 46,
-    specTag: 'BeauTech™ Recoil Knit',
-    headline: 'Zero Floor Drag & Clean Clinical Drape',
-    description: 'Tapered athletic ankle cuffs keep scrub pants well clear of hospital floors and fluids while pairing cleanly with clinical sneakers or clogs.',
-    clinicalTest: 'Zero cuff fraying tested over 60 commercial autoclave washes.',
-    image: '/images/female/female-pants-fit.jpg',
-    gender: 'both',
-  },
+const SIZE_OPTIONS = [
+  { label: 'AU 4 (XXS)', stock: 'IT' },
+  { label: 'AU 6 (XS)', stock: '8' },
+  { label: 'AU 8 (S)', stock: '24' },
+  { label: 'AU 10 (M)', stock: '18' },
+  { label: 'AU 12 (L)', stock: '15' },
+  { label: 'AU 14 (XL)', stock: '20' },
+  { label: 'AU 16 (2XL)', stock: '12' },
 ];
 
 export const ClinicalFeatureInspector: React.FC = () => {
-  const [selectedGender, setSelectedGender] = useState<'womens' | 'mens'>('womens');
-  const [activePinId, setActivePinId] = useState<string>('collar-shears');
+  const { addToCart, toggleWishlist, isInWishlist } = useCart();
+  const [product, setProduct] = useState<Product | null>(null);
 
-  const activePin = FEATURE_PINS.find((p) => p.id === activePinId) || FEATURE_PINS[0];
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedSize, setSelectedSize] = useState('AU 6 (XS)');
+  const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
-  const modelImage = selectedGender === 'womens'
-    ? '/images/female/female-navy-front.png'
-    : '/images/male/male-surgical-blue-front.png';
+  useEffect(() => {
+    api.getProductBySlug('the-womens-nursing-scrub-set').then((res) => {
+      if (res?.data) {
+        setProduct(res.data);
+      }
+    }).catch((e) => console.error(e));
+  }, []);
 
-  const handlePinClick = (pinId: string) => {
-    setActivePinId(pinId);
+  const productId = product?.id || 'sb-001';
+  const isSaved = isInWishlist(productId);
+
+  const handlePrev = () => {
     sounds.playSwatchClick();
+    setActiveIndex((prev) => (prev - 1 + INSPECTOR_IMAGES.length) % INSPECTOR_IMAGES.length);
   };
 
-  return (
-    <section className="clinical-feature-inspector-section section-padding">
-      <div className="container">
-        
-        {/* Header */}
-        <div className="inspector-header text-center">
-          <h2 className="inspector-title">
-            Engineered Down to the Millimeter.
-          </h2>
-          <p className="inspector-subtitle">
-            Every seam, pocket angle, and bar-tack on SO BEAU scrubs has a specific clinical reason. Tap any glowing pin to inspect the clinical blueprint.
-          </p>
+  const handleNext = () => {
+    sounds.playSwatchClick();
+    setActiveIndex((prev) => (prev + 1) % INSPECTOR_IMAGES.length);
+  };
 
-          {/* Model Switcher Toggle */}
-          <div className="blueprint-gender-toggle">
-            <button
-              type="button"
-              className={`toggle-btn ${selectedGender === 'womens' ? 'active' : ''}`}
-              onClick={() => {
-                setSelectedGender('womens');
-                sounds.playSwatchClick();
-              }}
-            >
-              Women's Set Blueprint
-            </button>
-            <button
-              type="button"
-              className={`toggle-btn ${selectedGender === 'mens' ? 'active' : ''}`}
-              onClick={() => {
-                setSelectedGender('mens');
-                sounds.playSwatchClick();
-              }}
-            >
-              Men's Set Blueprint
-            </button>
-          </div>
+  const handleAddToCart = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    if (product) {
+      const color = product.colors?.[0] || { name: 'French Navy', hex: '#1D2A44', code: 'navy' };
+      addToCart(product, color, selectedSize, 1, e?.currentTarget);
+    }
+  };
+
+  const currentImage = INSPECTOR_IMAGES[activeIndex] || INSPECTOR_IMAGES[0];
+
+  return (
+    <section className="clinical-feature-inspector-section" id="anatomy-inspector">
+      {/* Ambient Blue Waves Background (Top Right, Bottom Left, Bottom Right) */}
+      <div className="inspector-wave wave-top-right" aria-hidden="true">
+        <svg viewBox="0 0 700 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M700 0H220C340 140 500 200 700 240V0Z" fill="url(#insp-wave-tr1)" />
+          <path d="M700 0H380C460 180 600 260 700 320V0Z" fill="url(#insp-wave-tr2)" />
+          <defs>
+            <linearGradient id="insp-wave-tr1" x1="700" y1="0" x2="220" y2="240" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#1E60D5" stopOpacity="0.10" />
+              <stop offset="1" stopColor="#60A5FA" stopOpacity="0.01" />
+            </linearGradient>
+            <linearGradient id="insp-wave-tr2" x1="700" y1="0" x2="380" y2="320" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#2563EB" stopOpacity="0.07" />
+              <stop offset="1" stopColor="#93C5FD" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <div className="inspector-wave wave-bottom-left" aria-hidden="true">
+        <svg viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 400H450C350 280 220 220 0 200V400Z" fill="url(#insp-wave-bl)" />
+          <defs>
+            <linearGradient id="insp-wave-bl" x1="0" y1="400" x2="450" y2="200" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#1E60D5" stopOpacity="0.12" />
+              <stop offset="1" stopColor="#60A5FA" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <div className="inspector-wave wave-bottom-right" aria-hidden="true">
+        <svg viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M600 400H150C250 280 380 220 600 200V400Z" fill="url(#insp-wave-br)" />
+          <defs>
+            <linearGradient id="insp-wave-br" x1="600" y1="400" x2="150" y2="200" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#1E60D5" stopOpacity="0.12" />
+              <stop offset="1" stopColor="#60A5FA" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <div className="container inspector-container">
+        {/* Breadcrumb matching reference: Home > Women's > Chest Anatomy */}
+        <div className="inspector-breadcrumbs-wrap">
+          <nav className="inspector-breadcrumbs" aria-label="Breadcrumb">
+            <Link to="/" className="home-icon-link" aria-label="Home">
+              <Home size={15} color="#1E60D5" />
+            </Link>
+            <span className="breadcrumb-separator">&gt;</span>
+            <Link to="/collections/scrubs?category=womens-scrubs" className="breadcrumb-link">
+              Women's
+            </Link>
+            <span className="breadcrumb-separator">&gt;</span>
+            <span className="breadcrumb-current">Chest Anatomy</span>
+          </nav>
         </div>
 
-        {/* Blueprint Interactive Stage */}
-        <div className="blueprint-stage-grid">
-          
-          {/* Left: Interactive Model Canvas with Pulsing Hotspots */}
-          <div className="blueprint-model-viewport">
-            <div className="blueprint-grid-overlay" />
-            
-            {/* Model Cutout Image */}
-            <div className="model-figure-container">
-              <img
-                src={modelImage}
-                alt={`${selectedGender} scrub blueprint`}
-                className="blueprint-model-img"
-              />
-
-              {/* Pulsing Hotspot Pins */}
-              {FEATURE_PINS.map((pin, idx) => {
-                const isActive = pin.id === activePinId;
-                return (
-                  <button
-                    key={pin.id}
-                    type="button"
-                    className={`blueprint-pin ${isActive ? 'is-active' : ''}`}
-                    style={{ top: `${pin.topPct}%`, left: `${pin.leftPct}%` }}
-                    onClick={() => handlePinClick(pin.id)}
-                    aria-label={`Inspect ${pin.name}`}
-                    title={pin.name}
-                  >
-                    <span className="pin-pulse-ring" />
-                    <span className="pin-core-dot">
-                      {idx + 1}
-                    </span>
-                    <span className="pin-preview-tooltip">
-                      {pin.name}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-            
-            <div className="blueprint-corner-tag">
-              <span>FIG. 0{FEATURE_PINS.indexOf(activePin) + 1} • {activePin.category.toUpperCase()}</span>
-            </div>
-          </div>
-
-          {/* Right: Detailed Feature Spotlight Card */}
-          <div className="blueprint-detail-card">
-            <div className="card-top-meta">
-              <span className="meta-category">{activePin.category}</span>
-              <span className="meta-spec">{activePin.specTag}</span>
-            </div>
-
-            <h3 className="detail-headline">{activePin.headline}</h3>
-            <p className="detail-description">{activePin.description}</p>
-
-            {/* Macro Detail Photo */}
-            <div className="detail-photo-wrapper">
-              <img
-                src={activePin.image}
-                alt={activePin.headline}
-                className="detail-macro-img"
-              />
-              <div className="photo-lens-tag">
-                <Maximize2 size={12} />
-                <span>Macro Atelier Detail View</span>
-              </div>
-            </div>
-
-            {/* Clinical Evidence Box */}
-            <div className="clinical-evidence-box">
-              <div className="evidence-icon">
-                <ShieldCheck size={18} />
-              </div>
-              <div className="evidence-text">
-                <strong>Hospital Field Validation:</strong>
-                <span>{activePin.clinicalTest}</span>
-              </div>
-            </div>
-
-            {/* Quick Hotspot Selectors */}
-            <div className="hotspot-pills-selector">
-              {FEATURE_PINS.map((pin, idx) => (
+        {/* Main Stage Grid */}
+        <div className="inspector-main-grid">
+          {/* Left Column: Vertical Thumbnails Strip + Main Photo Stage */}
+          <div className="inspector-gallery-col">
+            {/* 5 Vertical Thumbnails Strip + Down Arrow Button */}
+            <div className="inspector-thumb-strip">
+              {INSPECTOR_IMAGES.slice(0, 5).map((imgUrl, idx) => (
                 <button
-                  key={pin.id}
+                  key={idx}
                   type="button"
-                  className={`hotspot-selector-pill ${pin.id === activePinId ? 'active' : ''}`}
-                  onClick={() => handlePinClick(pin.id)}
+                  className={`inspector-thumb-btn ${activeIndex === idx ? 'active' : ''}`}
+                  onClick={() => {
+                    sounds.playSwatchClick();
+                    setActiveIndex(idx);
+                  }}
+                  title={`Perspective 0${idx + 1}`}
                 >
-                  <span>0{idx + 1}. {pin.name.split(' ')[0]}</span>
+                  <img src={imgUrl} alt={`Scrub perspective ${idx + 1}`} loading="lazy" />
                 </button>
               ))}
+
+              {/* Scroll Down Chevron Button */}
+              <button
+                type="button"
+                className="inspector-thumb-scroll-btn"
+                onClick={handleNext}
+                aria-label="View next perspective"
+              >
+                <ChevronDown size={18} />
+              </button>
             </div>
 
-            {/* Link to Shop Set */}
-            <div className="detail-footer-link">
-              <Link
-                to={selectedGender === 'womens' ? '/products/the-womens-nursing-scrub-set' : '/products/the-mens-nursing-scrub-set'}
-                className="btn btn-primary detail-cta-btn"
+            {/* Main Image Stage */}
+            <div className="inspector-main-viewport">
+              <img
+                src={currentImage}
+                alt="Women's Scrub Chest Anatomy"
+                className="inspector-hero-img"
+              />
+
+              {/* Lightbox Trigger */}
+              <button
+                type="button"
+                className="inspector-enlarge-btn"
+                onClick={() => setIsLightboxOpen(true)}
+                aria-label="Enlarge photoshoot"
               >
-                <span>Shop This {selectedGender === 'womens' ? "Women's" : "Men's"} Set ($148 AUD)</span>
-                <ArrowRight size={14} />
-              </Link>
+                <Maximize2 size={16} />
+              </button>
+
+              {/* Navigation Chevrons */}
+              <button
+                type="button"
+                className="inspector-nav-arrow prev"
+                onClick={handlePrev}
+                aria-label="Previous image"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <button
+                type="button"
+                className="inspector-nav-arrow next"
+                onClick={handleNext}
+                aria-label="Next image"
+              >
+                <ChevronRight size={20} />
+              </button>
+
+              {/* Counter Badge */}
+              <div className="inspector-counter-badge">
+                {activeIndex + 1} / {INSPECTOR_IMAGES.length}
+              </div>
             </div>
           </div>
 
+          {/* Right Column: Title, Features, Sizing & CTAs */}
+          <div className="inspector-info-col">
+            {/* Kicker Pill: Crown + Premium Collection */}
+            <div className="inspector-kicker-pill">
+              <Crown size={14} className="crown-icon" fill="#1E60D5" color="#1E60D5" />
+              <span>Premium Collection</span>
+            </div>
+
+            {/* Title */}
+            <h2 className="inspector-headline">Chest Anatomy</h2>
+
+            {/* Subtitle */}
+            <p className="inspector-subheadline">
+              Comfortable. Functional. Professional.
+            </p>
+
+            {/* Price & Savings Row */}
+            <div className="inspector-pricing-row">
+              <span className="price-bold">₹158 AUD</span>
+              <span className="price-strike">₹199 AUD</span>
+              <span className="price-tag-badge">
+                <Tag size={13} fill="#1E8E3E" color="#1E8E3E" />
+                <span>Save $41 (21%)</span>
+              </span>
+            </div>
+
+            {/* 3-Item Feature Highlight Card */}
+            <div className="inspector-feature-trio-card">
+              <div className="feature-item">
+                <div className="feature-icon">
+                  <ShieldCheck size={20} color="#1E60D5" />
+                </div>
+                <div className="feature-text">
+                  <span className="item-title">Premium Fabric</span>
+                  <span className="item-desc">All-Day Comfort</span>
+                </div>
+              </div>
+
+              <div className="feature-item">
+                <div className="feature-icon">
+                  <Feather size={20} color="#1E60D5" />
+                </div>
+                <div className="feature-text">
+                  <span className="item-title">Ultra Lightweight</span>
+                  <span className="item-desc">Move Freely</span>
+                </div>
+              </div>
+
+              <div className="feature-item">
+                <div className="feature-icon">
+                  <RotateCcw size={20} color="#1E60D5" />
+                </div>
+                <div className="feature-text">
+                  <span className="item-title">Easy Returns</span>
+                  <span className="item-desc">Shop Confidently</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Size Section with 2-Row Grid */}
+            <div className="inspector-size-section">
+              <div className="size-header-row">
+                <span className="size-title">Size</span>
+                <button
+                  type="button"
+                  className="size-guide-btn"
+                  onClick={() => setIsSizeGuideOpen(true)}
+                >
+                  <Ruler size={14} className="guide-icon" />
+                  <span>Size Guide</span>
+                </button>
+              </div>
+
+              <div className="size-cards-grid">
+                {SIZE_OPTIONS.map((sz) => {
+                  const isSelected = selectedSize === sz.label;
+                  return (
+                    <button
+                      key={sz.label}
+                      type="button"
+                      className={`size-card-btn ${isSelected ? 'active' : ''}`}
+                      onClick={() => {
+                        sounds.playSwatchClick();
+                        setSelectedSize(sz.label);
+                      }}
+                    >
+                      <span className="card-size-label">{sz.label}</span>
+                      <span className="card-stock-label">≈ {sz.stock}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Dual Actions Row: Add to Cart & Wishlist */}
+            <div className="inspector-dual-actions-row">
+              <button
+                type="button"
+                className="btn-inspector-cart"
+                onClick={handleAddToCart}
+              >
+                <ShoppingBag size={19} className="cart-icon" />
+                <span>Add to Cart</span>
+              </button>
+              <button
+                type="button"
+                className={`btn-inspector-wishlist ${isSaved ? 'is-saved' : ''}`}
+                onClick={() => {
+                  sounds.playSwatchClick();
+                  toggleWishlist(productId);
+                }}
+              >
+                <Heart size={19} className="wishlist-icon" fill={isSaved ? '#031F41' : 'none'} />
+                <span>Add to Wishlist</span>
+              </button>
+            </div>
+          </div>
         </div>
 
+        {/* Bottom Full-Width Trust Dock */}
+        <div className="inspector-trust-dock">
+          <div className="trust-dock-item">
+            <div className="dock-icon">
+              <Truck size={22} color="#1E60D5" />
+            </div>
+            <div className="dock-text">
+              <span className="dock-title">Free Shipping</span>
+              <span className="dock-desc">On orders over $100</span>
+            </div>
+          </div>
+
+          <div className="trust-dock-item">
+            <div className="dock-icon">
+              <RotateCcw size={22} color="#1E60D5" />
+            </div>
+            <div className="dock-text">
+              <span className="dock-title">30-Day Returns</span>
+              <span className="dock-desc">Hassle Free</span>
+            </div>
+          </div>
+
+          <div className="trust-dock-item">
+            <div className="dock-icon">
+              <Headphones size={22} color="#1E60D5" />
+            </div>
+            <div className="dock-text">
+              <span className="dock-title">Dedicated Support</span>
+              <span className="dock-desc">We're here to help</span>
+            </div>
+          </div>
+
+          <div className="trust-dock-item">
+            <div className="dock-icon">
+              <ShieldCheck size={22} color="#1E60D5" />
+            </div>
+            <div className="dock-text">
+              <span className="dock-title">Secure Checkout</span>
+              <span className="dock-desc">Your information is safe</span>
+            </div>
+          </div>
+        </div>
       </div>
+
+      {/* Lightbox */}
+      {isLightboxOpen && (
+        <div className="inspector-lightbox-overlay" onClick={() => setIsLightboxOpen(false)}>
+          <button
+            type="button"
+            className="lightbox-close"
+            onClick={() => setIsLightboxOpen(false)}
+            aria-label="Close"
+          >
+            <X size={24} />
+          </button>
+          <div className="lightbox-img-box" onClick={(e) => e.stopPropagation()}>
+            <img src={currentImage} alt="Enlarged Chest Anatomy View" />
+          </div>
+        </div>
+      )}
+
+      {/* Size Guide Modal */}
+      <SizeGuideModal isOpen={isSizeGuideOpen} onClose={() => setIsSizeGuideOpen(false)} />
     </section>
   );
 };

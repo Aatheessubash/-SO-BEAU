@@ -101,6 +101,8 @@ export const ColorAvatarScroll: React.FC<ColorAvatarScrollProps> = ({
                         src={modelImg}
                         alt={`${color.name} model preview`}
                         className="avatar-model-thumb"
+                        width={36}
+                        height={36}
                         loading="lazy"
                       />
                     ) : (

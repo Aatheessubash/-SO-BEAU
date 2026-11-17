@@ -5,7 +5,6 @@ import productsFallback from '../../server/data/products.json';
 import { Hero } from '../components/home/Hero';
 import { TryTheLookStudio } from '../components/home/TryTheLookStudio';
 import { CuratedCollections } from '../components/home/CuratedCollections';
-import { ClinicalFeatureInspector } from '../components/home/ClinicalFeatureInspector';
 import { InstagramFeed } from '../components/home/InstagramFeed';
 
 export const HomePage: React.FC = () => {
@@ -40,10 +39,7 @@ export const HomePage: React.FC = () => {
       {/* 4. Flagship Scrub Collections with 360° Front/Back Angle Flip Cards */}
       <CuratedCollections products={products} />
 
-      {/* 5. Anatomical Clinical Blueprint & Feature Inspector with Pulse Hotspots */}
-      <ClinicalFeatureInspector />
-
-      {/* 6. Interactive Instagram & Hospital Ward Shifts Feed */}
+      {/* 5. Interactive Instagram & Hospital Ward Shifts Feed */}
       <InstagramFeed />
     </div>
   );

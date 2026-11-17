@@ -75,7 +75,7 @@ export const OurStoryPage: React.FC = () => {
 
             <div className="manifesto-card">
               <div style={{ marginBottom: '1.5rem', display: 'flex', justifyContent: 'center' }}>
-                <BrandLogo variant="spaced" theme="cream" height={48} />
+                <BrandLogo variant="wordmark" theme="cream" height={48} />
               </div>
               <span className="manifesto-tagline">BRANDING CONCEPT</span>
               <p className="manifesto-text" style={{ fontSize: '1.15rem', fontStyle: 'normal' }}>

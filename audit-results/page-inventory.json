@@ -1,0 +1,904 @@
+{
+  "timestamp": "2026-11-17T17:04:19.398Z",
+  "projectDirectory": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU",
+  "detectedFramework": "React (React Router)",
+  "totalPages": 47,
+  "pages": [
+    {
+      "pageId": "PAGE-1",
+      "pageName": "CheckoutPage",
+      "route": "/CheckoutPage",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\CheckoutPage.tsx",
+      "framework": "Next.js Pages Router",
+      "layout": "DefaultLayout",
+      "components": [
+        "ShieldCheck, Lock, ArrowLeft, Check, CreditCard, Tag",
+        "BrandLogo",
+        "useCart",
+        "api"
+      ],
+      "interactiveElements": [
+        "Buttons",
+        "Forms",
+        "Inputs",
+        "Dropdowns",
+        "Links"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-2",
+      "pageName": "CommunityPage",
+      "route": "/CommunityPage",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\CommunityPage.tsx",
+      "framework": "Next.js Pages Router",
+      "layout": "DefaultLayout",
+      "components": [
+        "ThumbsUp, Send, Sparkles, MessageCircle, CheckCircle2, Lightbulb, Users",
+        "api",
+        "CommunityStory, CommunityIdea",
+        "useCart"
+      ],
+      "interactiveElements": [
+        "Buttons",
+        "Forms",
+        "Inputs",
+        "Links"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-3",
+      "pageName": "ContactPage",
+      "route": "/ContactPage",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\ContactPage.tsx",
+      "framework": "Next.js Pages Router",
+      "layout": "DefaultLayout",
+      "components": [
+        "Mail, MapPin, Clock, Send, CheckCircle2, MessageSquare, Building2, HelpCircle",
+        "api",
+        "useCart"
+      ],
+      "interactiveElements": [
+        "Buttons",
+        "Forms",
+        "Inputs",
+        "Dropdowns",
+        "Links"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-4",
+      "pageName": "FAQPage",
+      "route": "/FAQPage",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\FAQPage.tsx",
+      "framework": "Next.js Pages Router",
+      "layout": "DefaultLayout",
+      "components": [
+        "ChevronDown, ChevronUp, HelpCircle, ArrowRight"
+      ],
+      "interactiveElements": [
+        "Buttons",
+        "Links"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-5",
+      "pageName": "HomePage",
+      "route": "/HomePage",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\HomePage.tsx",
+      "framework": "Next.js Pages Router",
+      "layout": "DefaultLayout",
+      "components": [
+        "api",
+        "Product",
+        "productsFallback",
+        "Hero",
+        "TryTheLookStudio",
+        "CuratedCollections",
+        "InstagramFeed"
+      ],
+      "interactiveElements": [],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-6",
+      "pageName": "NotFoundPage",
+      "route": "/NotFoundPage",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\NotFoundPage.tsx",
+      "framework": "Next.js Pages Router",
+      "layout": "DefaultLayout",
+      "components": [
+        "ArrowRight, Compass"
+      ],
+      "interactiveElements": [
+        "Links"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-7",
+      "pageName": "OrderConfirmationPage",
+      "route": "/OrderConfirmationPage",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\OrderConfirmationPage.tsx",
+      "framework": "Next.js Pages Router",
+      "layout": "DefaultLayout",
+      "components": [
+        "CheckCircle2, Package, Truck, ArrowRight, ShieldCheck, Mail",
+        "api",
+        "OrderRecord"
+      ],
+      "interactiveElements": [
+        "Links"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-8",
+      "pageName": "OurStoryPage",
+      "route": "/OurStoryPage",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\OurStoryPage.tsx",
+      "framework": "Next.js Pages Router",
+      "layout": "DefaultLayout",
+      "components": [
+        "Sparkles, HeartHandshake, ArrowRight, ShieldCheck, Scissors",
+        "BrandLogo"
+      ],
+      "interactiveElements": [
+        "Tables",
+        "Modals",
+        "Links"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-9",
+      "pageName": "PrivacyPage",
+      "route": "/PrivacyPage",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\PrivacyPage.tsx",
+      "framework": "Next.js Pages Router",
+      "layout": "DefaultLayout",
+      "components": [],
+      "interactiveElements": [
+        "Forms"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-10",
+      "pageName": "ProductDetailPage",
+      "route": "/ProductDetailPage",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\ProductDetailPage.tsx",
+      "framework": "Next.js Pages Router",
+      "layout": "DefaultLayout",
+      "components": [
+        "Home,  Crown,  Tag,  Ruler,  ShoppingBag,  Heart,  Star,  ShieldCheck,  Truck,  RotateCcw,  Check,  ChevronDown,  ChevronUp,  Sparkles,  Share2,  Feather,  Headphones,",
+        "api",
+        "Product, ProductColor, CartItemCustomization",
+        "useCart",
+        "sounds",
+        "ProductGallery",
+        "ProductCard",
+        "SizeGuideModal"
+      ],
+      "interactiveElements": [
+        "Buttons",
+        "Forms",
+        "Tables",
+        "Modals",
+        "Links"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-11",
+      "pageName": "ReturnsPage",
+      "route": "/ReturnsPage",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\ReturnsPage.tsx",
+      "framework": "Next.js Pages Router",
+      "layout": "DefaultLayout",
+      "components": [
+        "RotateCcw, ShieldCheck, CheckCircle2, ArrowRight"
+      ],
+      "interactiveElements": [
+        "Tables",
+        "Links"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-12",
+      "pageName": "ShippingPage",
+      "route": "/ShippingPage",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\ShippingPage.tsx",
+      "framework": "Next.js Pages Router",
+      "layout": "DefaultLayout",
+      "components": [
+        "Truck, ShieldCheck, Clock, MapPin, Leaf, ArrowRight"
+      ],
+      "interactiveElements": [
+        "Tables",
+        "Links"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-13",
+      "pageName": "ShopPage",
+      "route": "/ShopPage",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\ShopPage.tsx",
+      "framework": "Next.js Pages Router",
+      "layout": "DefaultLayout",
+      "components": [
+        "ShieldCheck, CheckCircle2, RotateCcw, Sparkles",
+        "api",
+        "Product",
+        "useCart",
+        "ProductCard",
+        "sounds",
+        "fallbackProducts"
+      ],
+      "interactiveElements": [
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-14",
+      "pageName": "SizeGuidePage",
+      "route": "/SizeGuidePage",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\SizeGuidePage.tsx",
+      "framework": "Next.js Pages Router",
+      "layout": "DefaultLayout",
+      "components": [
+        "Ruler, Sparkles, Check, ArrowRight"
+      ],
+      "interactiveElements": [
+        "Buttons",
+        "Dropdowns",
+        "Tables",
+        "Modals",
+        "Links"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-15",
+      "pageName": "TermsPage",
+      "route": "/TermsPage",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\TermsPage.tsx",
+      "framework": "Next.js Pages Router",
+      "layout": "DefaultLayout",
+      "components": [],
+      "interactiveElements": [
+        "Forms"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-16",
+      "pageName": "HomePage",
+      "route": "/",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "HomePage"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-17",
+      "pageName": "ShopPage",
+      "route": "/collections/scrubs",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "ShopPage"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-18",
+      "pageName": "Navigate",
+      "route": "/shop",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "Navigate"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-19",
+      "pageName": "Navigate",
+      "route": "/products",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "Navigate"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-20",
+      "pageName": "Navigate",
+      "route": "/scrubs",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "Navigate"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-21",
+      "pageName": "ProductDetailPage",
+      "route": "/products/:slug",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "ProductDetailPage"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-22",
+      "pageName": "OurStoryPage",
+      "route": "/pages/our-story",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "OurStoryPage"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-23",
+      "pageName": "Navigate",
+      "route": "/about",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "Navigate"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-24",
+      "pageName": "Navigate",
+      "route": "/our-story",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "Navigate"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-25",
+      "pageName": "Navigate",
+      "route": "/brand",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "Navigate"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-26",
+      "pageName": "CommunityPage",
+      "route": "/pages/community",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "CommunityPage"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-27",
+      "pageName": "ContactPage",
+      "route": "/pages/contact",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "ContactPage"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-28",
+      "pageName": "CheckoutPage",
+      "route": "/checkout",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "CheckoutPage"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-29",
+      "pageName": "OrderConfirmationPage",
+      "route": "/orders/:id",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "OrderConfirmationPage"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-30",
+      "pageName": "SizeGuidePage",
+      "route": "/pages/size-guide",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "SizeGuidePage"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-31",
+      "pageName": "ShippingPage",
+      "route": "/pages/shipping",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "ShippingPage"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-32",
+      "pageName": "ReturnsPage",
+      "route": "/pages/returns",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "ReturnsPage"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-33",
+      "pageName": "FAQPage",
+      "route": "/pages/faq",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "FAQPage"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-34",
+      "pageName": "PrivacyPage",
+      "route": "/pages/privacy",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "PrivacyPage"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-35",
+      "pageName": "TermsPage",
+      "route": "/pages/terms",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "TermsPage"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-36",
+      "pageName": "NotFoundPage",
+      "route": "*",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\App.tsx",
+      "framework": "React Router",
+      "layout": "AppLayout",
+      "components": [
+        "NotFoundPage"
+      ],
+      "interactiveElements": [
+        "Navigation",
+        "Buttons"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-37",
+      "pageName": "CommunityPage",
+      "route": "/community",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\CommunityPage.tsx",
+      "framework": "React (React Router)",
+      "layout": "Standard",
+      "components": [
+        "ThumbsUp, Send, Sparkles, MessageCircle, CheckCircle2, Lightbulb, Users",
+        "api",
+        "CommunityStory, CommunityIdea",
+        "useCart"
+      ],
+      "interactiveElements": [
+        "Buttons",
+        "Forms",
+        "Inputs",
+        "Links"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-38",
+      "pageName": "ContactPage",
+      "route": "/contact",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\ContactPage.tsx",
+      "framework": "React (React Router)",
+      "layout": "Standard",
+      "components": [
+        "Mail, MapPin, Clock, Send, CheckCircle2, MessageSquare, Building2, HelpCircle",
+        "api",
+        "useCart"
+      ],
+      "interactiveElements": [
+        "Buttons",
+        "Forms",
+        "Inputs",
+        "Dropdowns",
+        "Links"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-39",
+      "pageName": "FAQPage",
+      "route": "/f-a-q",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\FAQPage.tsx",
+      "framework": "React (React Router)",
+      "layout": "Standard",
+      "components": [
+        "ChevronDown, ChevronUp, HelpCircle, ArrowRight"
+      ],
+      "interactiveElements": [
+        "Buttons",
+        "Links"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-40",
+      "pageName": "NotFoundPage",
+      "route": "/not-found",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\NotFoundPage.tsx",
+      "framework": "React (React Router)",
+      "layout": "Standard",
+      "components": [
+        "ArrowRight, Compass"
+      ],
+      "interactiveElements": [
+        "Links"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-41",
+      "pageName": "OrderConfirmationPage",
+      "route": "/order-confirmation",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\OrderConfirmationPage.tsx",
+      "framework": "React (React Router)",
+      "layout": "Standard",
+      "components": [
+        "CheckCircle2, Package, Truck, ArrowRight, ShieldCheck, Mail",
+        "api",
+        "OrderRecord"
+      ],
+      "interactiveElements": [
+        "Links"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-42",
+      "pageName": "PrivacyPage",
+      "route": "/privacy",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\PrivacyPage.tsx",
+      "framework": "React (React Router)",
+      "layout": "Standard",
+      "components": [],
+      "interactiveElements": [
+        "Forms"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-43",
+      "pageName": "ProductDetailPage",
+      "route": "/product-detail",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\ProductDetailPage.tsx",
+      "framework": "React (React Router)",
+      "layout": "Standard",
+      "components": [
+        "Home,  Crown,  Tag,  Ruler,  ShoppingBag,  Heart,  Star,  ShieldCheck,  Truck,  RotateCcw,  Check,  ChevronDown,  ChevronUp,  Sparkles,  Share2,  Feather,  Headphones,",
+        "api",
+        "Product, ProductColor, CartItemCustomization",
+        "useCart",
+        "sounds",
+        "ProductGallery",
+        "ProductCard",
+        "SizeGuideModal"
+      ],
+      "interactiveElements": [
+        "Buttons",
+        "Forms",
+        "Tables",
+        "Modals",
+        "Links"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-44",
+      "pageName": "ReturnsPage",
+      "route": "/returns",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\ReturnsPage.tsx",
+      "framework": "React (React Router)",
+      "layout": "Standard",
+      "components": [
+        "RotateCcw, ShieldCheck, CheckCircle2, ArrowRight"
+      ],
+      "interactiveElements": [
+        "Tables",
+        "Links"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-45",
+      "pageName": "ShippingPage",
+      "route": "/shipping",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\ShippingPage.tsx",
+      "framework": "React (React Router)",
+      "layout": "Standard",
+      "components": [
+        "Truck, ShieldCheck, Clock, MapPin, Leaf, ArrowRight"
+      ],
+      "interactiveElements": [
+        "Tables",
+        "Links"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-46",
+      "pageName": "SizeGuidePage",
+      "route": "/size-guide",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\SizeGuidePage.tsx",
+      "framework": "React (React Router)",
+      "layout": "Standard",
+      "components": [
+        "Ruler, Sparkles, Check, ArrowRight"
+      ],
+      "interactiveElements": [
+        "Buttons",
+        "Dropdowns",
+        "Tables",
+        "Modals",
+        "Links"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    },
+    {
+      "pageId": "PAGE-47",
+      "pageName": "TermsPage",
+      "route": "/terms",
+      "sourceFile": "c:\\Users\\subashaathees\\Desktop\\Decode_Projects\\Test\\-SO-BEAU\\src\\pages\\TermsPage.tsx",
+      "framework": "React (React Router)",
+      "layout": "Standard",
+      "components": [],
+      "interactiveElements": [
+        "Forms"
+      ],
+      "responsiveStatus": "Pending",
+      "auditStatus": "Pending",
+      "issues": 0
+    }
+  ]
+}

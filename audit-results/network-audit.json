@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-11-17T17:07:02.452Z",
+  "url": "http://localhost:3001",
+  "summary": {
+    "totalRequests": 115,
+    "failedRequests": 0,
+    "slowRequests": 0,
+    "duplicateRequests": 1
+  },
+  "failures": [],
+  "slowRequests": [],
+  "duplicates": [
+    {
+      "url": "http://localhost:3001/api/products",
+      "count": 2
+    }
+  ]
+}

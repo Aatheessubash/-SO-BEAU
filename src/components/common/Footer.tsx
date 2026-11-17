@@ -40,7 +40,8 @@ export const Footer: React.FC = () => {
           <div className="banner-form-wrap">
             {subscribed ? (
               <div className="newsletter-success-tag">
-                <Check size={16} /> <span>Welcome code: <strong>BEAU10</strong> (10% off)</span>
+                <Check size={16} />
+                <span>Welcome code: <strong>BEAU10</strong> (10% off applied)</span>
               </div>
             ) : (
               <form onSubmit={handleSubscribe} className="footer-newsletter-form">
@@ -67,10 +68,10 @@ export const Footer: React.FC = () => {
           {/* Brand Manifesto Column */}
           <div className="footer-brand-column">
             <Link to="/" className="footer-brand-link" aria-label="SOBEAU Home">
-              <BrandLogo variant="full" theme="cream" height={44} />
+              <BrandLogo variant="wordmark" theme="white" height={44} />
             </Link>
             <p className="footer-mission-text">
-              So beau is a contemporary lifestyle brand rooted in individual expression, confidence, and modern sophistication. Designed for stylish medical scrubs and future lifestyle apparel, blending functionality with elevated, everyday style.
+              SO BEAU is a contemporary lifestyle brand rooted in individual expression, confidence, and modern sophistication. Designed for stylish medical scrubs and future lifestyle apparel, blending functionality with elevated, everyday style.
             </p>
             <div className="brand-location-badge">
               <span>Melbourne Studio, VIC • www.sobeau.com.au</span>
@@ -79,11 +80,10 @@ export const Footer: React.FC = () => {
             {/* Official Brand Palette Swatches */}
             <div className="footer-brand-swatches" style={{ display: 'flex', gap: '8px', marginTop: '1.2rem', alignItems: 'center' }}>
               <span style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#7BA4D5' }}>Colour System:</span>
-              <span title="Deep Royal Navy (#1D3557)" style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#1D3557', border: '1px solid #7BA4D5', display: 'inline-block' }} />
-              <span title="Radiant Sky Blue (#7BA4D5)" style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#7BA4D5', border: '1px solid #1D3557', display: 'inline-block' }} />
-              <span title="Soft Cloud White (#F4F8FC)" style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#F4F8FC', border: '1px solid #7BA4D5', display: 'inline-block' }} />
-              <span title="Terracotta Clay (#82504D)" style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#82504D', border: '1px solid #7BA4D5', display: 'inline-block' }} />
-              <span title="Muted Gold (#C5A059)" style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#C5A059', border: '1px solid #C5A059', display: 'inline-block' }} />
+              <span title="Deep Royal Navy (#031F41)" style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#031F41', border: '1px solid #7BA4D5', display: 'inline-block' }} />
+              <span title="Ocean Slate (#36618E)" style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#36618E', border: '1px solid #7BA4D5', display: 'inline-block' }} />
+              <span title="Radiant Sky Blue (#7BA4D5)" style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#7BA4D5', border: '1px solid #031F41', display: 'inline-block' }} />
+              <span title="Luminous Sky Canvas (#F9F9FF)" style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#F9F9FF', border: '1px solid #7BA4D5', display: 'inline-block' }} />
             </div>
 
             <div className="social-links-row">
@@ -118,9 +118,9 @@ export const Footer: React.FC = () => {
           <div className="footer-nav-col">
             <h4 className="col-header">Medical Scrubs</h4>
             <ul>
-              <li><Link to="/collections/scrubs">All Scrubs (2 Models)</Link></li>
-              <li><Link to="/collections/scrubs?category=womens-scrubs">Women's Tailored Set (Female Model)</Link></li>
-              <li><Link to="/collections/scrubs?category=mens-scrubs">Men's Athletic Set (Male Model)</Link></li>
+              <li><Link to="/collections/scrubs">All Scrubs</Link></li>
+              <li><Link to="/collections/scrubs?category=womens-scrubs">Women's Tailored Set</Link></li>
+              <li><Link to="/collections/scrubs?category=mens-scrubs">Men's Athletic Set</Link></li>
               <li><Link to="/pages/size-guide">Australian Sizing Guide</Link></li>
               <li><Link to="/pages/shipping">Free AU Express Delivery</Link></li>
             </ul>
@@ -162,7 +162,7 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Footer Bottom Bar */}
+        {/* Bottom Legal & Copyright Bar */}
         <div className="footer-bottom-bar">
           <div className="bottom-left">
             <p>&copy; {new Date().getFullYear()} SOBEAU Australia Pty Ltd • www.sobeau.com.au. All rights reserved.</p>

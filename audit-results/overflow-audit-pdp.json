@@ -1,0 +1,31 @@
+{
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "hasPageHorizontalOverflow": false,
+  "pageOverflowAmount": 0,
+  "totalScrollWidth": 390,
+  "totalFindings": 1,
+  "findings": [
+    {
+      "type": "VIEWPORT_OVERFLOW",
+      "severity": "P1",
+      "selector": "div#root > div.site-wrapper > main.main-content > div.product-detail-page.animate-fade-in > div.container.pdp-main-container > div.pdp-grid > div.pdp-gallery-column > div.product-gallery-container.clean-spacious-gallery > div.gallery-thumbnails-strip > button.gallery-thumb-scroll-btn",
+      "tagName": "button",
+      "box": {
+        "x": 362,
+        "y": -3769,
+        "width": 40,
+        "height": 74
+      },
+      "rightEdge": 402,
+      "viewportWidth": 390,
+      "excessPixels": 12,
+      "details": "Element extends 12px beyond the right edge of viewport",
+      "cssFixSuggestion": "Add max-width: 100% or overflow: hidden on parent"
+    }
+  ],
+  "url": "http://localhost:3001/products/the-womens-nursing-scrub-set",
+  "timestamp": "2026-11-17T17:06:01.270Z"
+}

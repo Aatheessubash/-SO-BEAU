@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-11-17T17:06:24.966Z",
+  "url": "http://localhost:3001",
+  "score": 70,
+  "metrics": {
+    "fcp": 628,
+    "lcp": 848,
+    "cls": 0.12,
+    "ttfb": 2,
+    "domContentLoaded": 295,
+    "loadTime": 297,
+    "domCount": 535,
+    "totalImages": 28,
+    "imagesWithoutDimensions": 26,
+    "nonModernImages": 28,
+    "blockingScripts": 0
+  },
+  "targets": {
+    "fcp": {
+      "val": 628,
+      "target": 1800,
+      "unit": "ms",
+      "pass": true
+    },
+    "lcp": {
+      "val": 848,
+      "target": 2500,
+      "unit": "ms",
+      "pass": true
+    },
+    "cls": {
+      "val": 0.12,
+      "target": 0.1,
+      "unit": "",
+      "pass": false
+    },
+    "ttfb": {
+      "val": 2,
+      "target": 800,
+      "unit": "ms",
+      "pass": true
+    },
+    "domCount": {
+      "val": 535,
+      "target": 1500,
+      "unit": "nodes",
+      "pass": true
+    }
+  },
+  "recommendations": [
+    "Specify explicit width and height attributes on 26 <img> tags to eliminate layout shifts (CLS).",
+    "Convert 28 legacy PNG/JPEG images to modern WebP or AVIF format."
+  ]
+}

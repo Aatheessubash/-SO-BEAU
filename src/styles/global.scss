@@ -53,6 +53,23 @@ button {
   cursor: pointer;
 }
 
+// Accessibility Focus Rings (WCAG 2.2 AA compliant focus indicators)
+:focus-visible {
+  outline: 2px solid #1E60D5 !important;
+  outline-offset: 2px !important;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #1E60D5 !important;
+  outline-offset: 2px !important;
+}
+
 ul, ol {
   list-style: none;
 }

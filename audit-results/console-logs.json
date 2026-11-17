@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-11-17T17:06:38.563Z",
+  "url": "http://localhost:3001",
+  "summary": {
+    "errorCount": 0,
+    "warningCount": 0,
+    "exceptionCount": 0,
+    "failedRequestCount": 0
+  },
+  "events": {
+    "errors": [],
+    "warnings": [],
+    "unhandledRejections": [],
+    "failedRequests": []
+  }
+}
