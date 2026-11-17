@@ -4,7 +4,7 @@
 .clinical-feature-inspector-section {
   background: #FFFFFF;
   color: #111111;
-  border-bottom: 1px solid rgba(27, 59, 43, 0.08);
+  border-bottom: 1px solid rgba(29, 53, 87, 0.08);
 
   .inspector-header {
     max-width: 760px;
@@ -18,8 +18,8 @@
       font-weight: 700;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: #1B3B2B;
-      background: rgba(27, 59, 43, 0.08);
+      color: #1D3557;
+      background: rgba(29, 53, 87, 0.08);
       padding: 0.4rem 0.95rem;
       border-radius: 30px;
       margin-bottom: 1rem;
@@ -67,9 +67,9 @@
         }
 
         &.active {
-          background: #1B3B2B;
+          background: #1D3557;
           color: #FFFFFF;
-          box-shadow: 0 4px 14px rgba(27, 59, 43, 0.25);
+          box-shadow: 0 4px 14px rgba(29, 53, 87, 0.25);
         }
       }
     }
@@ -107,8 +107,8 @@
         position: absolute;
         inset: 0;
         background-image: 
-          linear-gradient(to right, rgba(27, 59, 43, 0.05) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(27, 59, 43, 0.05) 1px, transparent 1px);
+          linear-gradient(to right, rgba(29, 53, 87, 0.05) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(29, 53, 87, 0.05) 1px, transparent 1px);
         background-size: 32px 32px;
         pointer-events: none;
       }
@@ -159,7 +159,7 @@
             width: 22px;
             height: 22px;
             border-radius: 50%;
-            background: #1B3B2B;
+            background: #1D3557;
             border: 2px solid #FFFFFF;
             color: #FFFFFF;
             font-size: 0.72rem;
@@ -209,12 +209,12 @@
 
             .pin-core-dot {
               background: #C5A059;
-              color: #1B3B2B;
+              color: #1D3557;
               transform: scale(1.2);
             }
 
             .pin-pulse-ring {
-              border-color: #1B3B2B;
+              border-color: #1D3557;
             }
           }
         }
@@ -227,7 +227,7 @@
         font-size: 0.74rem;
         font-weight: 700;
         letter-spacing: 0.12em;
-        color: #1B3B2B;
+        color: #1D3557;
         background: rgba(255, 255, 255, 0.85);
         backdrop-filter: blur(4px);
         padding: 0.35rem 0.75rem;
@@ -265,8 +265,8 @@
           max-width: 100%;
           font-size: 0.8rem;
           font-weight: 600;
-          color: #1B3B2B;
-          background: rgba(27, 59, 43, 0.08);
+          color: #1D3557;
+          background: rgba(29, 53, 87, 0.08);
           padding: 0.25rem 0.65rem;
           border-radius: 6px;
           overflow-wrap: anywhere;
@@ -372,13 +372,13 @@
           transition: all 0.2s ease;
 
           &:hover {
-            border-color: #1B3B2B;
+            border-color: #1D3557;
             color: #111111;
           }
 
           &.active {
-            background: #1B3B2B;
-            border-color: #1B3B2B;
+            background: #1D3557;
+            border-color: #1D3557;
             color: #FFFFFF;
           }
         }

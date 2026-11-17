@@ -18,15 +18,15 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
   // Theme color mappings based on Official Brand Guidelines
   const colors = {
     forest: {
-      text: '#1B3B2B',       // Deep Forest Green
+      text: '#1D3557',       // Deep Royal Celestial Navy (from Brand Artwork)
       gold: '#C5A059',       // Muted Gold
-      subtext: '#6E7570',    // Muted grey/forest
-      accentLine: '#C5A059', // Muted Gold divider
+      subtext: '#5A708B',    // Muted slate navy grey
+      accentLine: '#7BA4D5', // Radiant Sky Blue divider
     },
     cream: {
-      text: '#FDFBF7',       // Warm Cream
+      text: '#F4F8FC',       // Warm Cream
       gold: '#D6B778',       // Light Muted Gold
-      subtext: '#E7DEC2',    // Soft Beige
+      subtext: '#D5E4F3',    // Soft Beige
       accentLine: '#C5A059', // Muted Gold divider
     },
     gold: {
@@ -44,7 +44,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
     terracotta: {
       text: '#8C554F',       // Soft Matte Clay
       gold: '#C5A059',
-      subtext: '#E7DEC2',
+      subtext: '#D5E4F3',
       accentLine: '#C5A059',
     },
   }[theme];

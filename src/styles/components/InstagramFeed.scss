@@ -1,10 +1,10 @@
 @use '../variables' as *;
 
 .insta-feed-section {
-  background-color: #FDFBF7;
+  background-color: #F4F8FC;
   padding-top: 5rem;
   padding-bottom: 3.5rem;
-  border-top: 1px solid rgba(27, 59, 43, 0.08);
+  border-top: 1px solid rgba(29, 53, 87, 0.08);
 
   .insta-header {
     max-width: 680px;
@@ -19,8 +19,8 @@
       font-weight: 700;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: #1B3B2B;
-      background: rgba(27, 59, 43, 0.06);
+      color: #1D3557;
+      background: rgba(29, 53, 87, 0.06);
       padding: 0.35rem 0.85rem;
       border-radius: 999px;
       margin-bottom: 0.85rem;
@@ -29,7 +29,7 @@
     .insta-title {
       font-size: clamp(1.8rem, 3.5vw, 2.5rem);
       margin-bottom: 0.75rem;
-      color: #1B3B2B;
+      color: #1D3557;
     }
 
     .insta-subtitle {
@@ -47,11 +47,11 @@
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: #1B3B2B;
+      color: #1D3557;
       transition: color $transition-fast;
 
       svg {
-        color: #1B3B2B;
+        color: #1D3557;
       }
 
       &:hover {
@@ -81,7 +81,7 @@
       position: relative;
       aspect-ratio: 1/1;
       overflow: hidden;
-      background-color: #E7DEC2;
+      background-color: #D5E4F3;
 
       img {
         width: 100%;
@@ -93,7 +93,7 @@
       .insta-tile-overlay {
         position: absolute;
         inset: 0;
-        background: rgba(27, 59, 43, 0.88);
+        background: rgba(29, 53, 87, 0.88);
         color: #FFFFFF;
         display: flex;
         flex-direction: column;
@@ -115,7 +115,7 @@
 
         .tag-text {
           font-size: 0.72rem;
-          color: #FDFBF7;
+          color: #F4F8FC;
           letter-spacing: 0.05em;
         }
       }

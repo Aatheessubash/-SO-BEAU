@@ -197,16 +197,16 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 
       &:hover {
-        background-color: #1B3B2B;
+        background-color: #1D3557;
         color: #FFFFFF;
-        border-color: #1B3B2B;
+        border-color: #1D3557;
         transform: translateY(-2px);
       }
 
       &.flipped {
-        background-color: #1B3B2B;
+        background-color: #1D3557;
         color: #FFFFFF;
-        border-color: #1B3B2B;
+        border-color: #1D3557;
       }
     }
 
@@ -417,9 +417,9 @@
           font-weight: 600;
           letter-spacing: 0.03em;
           text-transform: uppercase;
-          color: #1B3B2B;
-          background: rgba(27, 59, 43, 0.08);
-          border: 1px solid rgba(27, 59, 43, 0.14);
+          color: #1D3557;
+          background: rgba(29, 53, 87, 0.08);
+          border: 1px solid rgba(29, 53, 87, 0.14);
           border-radius: 4px;
           padding: 0.12rem 0.38rem;
         }
@@ -454,11 +454,11 @@
         font-weight: 700;
         letter-spacing: 0.04em;
         text-transform: uppercase;
-        color: #1B3B2B;
+        color: #1D3557;
         transition: all 0.2s ease;
 
         &:hover {
-          color: #12281D;
+          color: #12233A;
           transform: translateX(2px);
         }
       }

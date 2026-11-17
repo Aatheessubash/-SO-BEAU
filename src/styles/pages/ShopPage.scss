@@ -1,15 +1,15 @@
 @use '../variables' as *;
 
 .shop-page.shop-editorial-theme {
-  background-color: #FDFBF7; // Brand Warm Cream
+  background-color: #F4F8FC; // Sky Mist Surface
   min-height: 100vh;
   padding-bottom: 4.5rem;
   color: #171717;
 
   // 1. Clean, Minimalist Atelier Header
   .shop-header {
-    background: #F8F6F0;
-    border-bottom: 1px solid rgba(27, 59, 43, 0.08);
+    background: #EBF3FB; // Soft Sky Tint
+    border-bottom: 1px solid rgba(29, 53, 87, 0.08);
     padding: clamp(2rem, 4vw, 3rem) 0 clamp(1.5rem, 3vw, 2rem);
     margin-bottom: clamp(2rem, 4vw, 3rem);
 
@@ -24,13 +24,13 @@
         font-weight: 700;
         letter-spacing: 0.16em;
         text-transform: uppercase;
-        color: #1B3B2B;
-        background: rgba(27, 59, 43, 0.06);
+        color: #1D3557;
+        background: rgba(123, 164, 213, 0.18);
         padding: 0.35rem 0.85rem;
         border-radius: 999px;
 
         .tag-sparkle {
-          color: #C5A050;
+          color: #7BA4D5;
         }
       }
     }
@@ -39,7 +39,7 @@
       font-family: $font-serif;
       font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 400;
-      color: #1B3B2B;
+      color: #1D3557;
       letter-spacing: -0.02em;
       line-height: 1.15;
       margin: 0 0 0.65rem;
@@ -61,12 +61,12 @@
       flex-wrap: wrap;
       gap: 1rem;
       padding-top: 1.25rem;
-      border-top: 1px solid rgba(27, 59, 43, 0.08);
+      border-top: 1px solid rgba(29, 53, 87, 0.08);
 
       .category-tabs {
         display: inline-flex;
         align-items: center;
-        background: rgba(27, 59, 43, 0.05);
+        background: rgba(29, 53, 87, 0.06);
         padding: 0.28rem;
         border-radius: 999px;
         gap: 0.25rem;
@@ -94,9 +94,9 @@
           }
 
           &.active {
-            background: #1B3B2B;
+            background: #1D3557;
             color: #FFFFFF;
-            box-shadow: 0 2px 8px rgba(27, 59, 43, 0.18);
+            box-shadow: 0 2px 8px rgba(29, 53, 87, 0.18);
 
             .tab-count {
               background: rgba(255, 255, 255, 0.25);
@@ -120,15 +120,15 @@
           display: inline-flex;
           align-items: center;
           gap: 0.4rem;
-          color: #2E6644;
+          color: #1D3557;
           font-weight: 600;
 
           .status-dot {
             width: 7px;
             height: 7px;
             border-radius: 50%;
-            background-color: #2E6644;
-            box-shadow: 0 0 6px rgba(46, 102, 68, 0.5);
+            background-color: #7BA4D5;
+            box-shadow: 0 0 6px rgba(123, 164, 213, 0.6);
           }
         }
 
@@ -187,7 +187,7 @@
       text-align: center;
       padding: 4rem 1rem;
       background: #FFFFFF;
-      border: 1px solid rgba(27, 59, 43, 0.08);
+      border: 1px solid rgba(29, 53, 87, 0.08);
       border-radius: 12px;
       max-width: 520px;
       margin: 0 auto 3rem;
@@ -195,7 +195,7 @@
       h3 {
         font-family: $font-serif;
         font-size: 1.5rem;
-        color: #1B3B2B;
+        color: #1D3557;
         margin-bottom: 0.5rem;
       }
 
@@ -212,7 +212,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       padding-top: 2.25rem;
-      border-top: 1px solid rgba(27, 59, 43, 0.08);
+      border-top: 1px solid rgba(29, 53, 87, 0.08);
       max-width: 880px;
       margin: 0 auto;
 
@@ -227,7 +227,7 @@
         gap: 0.75rem;
 
         .guarantee-icon {
-          color: #1B3B2B;
+          color: #1D3557;
           flex-shrink: 0;
         }
 
@@ -237,7 +237,7 @@
 
           strong {
             font-size: 0.84rem;
-            color: #1B3B2B;
+            color: #1D3557;
             font-weight: 600;
           }
 

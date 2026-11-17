@@ -129,7 +129,7 @@ export const ShopPage: React.FC = () => {
                 <span className="status-dot" />
                 Hospital Grade Ready
               </span>
-              <span className="shades-count">8 Signature Shades</span>
+              <span className="shades-count">6 Signature Shades</span>
             </div>
           </div>
         </div>

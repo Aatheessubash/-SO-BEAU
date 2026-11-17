@@ -106,7 +106,7 @@
     .pdp-atelier-badge {
       display: inline-block;
       background-color: #C9B07A;
-      color: #12281D;
+      color: #12233A;
       font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.12em;
@@ -121,7 +121,7 @@
       font-family: $font-serif;
       font-size: clamp(2.2rem, 3.8vw, 3rem);
       font-weight: 500;
-      color: #12281D;
+      color: #12233A;
       line-height: 1.12;
       margin: 0;
     }
@@ -141,7 +141,7 @@
         .price-current {
           font-size: 1.65rem;
           font-weight: 700;
-          color: #12281D;
+          color: #12233A;
           font-family: $font-sans;
         }
 
@@ -190,7 +190,7 @@
         color: #555E58;
 
         strong {
-          color: #12281D;
+          color: #12233A;
         }
       }
 
@@ -249,7 +249,7 @@
           font-size: 0.8rem;
           font-weight: 700;
           letter-spacing: 0.08em;
-          color: #12281D;
+          color: #12233A;
         }
 
         .stock-indicator {
@@ -294,7 +294,7 @@
           .size-name {
             font-size: 0.82rem;
             font-weight: 600;
-            color: #1B3B2B;
+            color: #1D3557;
           }
 
           .size-stock-count {
@@ -304,14 +304,14 @@
           }
 
           &:hover {
-            border-color: #1B3B2B;
-            background: #FDFBF7;
+            border-color: #1D3557;
+            background: #F4F8FC;
           }
 
           &.active {
-            border: 2px solid #1B3B2B;
-            background: #F7F4EB;
-            box-shadow: 0 2px 8px rgba(27, 59, 43, 0.12);
+            border: 2px solid #1D3557;
+            background: #EBF3FB;
+            box-shadow: 0 2px 8px rgba(29, 53, 87, 0.12);
           }
         }
       }
@@ -352,7 +352,7 @@
           text-decoration: underline;
 
           &:hover {
-            color: #1B3B2B;
+            color: #1D3557;
           }
         }
       }
@@ -363,8 +363,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #F4EFEA;
-      border: 1px solid #E2D9CC;
+      background: #EBF3FB;
+      border: 1px solid #D5E4F3;
       border-radius: 10px;
       padding: 0.85rem 1.25rem;
       cursor: pointer;
@@ -372,8 +372,8 @@
       margin: 0.35rem 0;
 
       &:hover {
-        border-color: #C5A050;
-        background: #F8F4EF;
+        border-color: #7BA4D5;
+        background: #F4F8FC;
         transform: translateY(-1px);
       }
 
@@ -383,12 +383,12 @@
         gap: 0.75rem;
         font-size: 0.84rem;
         font-weight: 600;
-        color: #1B3B2B;
+        color: #1D3557;
 
         .monogram-square-check {
           width: 20px;
           height: 20px;
-          border: 1.5px solid #C0B7A6;
+          border: 1.5px solid #BFD7EC;
           border-radius: 4px;
           background: #FFFFFF;
           display: flex;
@@ -396,7 +396,7 @@
           justify-content: center;
           font-size: 0.8rem;
           font-weight: 800;
-          color: #1B3B2B;
+          color: #1D3557;
         }
       }
 
@@ -407,8 +407,8 @@
       }
 
       &.has-customization {
-        border-color: #1B3B2B;
-        background: #F0EDE4;
+        border-color: #1D3557;
+        background: #E1EEFA;
       }
     }
 
@@ -421,7 +421,7 @@
 
       .btn-add-scrub-bag {
         width: 100%;
-        background-color: #1B3B2B;
+        background-color: #1D3557;
         color: #FFFFFF;
         border: none;
         border-radius: 10px;
@@ -433,12 +433,12 @@
         text-transform: uppercase;
         cursor: pointer;
         transition: all $transition-fast;
-        box-shadow: 0 4px 14px rgba(27, 59, 43, 0.25);
+        box-shadow: 0 4px 14px rgba(29, 53, 87, 0.25);
 
         &:hover {
-          background-color: #244C38;
+          background-color: #2A4B7C;
           transform: translateY(-1px);
-          box-shadow: 0 6px 20px rgba(27, 59, 43, 0.35);
+          box-shadow: 0 6px 20px rgba(29, 53, 87, 0.35);
         }
 
         &:active {

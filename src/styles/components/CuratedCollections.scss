@@ -1,8 +1,8 @@
 @use '../variables' as *;
 
 .curated-collections-section {
-  background-color: #FDFBF7; // Brand Warm Cream
-  border-bottom: 1px solid rgba(27, 59, 43, 0.08);
+  background-color: #F4F8FC; // Brand Warm Cream
+  border-bottom: 1px solid rgba(29, 53, 87, 0.08);
   padding: clamp(2.5rem, 5vw, 4rem) 0;
 
   .section-header-row {
@@ -23,19 +23,19 @@
         font-weight: 700;
         letter-spacing: 0.16em;
         text-transform: uppercase;
-        color: #1B3B2B;
-        background: rgba(27, 59, 43, 0.06);
+        color: #1D3557;
+        background: rgba(123, 164, 213, 0.15);
         padding: 0.35rem 0.85rem;
         border-radius: 999px;
         margin-bottom: 0.75rem;
 
         .sparkle-icon {
-          color: #C5A050;
+          color: #7BA4D5;
         }
       }
 
       .text-section-title {
-        color: #1B3B2B;
+        color: #1D3557;
         font-size: clamp(1.75rem, 3.2vw, 2.4rem);
         margin-bottom: 0.65rem;
       }
@@ -105,19 +105,19 @@
     gap: clamp(1.25rem, 2.5vw, 2.5rem);
     margin-top: 2rem;
     padding-top: 1.75rem;
-    border-top: 1px solid rgba(27, 59, 43, 0.08);
+    border-top: 1px solid rgba(29, 53, 87, 0.08);
 
     .guarantee-item {
       display: flex;
       align-items: center;
       gap: 0.55rem;
-      color: #1B3B2B;
+      color: #1D3557;
       font-size: 0.82rem;
       font-weight: 600;
       letter-spacing: 0.02em;
 
       svg {
-        color: #1B3B2B;
+        color: #1D3557;
         flex-shrink: 0;
       }
     }

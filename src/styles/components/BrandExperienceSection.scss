@@ -53,7 +53,7 @@
         background: $color-forest-green;
         color: $color-warm-cream;
         border-color: $color-forest-green;
-        box-shadow: 0 4px 15px rgba(27, 59, 43, 0.15);
+        box-shadow: 0 4px 15px rgba(29, 53, 87, 0.15);
       }
     }
   }
@@ -185,7 +185,7 @@
           }
 
           &.bg-forest-dark {
-            background-color: #12281D;
+            background-color: #12233A;
           }
 
           .tshirt-render {
@@ -268,7 +268,7 @@
             .cap-visor {
               width: 95px;
               height: 12px;
-              background: #12281D;
+              background: #12233A;
               border-radius: 0 0 16px 16px;
             }
           }
@@ -515,7 +515,7 @@
       border: 1px solid $color-border;
 
       .pattern-overlay-tag {
-        background: rgba(27, 59, 43, 0.85);
+        background: rgba(29, 53, 87, 0.85);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
         padding: 0.4rem 0.85rem;
@@ -564,7 +564,7 @@
         position: relative;
         width: 85%;
         height: 75%;
-        border: 1px dashed rgba(27, 59, 43, 0.3);
+        border: 1px dashed rgba(29, 53, 87, 0.3);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -708,7 +708,7 @@
             box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05), 0 10px 25px rgba(0, 0, 0, 0.08);
 
             .signage-3d-letters {
-              filter: drop-shadow(2px 4px 6px rgba(27, 59, 43, 0.25));
+              filter: drop-shadow(2px 4px 6px rgba(29, 53, 87, 0.25));
             }
           }
         }

@@ -78,10 +78,11 @@ export const Footer: React.FC = () => {
 
             {/* Official Brand Palette Swatches */}
             <div className="footer-brand-swatches" style={{ display: 'flex', gap: '8px', marginTop: '1.2rem', alignItems: 'center' }}>
-              <span style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#C5A059' }}>Colour System:</span>
-              <span title="Deep Forest Green (#1B3B2B)" style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#1B3B2B', border: '1px solid #C5A059', display: 'inline-block' }} />
-              <span title="Warm Cream (#FDFBF7)" style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#FDFBF7', border: '1px solid #C5A059', display: 'inline-block' }} />
-              <span title="Soft Beige (#E7DEC2)" style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#E7DEC2', border: '1px solid #C5A059', display: 'inline-block' }} />
+              <span style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#7BA4D5' }}>Colour System:</span>
+              <span title="Deep Royal Navy (#1D3557)" style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#1D3557', border: '1px solid #7BA4D5', display: 'inline-block' }} />
+              <span title="Radiant Sky Blue (#7BA4D5)" style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#7BA4D5', border: '1px solid #1D3557', display: 'inline-block' }} />
+              <span title="Soft Cloud White (#F4F8FC)" style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#F4F8FC', border: '1px solid #7BA4D5', display: 'inline-block' }} />
+              <span title="Terracotta Clay (#82504D)" style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#82504D', border: '1px solid #7BA4D5', display: 'inline-block' }} />
               <span title="Muted Gold (#C5A059)" style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#C5A059', border: '1px solid #C5A059', display: 'inline-block' }} />
             </div>
 

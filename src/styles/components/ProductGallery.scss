@@ -37,7 +37,7 @@
       padding: 0;
       border: 1.5px solid transparent;
       border-radius: 8px;
-      background-color: #F5F2EB;
+      background-color: #EBF3FB;
       overflow: hidden;
       cursor: pointer;
       opacity: 0.75;
@@ -59,14 +59,14 @@
 
       &:hover {
         opacity: 1;
-        border-color: rgba(27, 59, 43, 0.35);
+        border-color: rgba(29, 53, 87, 0.35);
         transform: translateY(-1px);
       }
 
       &.active {
         opacity: 1;
-        border-color: #1B3B2B;
-        box-shadow: 0 4px 14px rgba(27, 59, 43, 0.2);
+        border-color: #1D3557;
+        box-shadow: 0 4px 14px rgba(29, 53, 87, 0.2);
       }
     }
   }
@@ -77,12 +77,12 @@
     min-width: 0;
     width: 100%;
     aspect-ratio: 3/3.8;
-    background-color: #F5F2EB;
-    border: 1px solid rgba(27, 59, 43, 0.08);
+    background-color: #EBF3FB;
+    border: 1px solid rgba(29, 53, 87, 0.08);
     border-radius: 16px;
     overflow: hidden;
     cursor: crosshair;
-    box-shadow: 0 10px 30px rgba(27, 59, 43, 0.06);
+    box-shadow: 0 10px 30px rgba(29, 53, 87, 0.06);
 
     .gallery-main-image {
       width: 100%;
@@ -113,9 +113,9 @@
       transition: all $transition-fast;
 
       &:hover {
-        background-color: #1B3B2B;
+        background-color: #1D3557;
         color: #FFFFFF;
-        border-color: #1B3B2B;
+        border-color: #1D3557;
         transform: scale(1.08);
       }
     }
@@ -134,7 +134,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #1B3B2B;
+      color: #1D3557;
       cursor: pointer;
       z-index: 5;
       opacity: 0.85;
@@ -143,7 +143,7 @@
 
       &:hover {
         opacity: 1;
-        background-color: #1B3B2B;
+        background-color: #1D3557;
         color: #FFFFFF;
         transform: translateY(-50%) scale(1.1);
       }
@@ -178,7 +178,7 @@
         height: 8px;
         border-radius: 50%;
         border: none;
-        background-color: rgba(27, 59, 43, 0.25);
+        background-color: rgba(29, 53, 87, 0.25);
         padding: 0;
         cursor: pointer;
         transition: all 0.2s ease;
@@ -186,11 +186,11 @@
         &.active {
           width: 20px;
           border-radius: 10px;
-          background-color: #1B3B2B;
+          background-color: #1D3557;
         }
 
         &:hover:not(.active) {
-          background-color: rgba(27, 59, 43, 0.5);
+          background-color: rgba(29, 53, 87, 0.5);
         }
       }
     }
@@ -200,7 +200,7 @@
   .gallery-lightbox-overlay {
     position: fixed;
     inset: 0;
-    background-color: rgba(18, 40, 29, 0.94);
+    background-color: rgba(18, 35, 58, 0.94);
     backdrop-filter: blur(12px);
     z-index: $z-modal + 20;
     display: flex;

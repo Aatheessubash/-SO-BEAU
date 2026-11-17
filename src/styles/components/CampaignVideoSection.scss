@@ -18,7 +18,7 @@
       align-items: center;
       gap: 0.5rem;
       padding: 0.4rem 1rem;
-      background-color: rgba(27, 59, 43, 0.06);
+      background-color: rgba(29, 53, 87, 0.06);
       border: 1px solid rgba(197, 160, 89, 0.45);
       border-radius: 999px;
       font-size: 0.72rem;
@@ -96,7 +96,7 @@
         color: $color-warm-cream;
         border-color: $color-forest-green;
         transform: translateY(-2px);
-        box-shadow: 0 4px 14px rgba(27, 59, 43, 0.18);
+        box-shadow: 0 4px 14px rgba(29, 53, 87, 0.18);
       }
     }
   }
@@ -111,7 +111,7 @@
     overflow: hidden;
     background-color: #0d1a13;
     border: 2px solid $color-muted-gold;
-    box-shadow: 0 20px 60px rgba(27, 59, 43, 0.22);
+    box-shadow: 0 20px 60px rgba(29, 53, 87, 0.22);
     cursor: pointer;
 
     .campaign-video-player {
@@ -129,7 +129,7 @@
       background: radial-gradient(
         ellipse at center,
         transparent 58%,
-        rgba(18, 40, 29, 0.65) 100%
+        rgba(18, 35, 58, 0.65) 100%
       );
       pointer-events: none;
     }
@@ -157,7 +157,7 @@
           letter-spacing: 0.16em;
           text-transform: uppercase;
           color: $color-muted-gold;
-          background-color: rgba(18, 40, 29, 0.7);
+          background-color: rgba(18, 35, 58, 0.7);
           backdrop-filter: blur(8px);
           padding: 0.25rem 0.65rem;
           border-radius: 4px;
@@ -175,7 +175,7 @@
         letter-spacing: 0.14em;
         text-transform: uppercase;
         color: $color-warm-cream;
-        background-color: rgba(18, 40, 29, 0.8);
+        background-color: rgba(18, 35, 58, 0.8);
         border: 1px solid rgba(255, 255, 255, 0.2);
         padding: 0.25rem 0.65rem;
         border-radius: 999px;
@@ -202,7 +202,7 @@
         width: 76px;
         height: 76px;
         border-radius: 50%;
-        background-color: rgba(27, 59, 43, 0.88);
+        background-color: rgba(29, 53, 87, 0.88);
         border: 2px solid $color-muted-gold;
         box-shadow: 0 0 35px rgba(197, 160, 89, 0.45);
         display: flex;
@@ -220,7 +220,7 @@
         letter-spacing: 0.14em;
         text-transform: uppercase;
         color: $color-white;
-        background-color: rgba(18, 40, 29, 0.85);
+        background-color: rgba(18, 35, 58, 0.85);
         padding: 0.35rem 0.85rem;
         border-radius: 4px;
         backdrop-filter: blur(6px);
@@ -239,7 +239,7 @@
       left: 0;
       right: 0;
       padding: 1.25rem 1.5rem;
-      background: linear-gradient(180deg, transparent 0%, rgba(18, 40, 29, 0.95) 100%);
+      background: linear-gradient(180deg, transparent 0%, rgba(18, 35, 58, 0.95) 100%);
       backdrop-filter: blur(8px);
       z-index: 15;
       display: flex;
@@ -381,19 +381,19 @@
       padding: 1.75rem;
       border: 1px solid $color-border;
       border-radius: 8px;
-      box-shadow: 0 4px 18px rgba(27, 59, 43, 0.04);
+      box-shadow: 0 4px 18px rgba(29, 53, 87, 0.04);
       transition: transform $transition-fast, box-shadow $transition-fast;
 
       &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(27, 59, 43, 0.08);
+        box-shadow: 0 8px 25px rgba(29, 53, 87, 0.08);
       }
 
       .feature-icon-circle {
         width: 44px;
         height: 44px;
         border-radius: 50%;
-        background-color: rgba(27, 59, 43, 0.08);
+        background-color: rgba(29, 53, 87, 0.08);
         color: $color-forest-green;
         display: flex;
         align-items: center;

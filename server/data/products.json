@@ -35,20 +35,6 @@
         "avatarImage": "/images/female/female-navy-front.png"
       },
       {
-        "name": "Soft Sage",
-        "hex": "#7D9D8B",
-        "code": "sage",
-        "modelImage": "/images/female/female-sage-front.png",
-        "avatarImage": "/images/female/female-sage-front.png"
-      },
-      {
-        "name": "Deep Forest Green",
-        "hex": "#1B3B2B",
-        "code": "forest",
-        "modelImage": "/images/female/female-forest-front.png",
-        "avatarImage": "/images/female/female-forest-front.png"
-      },
-      {
         "name": "Deep Charcoal",
         "hex": "#1E2022",
         "code": "charcoal",
@@ -163,20 +149,6 @@
         "code": "navy",
         "modelImage": "/images/male/male-navy-front.png",
         "avatarImage": "/images/male/male-navy-front.png"
-      },
-      {
-        "name": "Deep Forest Green",
-        "hex": "#1B3B2B",
-        "code": "forest",
-        "modelImage": "/images/male/male-forest-front.png",
-        "avatarImage": "/images/male/male-forest-front.png"
-      },
-      {
-        "name": "Soft Sage",
-        "hex": "#7D9D8B",
-        "code": "sage",
-        "modelImage": "/images/male/male-sage-front.png",
-        "avatarImage": "/images/male/male-sage-front.png"
       },
       {
         "name": "Deep Charcoal",

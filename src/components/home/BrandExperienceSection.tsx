@@ -6,36 +6,36 @@ import '../../styles/components/BrandExperienceSection.scss';
 
 const BRAND_COLORS = [
   {
-    name: 'Deep Forest Green',
-    hex: '#1B3B2B',
-    role: 'Primary Signature & Dark Canvas',
+    name: 'Deep Royal Navy',
+    hex: '#1D3557',
+    role: 'Primary Signature & Wordmark Canvas',
     textDark: false,
-    contrastHex: '#FDFBF7',
-    desc: 'The grounding signature shade. Conveys clinical authority, nature, and understated luxury.',
+    contrastHex: '#FFFFFF',
+    desc: 'The official signature navy. Conveys Australian clinical authority, tailored precision, and prestige.',
   },
   {
-    name: 'Warm Cream',
-    hex: '#FDFBF7',
-    role: 'Primary Canvas & Apparel Base',
-    textDark: true,
-    contrastHex: '#1B3B2B',
-    desc: 'Soft, welcoming light neutral replacing sterile clinical white. Provides high tactile warmth.',
+    name: 'Radiant Sky Blue',
+    hex: '#7BA4D5',
+    role: 'Atmospheric Brand Accent',
+    textDark: false,
+    contrastHex: '#FFFFFF',
+    desc: 'Inspired by the open Australian sky campaign. Brings freshness, optimism, and clinical airiness.',
   },
   {
-    name: 'Soft Beige',
-    hex: '#E7DEC2',
-    role: 'Secondary Neutral & Divider Accent',
+    name: 'Soft Cloud White',
+    hex: '#F4F8FC',
+    role: 'Primary Canvas & Surface Tint',
     textDark: true,
-    contrastHex: '#1B3B2B',
-    desc: 'Refined neutral accent echoing natural studio linens, hangtags, and skin-tone harmony.',
+    contrastHex: '#1D3557',
+    desc: 'Luminous cloud-soft neutral replacing sterile hospital glare with gentle natural comfort.',
   },
   {
-    name: 'Muted Gold',
-    hex: '#C5A059',
-    role: 'Prestige Accent, Sparkle & Foil',
-    textDark: true,
-    contrastHex: '#1B3B2B',
-    desc: 'Signature metallic luster used on four-point star sparkles, luxury packaging foil, and embroidery.',
+    name: 'Terracotta Rosewood',
+    hex: '#82504D',
+    role: 'Featured Signature Scrub Tone',
+    textDark: false,
+    contrastHex: '#FFFFFF',
+    desc: 'Soft matte desert earth tone featured on the official campaign folded scrub set.',
   },
 ];
 
@@ -222,7 +222,7 @@ export const BrandExperienceSection: React.FC = () => {
                         onClick={() => copyToClipboard(col.hex)}
                         title="Copy HEX Code"
                       >
-                        {copiedHex === col.hex ? <Check size={14} color="#1B3B2B" /> : <Copy size={14} />}
+                        {copiedHex === col.hex ? <Check size={14} color="#1D3557" /> : <Copy size={14} />}
                         <span>{copiedHex === col.hex ? 'Copied' : 'Copy'}</span>
                       </button>
                     </div>
@@ -261,7 +261,7 @@ export const BrandExperienceSection: React.FC = () => {
               <div className="pattern-showcase-box">
                 <div className="pattern-display-frame brand-pattern-bg">
                   <div className="pattern-overlay-tag">
-                    <span>OFFICIAL BRAND PATTERN &bull; #1B3B2B + #C5A059</span>
+                    <span>OFFICIAL BRAND PATTERN &bull; #1D3557 + #7BA4D5</span>
                   </div>
                 </div>
                 <div className="pattern-meta">

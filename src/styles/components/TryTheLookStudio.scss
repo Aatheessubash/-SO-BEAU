@@ -2,9 +2,9 @@
 
 .try-the-look-studio-section {
   position: relative;
-  background: #FDFBF7; // Brand Warm Cream
-  border-top: 1px solid #E7DEC2;
-  border-bottom: 1px solid #E7DEC2;
+  background: #F4F8FC; // Sky Mist Surface
+  border-top: 1px solid #D5E4F3;
+  border-bottom: 1px solid #D5E4F3;
   overflow: hidden;
   box-sizing: border-box;
 
@@ -53,12 +53,12 @@
   // ==========================================
   .studio-main-stage {
     position: relative;
-    background: radial-gradient(ellipse 110% 85% at 50% 95%, #E7DEC2 0%, #F4EFE2 50%, #FDFBF7 100%);
+    background: radial-gradient(ellipse 110% 85% at 50% 95%, #D5E4F3 0%, #EBF3FB 50%, #F4F8FC 100%);
     border-radius: 24px;
-    border: 1px solid #E7DEC2;
+    border: 1px solid #D5E4F3;
     padding: clamp(0.6rem, 1vh, 1.1rem) clamp(1rem, 1.6vw, 1.8rem) clamp(0.3rem, 0.6vh, 0.6rem);
     box-shadow: 
-      0 6px 30px rgba(27, 59, 43, 0.04),
+      0 6px 30px rgba(29, 53, 87, 0.04),
       inset 0 1px 0 rgba(255, 255, 255, 0.9);
     overflow: hidden;
     display: flex;
@@ -123,7 +123,7 @@
         font-weight: 800;
         letter-spacing: -0.035em;
         line-height: 1.05;
-        color: #1B3B2B; // Primary Dark
+        color: #1D3557; // Primary Dark
         margin: 0 0 0.25rem;
         font-family: inherit;
       }
@@ -139,10 +139,10 @@
     // Gender Switcher Capsule
     .gender-switcher-pill {
       display: inline-flex;
-      background: #E7DEC2; // Soft Beige
+      background: #D5E4F3; // Sky Mist Pill
       padding: 3px;
       border-radius: 30px;
-      border: 1px solid rgba(27, 59, 43, 0.12);
+      border: 1px solid rgba(29, 53, 87, 0.12);
 
       @media (max-width: 480px) {
         width: 100%;
@@ -164,7 +164,7 @@
         font-size: 0.8rem;
         font-weight: 600;
         letter-spacing: 0.01em;
-        color: #1B3B2B;
+        color: #1D3557;
         cursor: pointer;
         transition: all 0.25s ease;
         white-space: nowrap;
@@ -174,9 +174,9 @@
         }
 
         &.active {
-          background: #1B3B2B; // Primary
-          color: #FDFBF7; // Warm Cream
-          box-shadow: 0 2px 8px rgba(27, 59, 43, 0.3);
+          background: #1D3557; // Primary
+          color: #F4F8FC; // Warm Cream
+          box-shadow: 0 2px 8px rgba(29, 53, 87, 0.3);
         }
       }
     }
@@ -208,7 +208,7 @@
         left: 0;
         right: 0;
         height: 1px;
-        background: linear-gradient(90deg, transparent 0%, rgba(27, 59, 43, 0.12) 50%, transparent 100%);
+        background: linear-gradient(90deg, transparent 0%, rgba(29, 53, 87, 0.12) 50%, transparent 100%);
         pointer-events: none;
       }
 
@@ -232,7 +232,7 @@
           transform: translateX(-50%) scaleY(0.4);
           width: 76%;
           height: 16px;
-          background: radial-gradient(ellipse at 50% 50%, rgba(27, 59, 43, 0.35) 0%, rgba(27, 59, 43, 0.12) 55%, transparent 80%);
+          background: radial-gradient(ellipse at 50% 50%, rgba(29, 53, 87, 0.35) 0%, rgba(29, 53, 87, 0.12) 55%, transparent 80%);
           border-radius: 50%;
           filter: blur(4px);
           pointer-events: none;
@@ -265,7 +265,7 @@
         &.active-center {
           cursor: default;
           filter: 
-            drop-shadow(0 26px 42px rgba(27, 59, 43, 0.35)) 
+            drop-shadow(0 26px 42px rgba(29, 53, 87, 0.35)) 
             drop-shadow(0 0 18px rgba(197, 160, 80, 0.30)) 
             brightness(1.05) contrast(1.02);
 
@@ -274,13 +274,13 @@
             height: 26px;
             left: 50%;
             transform: translateX(-50%) scaleY(0.4);
-            background: radial-gradient(ellipse at 50% 50%, rgba(27, 59, 43, 0.50) 0%, rgba(27, 59, 43, 0.20) 60%, transparent 80%);
+            background: radial-gradient(ellipse at 50% 50%, rgba(29, 53, 87, 0.50) 0%, rgba(29, 53, 87, 0.20) 60%, transparent 80%);
             filter: blur(6px);
             opacity: 1;
           }
 
           .model-photo {
-            filter: drop-shadow(0 22px 34px rgba(27, 59, 43, 0.25));
+            filter: drop-shadow(0 22px 34px rgba(29, 53, 87, 0.25));
           }
 
           .active-look-pedestal {
@@ -291,10 +291,10 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: #1B3B2B; // Primary
+            background: #1D3557; // Primary
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            color: #FDFBF7; // Warm Cream
+            color: #F4F8FC; // Warm Cream
             padding: 0.38rem 1rem;
             border-radius: 999px;
             border: 1px solid rgba(197, 160, 80, 0.45);
@@ -302,7 +302,7 @@
             font-weight: 700;
             letter-spacing: 0.02em;
             box-shadow: 
-              0 8px 24px rgba(27, 59, 43, 0.35),
+              0 8px 24px rgba(29, 53, 87, 0.35),
               0 2px 6px rgba(0, 0, 0, 0.12);
             white-space: nowrap;
             pointer-events: none;
@@ -386,9 +386,9 @@
         width: 44px;
         height: 44px;
         border-radius: 50%;
-        background: #FDFBF7;
-        border: 1px solid #E7DEC2;
-        color: #1B3B2B;
+        background: #F4F8FC;
+        border: 1px solid #D5E4F3;
+        color: #1D3557;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -397,14 +397,14 @@
         transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
-        box-shadow: 0 4px 14px rgba(27, 59, 43, 0.09);
+        box-shadow: 0 4px 14px rgba(29, 53, 87, 0.09);
 
         &:hover {
-          background: #1B3B2B;
-          color: #FDFBF7;
-          border-color: #1B3B2B;
+          background: #1D3557;
+          color: #F4F8FC;
+          border-color: #1D3557;
           transform: translateY(-50%) scale(1.08);
-          box-shadow: 0 8px 22px rgba(27, 59, 43, 0.25);
+          box-shadow: 0 8px 22px rgba(29, 53, 87, 0.25);
         }
 
         &.arrow-left {
@@ -434,9 +434,9 @@
     border-radius: 24px;
     padding: clamp(1.1rem, 1.6vh, 1.5rem) clamp(1.1rem, 1.5vw, 1.5rem);
     box-shadow: 
-      0 12px 36px rgba(27, 59, 43, 0.05),
-      0 2px 8px rgba(27, 59, 43, 0.02);
-    border: 1px solid #E7DEC2; // Soft Beige
+      0 12px 36px rgba(29, 53, 87, 0.05),
+      0 2px 8px rgba(29, 53, 87, 0.02);
+    border: 1px solid #D5E4F3; // Soft Sky Mist Border
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -475,7 +475,7 @@
         font-size: clamp(1.2rem, 1.4vw, 1.45rem);
         font-weight: 800;
         letter-spacing: -0.025em;
-        color: #1B3B2B; // Primary
+        color: #1D3557; // Primary
         line-height: 1.15;
         margin: 0 0 0.35rem;
       }
@@ -495,7 +495,7 @@
         .rating-score {
           font-size: 0.78rem;
           font-weight: 700;
-          color: #1B3B2B;
+          color: #1D3557;
         }
 
         .rating-count {
@@ -513,7 +513,7 @@
           font-size: 1.3rem;
           font-weight: 800;
           letter-spacing: -0.02em;
-          color: #1B3B2B;
+          color: #1D3557;
         }
 
         .compare-price {
@@ -527,9 +527,9 @@
           font-weight: 700;
           letter-spacing: 0.04em;
           text-transform: uppercase;
-          color: #1B3B2B;
-          background: rgba(27, 59, 43, 0.08);
-          border: 1px solid rgba(27, 59, 43, 0.12);
+          color: #1D3557;
+          background: rgba(29, 53, 87, 0.08);
+          border: 1px solid rgba(29, 53, 87, 0.12);
           padding: 0.18rem 0.5rem;
           border-radius: 10px;
           margin-left: auto;
@@ -539,7 +539,7 @@
 
     .panel-divider {
       height: 1px;
-      background: #E7DEC2;
+      background: #D5E4F3;
       margin: 0 0 clamp(0.5rem, 1vh, 0.8rem);
       flex-shrink: 0;
     }
@@ -564,7 +564,7 @@
         .option-active-value {
           font-size: 0.8rem;
           font-weight: 700;
-          color: #1B3B2B;
+          color: #1D3557;
           display: inline-flex;
           align-items: center;
           gap: 0.4rem;
@@ -624,9 +624,9 @@
 
             .colorway-swatch-fill {
               box-shadow: 
-                0 0 0 2px #FDFBF7,
-                0 0 0 3px #1B3B2B,
-                0 2px 6px rgba(27, 59, 43, 0.25);
+                0 0 0 2px #F4F8FC,
+                0 0 0 3px #1D3557,
+                0 2px 6px rgba(29, 53, 87, 0.25);
             }
           }
         }
@@ -643,28 +643,28 @@
         }
 
         .size-chip-btn {
-          background: #FDFBF7;
-          border: 1px solid #E7DEC2;
+          background: #F4F8FC;
+          border: 1px solid #D5E4F3;
           border-radius: 7px;
           padding: 0.42rem 0;
           font-size: 0.76rem;
           font-weight: 700;
-          color: #1B3B2B;
+          color: #1D3557;
           cursor: pointer;
           transition: all 0.2s ease;
           outline: none;
 
           &:hover {
-            background: #E7DEC2;
-            border-color: #1B3B2B;
+            background: #D5E4F3;
+            border-color: #1D3557;
             color: #0E2017;
           }
 
           &.active {
-            background: #1B3B2B; // Primary
-            color: #FDFBF7; // Warm Cream
-            border-color: #1B3B2B;
-            box-shadow: 0 2px 8px rgba(27, 59, 43, 0.3);
+            background: #1D3557; // Primary
+            color: #F4F8FC; // Warm Cream
+            border-color: #1D3557;
+            box-shadow: 0 2px 8px rgba(29, 53, 87, 0.3);
           }
         }
       }
@@ -678,8 +678,8 @@
 
     // Fabric & Technology Card
     .panel-features-card {
-      background: #FDFBF7;
-      border: 1px solid #E7DEC2;
+      background: #F4F8FC;
+      border: 1px solid #D5E4F3;
       border-radius: 12px;
       padding: clamp(0.55rem, 0.9vh, 0.75rem) 0.85rem;
       margin-bottom: clamp(0.6rem, 1vh, 0.9rem);
@@ -700,12 +700,12 @@
           width: 4px;
           height: 4px;
           border-radius: 50%;
-          background: #1B3B2B;
+          background: #1D3557;
           flex-shrink: 0;
         }
 
         strong {
-          color: #1B3B2B;
+          color: #1D3557;
           font-weight: 700;
         }
       }
@@ -720,8 +720,8 @@
 
       .atelier-add-bag-btn {
         width: 100%;
-        background: #1B3B2B; // Primary
-        color: #FDFBF7; // Warm Cream
+        background: #1D3557; // Primary
+        color: #F4F8FC; // Warm Cream
         border: none;
         border-radius: 12px;
         padding: clamp(0.75rem, 1.2vh, 0.9rem) 1.2rem;
@@ -733,13 +733,13 @@
         align-items: center;
         justify-content: center;
         gap: 0.55rem;
-        box-shadow: 0 4px 14px rgba(27, 59, 43, 0.28);
+        box-shadow: 0 4px 14px rgba(29, 53, 87, 0.28);
         transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 
         &:hover {
-          background: #12281D;
+          background: #12233A;
           transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(27, 59, 43, 0.38);
+          box-shadow: 0 6px 20px rgba(29, 53, 87, 0.38);
         }
 
         &:active {
@@ -747,16 +747,16 @@
         }
 
         &.added {
-          background: #1B3B2B;
-          box-shadow: 0 4px 16px rgba(27, 59, 43, 0.4);
+          background: #1D3557;
+          box-shadow: 0 4px 16px rgba(29, 53, 87, 0.4);
         }
       }
 
       .atelier-quick-view-btn {
         width: 100%;
         background: transparent;
-        color: #1B3B2B;
-        border: 1px solid #1B3B2B;
+        color: #1D3557;
+        border: 1px solid #1D3557;
         border-radius: 10px;
         padding: clamp(0.55rem, 1vh, 0.68rem) 1rem;
         font-size: 0.78rem;
@@ -769,7 +769,7 @@
         transition: all 0.2s ease;
 
         &:hover {
-          background: rgba(27, 59, 43, 0.06);
+          background: rgba(29, 53, 87, 0.06);
         }
       }
     }
@@ -782,7 +782,7 @@
       gap: 0.5rem;
       margin-top: clamp(0.5rem, 1vh, 0.8rem);
       padding-top: clamp(0.5rem, 1vh, 0.75rem);
-      border-top: 1px solid #E7DEC2;
+      border-top: 1px solid #D5E4F3;
       flex-shrink: 0;
 
       @media (max-width: 480px) {
@@ -799,7 +799,7 @@
         color: #555555;
 
         svg {
-          color: #1B3B2B;
+          color: #1D3557;
           flex-shrink: 0;
         }
       }
@@ -821,12 +821,12 @@
 
 @keyframes livePulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(27, 59, 43, 0.45);
+    box-shadow: 0 0 0 0 rgba(29, 53, 87, 0.45);
   }
   70% {
-    box-shadow: 0 0 0 6px rgba(27, 59, 43, 0);
+    box-shadow: 0 0 0 6px rgba(29, 53, 87, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(27, 59, 43, 0);
+    box-shadow: 0 0 0 0 rgba(29, 53, 87, 0);
   }
 }

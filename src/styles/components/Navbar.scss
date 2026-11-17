@@ -12,7 +12,7 @@
 
   &.is-scrolled {
     background-color: rgba(255, 255, 255, 0.98);
-    box-shadow: 0 2px 14px rgba(27, 59, 43, 0.06);
+    box-shadow: 0 2px 14px rgba(29, 53, 87, 0.06);
   }
 
   .header-container {
@@ -208,7 +208,7 @@
       right: 0;
       background-color: $color-warm-cream;
       border-bottom: 1px solid $color-border;
-      box-shadow: 0 10px 25px rgba(27, 59, 43, 0.08);
+      box-shadow: 0 10px 25px rgba(29, 53, 87, 0.08);
       max-height: 0;
       opacity: 0;
       overflow: hidden;
