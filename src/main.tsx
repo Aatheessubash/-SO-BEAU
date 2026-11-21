@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './styles/main.scss';
+import './styles/quiet-clinical.scss';
 
 // Disable browser's automatic scroll restoration on refresh so it stays consistent
 if ('scrollRestoration' in window.history) {
