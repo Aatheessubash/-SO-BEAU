@@ -9,37 +9,47 @@ export interface BrandLogoProps {
 }
 
 export const BrandLogo: React.FC<BrandLogoProps> = ({
-  variant = 'full',
   theme = 'navy',
-  height,
   className = '',
 }) => {
-  // Determine appropriate image asset based on theme
-  let logoSrc = '/images/sobeau-logo.png';
-  if (theme === 'white') {
-    logoSrc = '/images/sobeau-logo-white.png';
-  } else if (theme === 'cream') {
-    logoSrc = '/images/sobeau-logo-cream.png';
-  } else if (theme === 'navy' || theme === 'forest') {
-    logoSrc = '/images/sobeau-logo-navy.png';
-  }
-
-  const computedHeight = height || (variant === 'wordmark' ? 32 : 36);
-
   return (
-    <img
-      src={logoSrc}
-      alt="SOBEAU"
-      height={computedHeight}
-      className={`brand-logo ${variant} theme-${theme} ${className}`}
+    <div
+      className={`brand-atelier-lockup ${className}`}
       style={{
-        height: `${computedHeight}px`,
-        width: 'auto',
-        display: 'inline-block',
-        objectFit: 'contain',
-        verticalAlign: 'middle',
+        display: 'inline-flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        textDecoration: 'none',
+        lineHeight: 1,
       }}
-      loading="eager"
-    />
+    >
+      <span
+        style={{
+          fontFamily: "'Cormorant Garamond', 'EB Garamond', Georgia, serif",
+          fontSize: '1.45rem',
+          fontWeight: 600,
+          letterSpacing: '0.12em',
+          color: theme === 'white' ? '#FFFFFF' : '#0F172A',
+          textTransform: 'uppercase',
+          lineHeight: 1,
+        }}
+      >
+        SO BEAU
+      </span>
+      <span
+        style={{
+          fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif",
+          fontSize: '0.52rem',
+          fontWeight: 600,
+          letterSpacing: '0.22em',
+          color: theme === 'white' ? 'rgba(255,255,255,0.7)' : '#4B5563',
+          textTransform: 'uppercase',
+          marginTop: '3px',
+          lineHeight: 1,
+        }}
+      >
+        MELBOURNE ATELIER
+      </span>
+    </div>
   );
 };

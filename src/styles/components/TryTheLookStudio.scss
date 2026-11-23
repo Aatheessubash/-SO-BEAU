@@ -2,9 +2,9 @@
 
 .try-the-look-studio-section {
   position: relative;
-  background: #F4F8FC; // Sky Mist Surface
-  border-top: 1px solid #D5E4F3;
-  border-bottom: 1px solid #D5E4F3;
+  background: #FAF9F6; // Luxury Atelier Ivory
+  border-top: 1px solid #E9EBEF;
+  border-bottom: 1px solid #E9EBEF;
   overflow: hidden;
   box-sizing: border-box;
 
@@ -53,12 +53,12 @@
   // ==========================================
   .studio-main-stage {
     position: relative;
-    background: radial-gradient(ellipse 110% 85% at 50% 95%, #D5E4F3 0%, #EBF3FB 50%, #F4F8FC 100%);
+    background: radial-gradient(ellipse 110% 85% at 50% 95%, #E9EBEF 0%, #F4F6F9 50%, #FAF9F6 100%);
     border-radius: 24px;
-    border: 1px solid #D5E4F3;
+    border: 1px solid #E9EBEF;
     padding: clamp(0.6rem, 1vh, 1.1rem) clamp(1rem, 1.6vw, 1.8rem) clamp(0.3rem, 0.6vh, 0.6rem);
     box-shadow: 
-      0 6px 30px rgba(29, 53, 87, 0.04),
+      0 6px 30px rgba(20, 36, 58, 0.04),
       inset 0 1px 0 rgba(255, 255, 255, 0.9);
     overflow: hidden;
     display: flex;
@@ -136,6 +136,14 @@
       }
     }
 
+    // Stage Top Actions Container
+    .stage-top-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
     // Gender Switcher Capsule
     .gender-switcher-pill {
       display: inline-flex;
@@ -201,6 +209,34 @@
         padding: 0 0.85rem;
       }
 
+      // Hide the carousel center figure at start/during flight so hero image is the sole actor
+      &:not(.is-docked) {
+        .model-card-figure.active-center {
+          .model-image-wrap,
+          .model-ground-shadow,
+          .active-look-pedestal {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+            transition: none !important;
+          }
+        }
+      }
+
+      // When flight lands into the carousel center, display the docked center figure
+      &.is-docked {
+        .model-card-figure.active-center {
+          .model-image-wrap,
+          .model-ground-shadow,
+          .active-look-pedestal {
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+            transition: none !important;
+          }
+        }
+      }
+
       // Studio floor crease line
       .studio-horizon-crease {
         position: absolute;
@@ -222,7 +258,9 @@
         align-items: center;
         justify-content: flex-end;
         transform-style: preserve-3d;
-        transition: filter 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+        will-change: transform, opacity;
+        // Composite-only transition to eliminate GPU alpha re-rasterization
+        transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 
         // Ground Contact Shadow (Centered on card X = 50%)
         .model-ground-shadow {
@@ -232,11 +270,11 @@
           transform: translateX(-50%) scaleY(0.4);
           width: 76%;
           height: 16px;
-          background: radial-gradient(ellipse at 50% 50%, rgba(29, 53, 87, 0.35) 0%, rgba(29, 53, 87, 0.12) 55%, transparent 80%);
+          background: radial-gradient(ellipse at 50% 50%, rgba(20, 36, 58, 0.35) 0%, rgba(20, 36, 58, 0.12) 55%, transparent 80%);
           border-radius: 50%;
           filter: blur(4px);
           pointer-events: none;
-          transition: transform 0.4s ease, opacity 0.4s ease;
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
         }
 
         // Image Container for Transparent PNG Models
@@ -255,7 +293,7 @@
             object-fit: contain;
             object-position: center bottom;
             display: block;
-            transition: filter 0.35s ease;
+            pointer-events: none;
           }
         }
 
@@ -264,23 +302,17 @@
         // ==========================================
         &.active-center {
           cursor: default;
-          filter: 
-            drop-shadow(0 26px 42px rgba(29, 53, 87, 0.35)) 
-            drop-shadow(0 0 18px rgba(197, 160, 80, 0.30)) 
-            brightness(1.05) contrast(1.02);
+          // Single lightweight static shadow, no dynamic filter transitions
+          filter: drop-shadow(0 14px 22px rgba(20, 36, 58, 0.18));
 
           .model-ground-shadow {
             width: 90%;
-            height: 26px;
+            height: 24px;
             left: 50%;
             transform: translateX(-50%) scaleY(0.4);
-            background: radial-gradient(ellipse at 50% 50%, rgba(29, 53, 87, 0.50) 0%, rgba(29, 53, 87, 0.20) 60%, transparent 80%);
-            filter: blur(6px);
+            background: radial-gradient(ellipse at 50% 50%, rgba(20, 36, 58, 0.48) 0%, rgba(20, 36, 58, 0.18) 60%, transparent 80%);
+            filter: blur(5px);
             opacity: 1;
-          }
-
-          .model-photo {
-            filter: drop-shadow(0 22px 34px rgba(29, 53, 87, 0.25));
           }
 
           .active-look-pedestal {
@@ -291,30 +323,30 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: #1D3557; // Primary
+            background: #14243A; // Primary Navy
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            color: #F4F8FC; // Warm Cream
+            color: #FAF9F6; // Luxury Ivory
             padding: 0.38rem 1rem;
             border-radius: 999px;
-            border: 1px solid rgba(197, 160, 80, 0.45);
+            border: 1px solid rgba(182, 161, 123, 0.45);
             font-size: 0.76rem;
             font-weight: 700;
             letter-spacing: 0.02em;
             box-shadow: 
-              0 8px 24px rgba(29, 53, 87, 0.35),
-              0 2px 6px rgba(0, 0, 0, 0.12);
+              0 8px 24px rgba(20, 36, 58, 0.28),
+              0 2px 6px rgba(0, 0, 0, 0.08);
             white-space: nowrap;
             pointer-events: none;
-            animation: fadeInPedestal 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: fadeInPedestal 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: 20;
 
             .pedestal-dot {
               width: 7px;
               height: 7px;
               border-radius: 50%;
-              background: #C5A050; // Prestige Gold
-              box-shadow: 0 0 10px rgba(197, 160, 80, 0.85);
+              background: #B6A17B; // Muted Gold
+              box-shadow: 0 0 10px rgba(182, 161, 123, 0.85);
             }
 
             .selected-badge {
@@ -324,9 +356,9 @@
               font-size: 0.6rem;
               font-weight: 800;
               letter-spacing: 0.08em;
-              color: #C5A050; // Prestige Gold
-              background: rgba(197, 160, 80, 0.20);
-              border: 1px solid rgba(197, 160, 80, 0.4);
+              color: #B6A17B; // Muted Gold
+              background: rgba(182, 161, 123, 0.20);
+              border: 1px solid rgba(182, 161, 123, 0.4);
               padding: 0.16rem 0.48rem;
               border-radius: 10px;
               margin-left: 0.2rem;
@@ -339,10 +371,10 @@
         // ==========================================
         &.side-variant {
           cursor: pointer;
-          transition: filter 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+          transition: opacity 0.25s ease-out, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 
           &.near-side {
-            filter: grayscale(0.28) brightness(0.84);
+            filter: grayscale(0.2) brightness(0.9);
 
             .model-ground-shadow {
               opacity: 0.45;
@@ -350,7 +382,7 @@
           }
 
           &.outer-side {
-            filter: grayscale(0.42) brightness(0.76);
+            filter: grayscale(0.35) brightness(0.8);
 
             .model-ground-shadow {
               opacity: 0.30;
@@ -359,7 +391,7 @@
           }
 
           &.far-side {
-            filter: grayscale(0.58) brightness(0.70);
+            filter: grayscale(0.5) brightness(0.72);
 
             .model-ground-shadow {
               opacity: 0.18;
@@ -368,17 +400,22 @@
           }
 
           &:hover {
-            filter: grayscale(0) brightness(1.04) !important;
+            opacity: 0.95 !important;
             transform: translateY(-4px);
 
             .model-ground-shadow {
-              opacity: 0.8 !important;
+              opacity: 0.7 !important;
             }
+          }
+
+          &:active {
+            transform: translateY(-2px) scale(0.98);
+            transition-duration: 75ms;
           }
         }
       }
 
-      // Stage Navigation Arrows
+      // Stage Navigation Arrows with Apple Tactile Feedback
       .stage-nav-arrow {
         position: absolute;
         top: 50%;
@@ -386,25 +423,30 @@
         width: 44px;
         height: 44px;
         border-radius: 50%;
-        background: #F4F8FC;
-        border: 1px solid #D5E4F3;
-        color: #1D3557;
+        background: #FFFFFF;
+        border: 1px solid #E9EBEF;
+        color: #14243A;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
         z-index: 30;
-        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
-        box-shadow: 0 4px 14px rgba(29, 53, 87, 0.09);
+        box-shadow: 0 4px 14px rgba(20, 36, 58, 0.08);
 
         &:hover {
-          background: #1D3557;
-          color: #F4F8FC;
-          border-color: #1D3557;
-          transform: translateY(-50%) scale(1.08);
-          box-shadow: 0 8px 22px rgba(29, 53, 87, 0.25);
+          background: #14243A;
+          color: #FAF9F6;
+          border-color: #14243A;
+          transform: translateY(-50%) scale(1.06);
+          box-shadow: 0 8px 22px rgba(20, 36, 58, 0.22);
+        }
+
+        &:active {
+          transform: translateY(-50%) scale(0.93);
+          transition-duration: 75ms;
         }
 
         &.arrow-left {
@@ -416,8 +458,8 @@
         }
 
         @media (max-width: 768px) {
-          width: 36px;
-          height: 36px;
+          width: 38px;
+          height: 38px;
           &.arrow-left { left: 0.4rem; }
           &.arrow-right { right: 0.4rem; }
         }
@@ -619,8 +661,18 @@
             transform: scale(1.18);
           }
 
+          &:active {
+            transform: scale(0.92);
+            transition-duration: 75ms;
+          }
+
           &.active {
             transform: scale(1.12);
+
+            &:active {
+              transform: scale(1.04);
+              transition-duration: 75ms;
+            }
 
             .colorway-swatch-fill {
               box-shadow: 
@@ -660,11 +712,20 @@
             color: #0E2017;
           }
 
+          &:active {
+            transform: scale(0.94);
+            transition-duration: 75ms;
+          }
+
           &.active {
             background: #1D3557; // Primary
             color: #F4F8FC; // Warm Cream
             border-color: #1D3557;
             box-shadow: 0 2px 8px rgba(29, 53, 87, 0.3);
+
+            &:active {
+              transform: scale(0.96);
+            }
           }
         }
       }
@@ -743,7 +804,8 @@
         }
 
         &:active {
-          transform: translateY(0);
+          transform: translateY(0) scale(0.97);
+          transition-duration: 75ms;
         }
 
         &.added {
@@ -770,6 +832,11 @@
 
         &:hover {
           background: rgba(29, 53, 87, 0.06);
+        }
+
+        &:active {
+          transform: scale(0.97);
+          transition-duration: 75ms;
         }
       }
     }

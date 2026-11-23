@@ -11,7 +11,7 @@
     background: #EBF3FB; // Soft Sky Tint
     border-bottom: 1px solid rgba(29, 53, 87, 0.08);
     padding: clamp(2rem, 4vw, 3rem) 0 clamp(1.5rem, 3vw, 2rem);
-    margin-bottom: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 0;
 
     .header-meta-row {
       margin-bottom: 0.65rem;
@@ -246,6 +246,42 @@
             color: #666666;
           }
         }
+      }
+    }
+  }
+
+  // Runway Studio on Collection Page
+  .shop-runway-wrapper {
+    margin-bottom: clamp(2rem, 3.5vw, 3rem);
+
+    .try-the-look-studio-section {
+      border-top: none;
+    }
+  }
+
+  // Catalog Section Intro Divider
+  .catalog-section-intro {
+    margin-bottom: 2rem;
+
+    .intro-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid rgba(29, 53, 87, 0.12);
+
+      .intro-label {
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #1D3557;
+      }
+
+      .intro-count {
+        font-size: 0.78rem;
+        color: #666666;
+        font-weight: 500;
       }
     }
   }

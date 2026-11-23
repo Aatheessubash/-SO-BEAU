@@ -96,6 +96,11 @@ class SoundEngine {
     }
   }
 
+  // Alias for playAddToCartChime
+  public playAddToCart() {
+    this.playAddToCartChime();
+  }
+
   // Smooth pop when dragging or sliding interactive controls
   public playSliderTick() {
     if (!this.enabled) return;

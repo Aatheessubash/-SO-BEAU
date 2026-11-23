@@ -28,21 +28,23 @@ import { FAQPage } from './pages/FAQPage';
 import { PrivacyPage } from './pages/PrivacyPage';
 import { TermsPage } from './pages/TermsPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { SmoothScrollProvider } from './components/common/SmoothScrollProvider';
 
 export const App: React.FC = () => {
   return (
     <Router>
       <CartProvider>
-        <ScrollToTop />
-        <div className="site-wrapper">
-          {/* Top Rotating Promotional & Shipping Announcements */}
-          <AnnouncementBar />
+        <SmoothScrollProvider>
+          <ScrollToTop />
+          <div className="site-wrapper">
+            {/* Top Rotating Promotional & Shipping Announcements */}
+            <AnnouncementBar />
 
-          {/* Luxury Fashion Editorial Navbar */}
-          <Navbar />
+            {/* Luxury Fashion Editorial Navbar */}
+            <Navbar />
 
-          {/* Main Application Routes */}
-          <main className="main-content">
+            {/* Main Application Routes */}
+            <main className="main-content">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/collections/scrubs" element={<ShopPage />} />
@@ -79,6 +81,7 @@ export const App: React.FC = () => {
           <FlyToCartOverlay />
           <GlobalInteractiveOverlays />
         </div>
+        </SmoothScrollProvider>
       </CartProvider>
     </Router>
   );

@@ -40,11 +40,11 @@
     width: 100%;
     aspect-ratio: 3/3.7;
     max-height: 380px;
-    background-color: #f7f5f0;
-    border-radius: 4px;
+    background-color: #FAF9F6;
+    border-radius: 8px;
     overflow: hidden;
     border: 1px solid $color-border;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 20px rgba(20, 36, 58, 0.04);
     transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 
     @media (max-width: 640px) {

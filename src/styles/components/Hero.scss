@@ -1,612 +1,250 @@
 @use '../variables' as *;
 
-.hero-section {
+.hero-editorial-section {
   position: relative;
-  background: linear-gradient(135deg, #EBF3FC 0%, #F4F8FD 50%, #DCEAFC 100%);
-  padding: 0;
+  z-index: 25;
+  width: 100%;
   margin: 0;
-  border-bottom: 1px solid $color-border;
-  overflow: hidden;
-  height: calc(100vh - var(--header-total-height, 110px));
-  height: calc(100dvh - var(--header-total-height, 110px));
-  min-height: 580px;
+  padding: 0;
+  background-color: #FFFFFF;
+  overflow: visible;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  min-height: clamp(520px, calc(100vh - 104px), 680px);
 
-  @media (max-width: $bp-tablet) {
-    height: auto;
-    min-height: auto;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-    justify-content: center;
-  }
-
-  @media (max-height: 600px) and (min-width: $bp-tablet) {
-    height: auto;
-    min-height: 560px;
-  }
-
-  // Ambient Cinematic Background Video with Directional Gradient Blur
-  .hero-bg-video-wrapper {
+  // Vertical Pagination Dots (Left & Right margins)
+  .hero-vertical-pagination {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 0;
-    pointer-events: none;
-
-    // Base video: has current subtle blur / crisp clarity (2px)
-    .hero-bg-video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: blur(2px) brightness(0.96) contrast(1.08) saturate(1.08);
-      transform: scale(1.04);
-      transition: filter $transition-smooth;
-    }
-
-    // Center medium blur layer: smooth transition through middle (45%-75%)
-    .hero-blur-center {
-      position: absolute;
-      inset: 0;
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-      mask-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 1) 0%,
-        rgba(0, 0, 0, 0.9) 35%,
-        rgba(0, 0, 0, 0.5) 55%,
-        rgba(0, 0, 0, 0) 75%
-      );
-      -webkit-mask-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 1) 0%,
-        rgba(0, 0, 0, 0.9) 35%,
-        rgba(0, 0, 0, 0.5) 55%,
-        rgba(0, 0, 0, 0) 75%
-      );
-      pointer-events: none;
-    }
-
-    // Left heavy blur layer: provides strongest blur behind text on the left (0%-52%)
-    .hero-blur-left {
-      position: absolute;
-      inset: 0;
-      backdrop-filter: blur(9px);
-      -webkit-backdrop-filter: blur(9px);
-      mask-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 1) 0%,
-        rgba(0, 0, 0, 0.95) 20%,
-        rgba(0, 0, 0, 0.4) 38%,
-        rgba(0, 0, 0, 0) 52%
-      );
-      -webkit-mask-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 1) 0%,
-        rgba(0, 0, 0, 0.95) 20%,
-        rgba(0, 0, 0, 0.4) 38%,
-        rgba(0, 0, 0, 0) 52%
-      );
-      pointer-events: none;
-    }
-
-    // Crisp Sky Blue & Cloud White tint on the left, clear on the right
-    .hero-bg-video-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        90deg,
-        rgba(235, 243, 252, 0.85) 0%,
-        rgba(240, 246, 254, 0.65) 36%,
-        rgba(245, 250, 255, 0.25) 66%,
-        rgba(255, 255, 255, 0.04) 100%
-      );
-    }
-  }
-
-  // Architectural Watermark (SKIMS Style)
-  .hero-watermark-typography {
-    position: absolute;
-    top: 5%;
-    left: 2%;
-    right: 2%;
-    pointer-events: none;
-    z-index: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    user-select: none;
-
-    span {
-      display: inline-block;
-      font-family: $font-sans;
-      font-size: clamp(3.2rem, 7.5vw, 6.8rem);
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(23, 23, 23, 0.06);
-      text-transform: uppercase;
-      opacity: 0.85;
-    }
-  }
-
-  .hero-grid {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: 1fr 1.15fr;
-    gap: clamp(2.5rem, 5vw, 4.5rem);
-    align-items: center;
-
-    @media (max-width: $bp-laptop) {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-  }
-
-  .hero-text-card {
-    max-width: min(680px, 54vw);
-
-    @media (max-width: $bp-tablet) {
-      max-width: 100%;
-    }
-
-    .hero-kicker-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.55rem;
-      padding: 0.35rem 0.95rem;
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(29, 53, 87, 0.15);
-      border-radius: 999px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #1D3557;
-      margin-bottom: 1.25rem;
-      box-shadow: 0 2px 10px rgba(29, 53, 87, 0.05);
-
-      .kicker-dot {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background-color: #C5A050;
-      }
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.4rem 0.95rem;
-      background-color: $color-white;
-      border: 1px solid $color-border;
-      border-radius: 999px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: $color-charcoal;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-    }
-
-    .hero-headline {
-      font-family: $font-sans;
-      font-size: clamp(1.75rem, 3vw, 2.9rem);
-      font-weight: 800;
-      line-height: 1.12;
-      margin-bottom: 1.35rem;
-      color: $color-charcoal;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-
-      .line-reveal-wrapper {
-        display: block;
-        overflow: hidden;
-        margin-bottom: 0.15rem;
-        white-space: nowrap;
-
-        .line-reveal-inner {
-          display: block;
-          white-space: nowrap;
-        }
-      }
-
-      @media (max-width: $bp-desktop) {
-        font-size: clamp(1.6rem, 2.8vw, 2.65rem);
-      }
-
-      @media (max-width: $bp-tablet) {
-        font-size: clamp(1.35rem, 4.2vw, 2.2rem);
-      }
-
-      @media (max-width: $bp-mobile) {
-        font-size: clamp(1.15rem, 5vw, 1.6rem);
-        letter-spacing: -0.01em;
-      }
-    }
-
-    .hero-supporting-text {
-      font-size: clamp(1rem, 1.4vw, 1.15rem);
-      line-height: 1.65;
-      color: #555;
-      font-weight: 400;
-      margin-bottom: 2rem;
-    }
-
-    // SKIMS Iconic Dual CTAs: SHOP WOMEN & SHOP MEN
-    .hero-cta-group {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-      flex-wrap: wrap;
-      margin-bottom: 2.25rem;
-
-      .skims-btn {
-        min-width: 155px;
-        font-family: $font-sans;
-        font-weight: 700;
-        font-size: 0.8rem;
-        letter-spacing: 0.12em;
-        padding: 0.9rem 1.6rem;
-        border-radius: 2px;
-      }
-
-      .hero-watch-reel-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.6rem;
-        padding: 0.85rem 1.25rem;
-        background: transparent;
-        border: none;
-        color: $color-charcoal;
-        font-family: $font-sans;
-        font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        cursor: pointer;
-        transition: all 0.25s ease;
-
-        .play-icon-circle {
-          width: 28px;
-          height: 28px;
-          border-radius: 50%;
-          background: $color-charcoal;
-          color: $color-white;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: transform 0.25s ease;
-        }
-
-        &:hover {
-          color: #000;
-          .play-icon-circle {
-            transform: scale(1.15);
-          }
-        }
-      }
-    }
-
-    .hero-perks-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(23, 23, 23, 0.08);
-
-      .perk-pill {
-        display: flex;
-        align-items: center;
-        gap: 0.45rem;
-        font-size: 0.72rem;
-        font-weight: 600;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: #555;
-
-        .perk-icon {
-          color: #3a694b;
-        }
-      }
-    }
-  }
-
-  .hero-container {
-    position: relative;
-    z-index: 3;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-
-    @media (max-width: $bp-tablet) {
-      height: auto;
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-    }
-  }
-}
-
-@media (max-width: $bp-tablet) {
-  .hero-section {
-    height: calc(100svh - var(--header-total-height, 70px));
-    height: calc(100dvh - var(--header-total-height, 70px));
-    min-height: 540px;
-    max-height: 760px;
-    padding: 0;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    gap: 9px;
+    z-index: 8;
 
-    .hero-bg-video-wrapper {
-      .hero-bg-video {
-        opacity: 1 !important;
-        filter: contrast(1.08) brightness(0.96) saturate(1.08) !important;
-        transform: scale(1.02);
-      }
+    &.left-pagination {
+      left: clamp(1rem, 2vw, 2.25rem);
 
-      .hero-blur-center,
-      .hero-blur-left {
+      @media (max-width: 1024px) {
         display: none;
       }
+    }
 
-      // Elegant cinematic bottom gradient so video remains clear and visible
-      .hero-bg-video-overlay {
-        background: linear-gradient(
-          180deg,
-          rgba(10, 24, 17, 0.22) 0%,
-          rgba(10, 24, 17, 0.08) 35%,
-          rgba(10, 24, 17, 0.5) 70%,
-          rgba(10, 24, 17, 0.88) 100%
-        ) !important;
+    &.right-pagination {
+      right: clamp(1rem, 2vw, 2.5rem);
+
+      @media (max-width: 1024px) {
+        display: none;
       }
     }
 
-    .hero-watermark-typography {
-      top: 2%;
+    .page-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      border: 1px solid #9CA3AF;
+      background: transparent;
+      transition: all 0.2s ease;
 
-      span {
-        opacity: 0.35;
-        color: rgba(255, 255, 255, 0.45);
-      }
-    }
-
-    .hero-container {
-      align-items: flex-end;
-      width: 100%;
-      height: auto;
-      padding: 0 1.25rem 2rem;
-      z-index: 5;
-    }
-
-    .hero-text-card {
-      max-width: 100%;
-      width: 100%;
-      padding: 0 !important;
-      border: none !important;
-      border-radius: 0 !important;
-      background: transparent !important;
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-      box-shadow: none !important;
-
-      .hero-headline {
-        font-size: clamp(1.5rem, 6.5vw, 2.2rem);
-        color: #FFFFFF !important;
-        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
-        line-height: 1.15;
-        margin-bottom: 1.1rem;
-        word-break: break-word;
-        overflow-wrap: break-word;
-
-        .line-reveal-wrapper {
-          white-space: normal;
-
-          .line-reveal-inner {
-            white-space: normal;
-            word-break: break-word;
-            overflow-wrap: break-word;
-            color: #FFFFFF !important;
-            text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
-          }
-        }
-      }
-
-      // Hide heavy text and perks on mobile so video is visible and not blocked
-      .hero-supporting-text {
-        display: none !important;
-      }
-
-      .hero-cta-group {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 0;
-
-        .skims-btn {
-          flex: 1;
-          width: auto;
-          min-height: 46px;
-          padding: 0.65rem 0.95rem;
-          font-size: 0.82rem;
-          font-weight: 700;
-          letter-spacing: 0.04em;
-          border-radius: 999px;
-          justify-content: center;
-          gap: 0.45rem;
-          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-
-          &.btn-primary {
-            background-color: #FFFFFF !important;
-            color: #1D3557 !important;
-            border: 1px solid #FFFFFF !important;
-
-            &:hover {
-              background-color: #EBF3FB !important;
-            }
-          }
-
-          &.btn-outline {
-            background-color: rgba(255, 255, 255, 0.16) !important;
-            color: #FFFFFF !important;
-            border: 1px solid rgba(255, 255, 255, 0.5) !important;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-
-            &:hover {
-              background-color: rgba(255, 255, 255, 0.28) !important;
-            }
-          }
-        }
-      }
-
-      .hero-perks-row {
-        display: none !important;
+      &.is-active {
+        background-color: #0F172A;
+        border-color: #0F172A;
+        transform: scale(1.15);
       }
     }
   }
-}
 
-// Campaign Video Modal
-.campaign-video-modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(10px);
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-
-  .campaign-video-modal-card {
-    position: relative;
+  // Split Container (Left 1.15fr, Right 0.85fr)
+  .hero-split-container {
+    display: grid;
+    grid-template-columns: 1.12fr 0.88fr;
     width: 100%;
-    max-width: 900px;
-    background: #111;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    height: 100%;
+    min-height: inherit;
 
-    .modal-close-btn {
-      position: absolute;
-      top: 1.25rem;
-      right: 1.25rem;
-      z-index: 10;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(4px);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s ease;
+    @media (max-width: $bp-tablet) {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+  }
 
-      &:hover {
-        background: rgba(255, 255, 255, 0.35);
-        transform: rotate(90deg);
+  // Left Editorial Text Column
+  .hero-editorial-left {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: clamp(2.5rem, 5vw, 5rem) clamp(2.5rem, 6vw, 6rem);
+
+    @media (max-width: $bp-tablet) {
+      padding: 3rem 1.5rem 2.5rem 1.5rem;
+    }
+
+    .hero-content-inner {
+      max-width: 580px;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      display: block;
+      font-family: $font-sans;
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #0F172A;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-editorial-title {
+      font-family: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+      font-size: clamp(2.4rem, 3.8vw, 3.75rem);
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+      color: #0F172A;
+      margin: 0 0 1.35rem 0;
+
+      .title-line {
+        display: block;
+        white-space: nowrap;
+
+        @media (max-width: 540px) {
+          white-space: normal;
+        }
       }
     }
 
-    .video-player-frame {
-      position: relative;
-      aspect-ratio: 16/9;
-      background: #0d1a13;
+    .hero-editorial-description {
+      font-family: $font-sans;
+      font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+      line-height: 1.6;
+      color: #4B5563;
+      margin: 0 0 2.25rem 0;
+      max-width: 480px;
+    }
 
-      .modal-video-element {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        filter: contrast(1.08) brightness(0.96) saturate(1.1);
+    .hero-cta-button-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-monolith-btn {
+      display: inline-block;
+      background-color: #111827;
+      color: #FFFFFF;
+      font-family: $font-sans;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1rem 2.5rem;
+      border-radius: 2px;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+
+      &:hover {
+        background-color: #000000;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
       }
 
-      .modal-video-theme-overlay {
+      &:active {
+        transform: scale(0.97);
+      }
+    }
+  }
+
+  // Right Architectural Stage (Curved Metallic Columns & Model)
+  // Right Stage (Model on Pure Clean Background)
+  .hero-editorial-right {
+    position: relative;
+    background: transparent;
+    overflow: visible;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+
+    @media (max-width: $bp-tablet) {
+      min-height: 520px;
+    }
+
+    // Model Visual Stage with GSAP Parallax Fall
+    .hero-visual-stage {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-top: 3.5rem;
+      padding-bottom: 0.5rem;
+      z-index: 30;
+      pointer-events: none;
+      will-change: transform, opacity;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+
+      @media (prefers-reduced-motion: reduce) {
+        transform: none !important;
+      }
+
+      .hero-stage-image {
+        max-height: clamp(390px, 78vh, 540px);
+        width: auto;
+        max-width: 90%;
+        object-fit: contain;
+        object-position: bottom center;
+        display: block;
+        z-index: 2;
+        filter: drop-shadow(0 14px 28px rgba(18, 25, 38, 0.12));
+        pointer-events: none;
+      }
+
+      .model-ground-shadow {
         position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          135deg,
-          rgba(29, 53, 87, 0.28) 0%,
-          rgba(197, 160, 89, 0.1) 50%,
-          rgba(18, 35, 58, 0.45) 100%
-        );
-        mix-blend-mode: soft-light;
+        bottom: 0.35rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: clamp(180px, 42%, 280px);
+        height: 20px;
+        background: radial-gradient(ellipse at center, rgba(20, 25, 35, 0.22) 0%, rgba(20, 25, 35, 0.07) 50%, rgba(0, 0, 0, 0) 75%);
+        border-radius: 50%;
+        z-index: 1;
         pointer-events: none;
       }
     }
 
-    .modal-footer-caption {
-      padding: 1.5rem 2rem;
-      background-color: #12233A;
+    // Floating Circular Chat Widget Trigger
+    .hero-floating-chat-bubble {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: #111827;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      border-top: 1px solid rgba(197, 160, 89, 0.3);
+      justify-content: center;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
+      cursor: pointer;
+      z-index: 10;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
 
-      @media (max-width: 640px) {
-        flex-direction: column;
-        align-items: flex-start;
+      &:hover {
+        background-color: #000000;
+        transform: scale(1.08);
       }
 
-      .caption-left {
-        .film-tag {
-          font-size: 0.68rem;
-          font-weight: 700;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: $color-muted-gold;
-          display: block;
-          margin-bottom: 0.35rem;
-        }
-
-        h3 {
-          font-family: $font-sans;
-          font-size: 1.25rem;
-          font-weight: 700;
-          color: $color-white;
-          margin: 0 0 0.35rem;
-          text-transform: uppercase;
-        }
-
-        p {
-          font-size: 0.82rem;
-          line-height: 1.5;
-          color: rgba(253, 251, 247, 0.7);
-          margin: 0;
-          max-width: 540px;
-        }
-      }
-
-      .caption-right {
-        flex-shrink: 0;
-
-        .btn {
-          padding: 0.8rem 1.6rem;
-          font-size: 0.75rem;
-          background-color: $color-muted-gold;
-          color: $color-forest-dark;
-          border-color: $color-muted-gold;
-
-          &:hover {
-            background-color: $color-gold-light;
-            border-color: $color-gold-light;
-          }
-        }
+      &:active {
+        transform: scale(0.95);
       }
     }
-
   }
 }

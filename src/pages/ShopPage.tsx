@@ -5,6 +5,7 @@ import { api } from '../services/api';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
 import { ProductCard } from '../components/product/ProductCard';
+import { TryTheLookStudio } from '../components/home/TryTheLookStudio';
 import { sounds } from '../utils/soundEffects';
 import fallbackProducts from '../../server/data/products.json';
 import '../styles/pages/ShopPage.scss';
@@ -64,6 +65,12 @@ export const ShopPage: React.FC = () => {
 
   const womensCount = products.filter((p) => p.category === 'womens-scrubs').length;
   const mensCount = products.filter((p) => p.category === 'mens-scrubs').length;
+
+  // Selected gender for interactive runway studio synced with category filter
+  const selectedGender: 'womens' | 'mens' = categoryParam === 'mens-scrubs' ? 'mens' : 'womens';
+  const handleGenderChange = (gender: 'womens' | 'mens') => {
+    handleCategoryChange(gender === 'mens' ? 'mens-scrubs' : 'womens-scrubs');
+  };
 
   return (
     <div className="shop-page shop-editorial-theme animate-fade-in">
@@ -135,7 +142,24 @@ export const ShopPage: React.FC = () => {
         </div>
       </header>
 
-      {/* 2. Professional, Spacious Product Grid */}
+      {/* 2. Interactive Runway Studio Carousel */}
+      <div className="shop-runway-wrapper">
+        <TryTheLookStudio 
+          products={products}
+          selectedGender={selectedGender}
+          onSelectGender={handleGenderChange}
+        />
+      </div>
+
+      {/* 3. Catalog Section Intro Divider */}
+      <div className="container catalog-section-intro">
+        <div className="intro-line">
+          <span className="intro-label">ALL CLINICAL EDITIONS</span>
+          <span className="intro-count">{filteredProducts.length} Results Available</span>
+        </div>
+      </div>
+
+      {/* 4. Professional, Spacious Product Grid */}
       <main className="shop-content container">
         {filteredProducts.length === 0 ? (
           <div className="shop-empty-state">

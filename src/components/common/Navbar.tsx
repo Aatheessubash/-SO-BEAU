@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, ShoppingBag, Heart, Menu, X, ChevronDown } from 'lucide-react';
+import { Search, ShoppingBag, Heart, Menu, X } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { BrandLogo } from './BrandLogo';
 import '../../styles/components/Navbar.scss';
@@ -49,36 +49,33 @@ export const Navbar: React.FC = () => {
         <nav className="desktop-nav" aria-label="Main Navigation">
           <Link 
             to="/collections/scrubs" 
-            className="nav-link with-chevron"
+            className="nav-link"
           >
-            <span>Shop Collections</span>
-            <ChevronDown size={14} className="chevron-icon" />
+            Collections
           </Link>
           <Link 
             to="/collections/scrubs?category=womens-scrubs" 
-            className="nav-link with-chevron"
+            className="nav-link"
           >
-            <span>Women's</span>
-            <ChevronDown size={14} className="chevron-icon" />
+            Women
           </Link>
           <Link 
             to="/collections/scrubs?category=mens-scrubs" 
-            className="nav-link with-chevron"
+            className="nav-link"
           >
-            <span>Men's</span>
-            <ChevronDown size={14} className="chevron-icon" />
+            Men
           </Link>
           <a 
             href="/#try-the-look" 
             className="nav-link"
           >
-            Try The Look Studio
+            Try The Look
           </a>
           <Link 
             to="/pages/our-story" 
             className="nav-link"
           >
-            About Atelier
+            Atelier
           </Link>
         </nav>
 
@@ -147,21 +144,6 @@ export const Navbar: React.FC = () => {
           <Link to="/pages/contact" className="mobile-nav-link">
             Contact &amp; Hospital Teams
           </Link>
-          <div className="mobile-nav-divider" />
-          <div className="mobile-nav-extras">
-            <button 
-              type="button"
-              className="mobile-action-btn" 
-              onClick={() => { setIsMobileMenuOpen(false); openSearch(); }}
-            >
-              <Search size={18} />
-              <span>Search</span>
-            </button>
-            <Link to="/collections/scrubs?wishlist=true" className="mobile-action-btn">
-              <Heart size={18} />
-              <span>Wishlist ({wishlist.length})</span>
-            </Link>
-          </div>
         </nav>
       </div>
     </header>

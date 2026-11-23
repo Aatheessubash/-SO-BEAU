@@ -69,6 +69,10 @@ export const CircularCarousel = forwardRef<CircularCarouselRef, CircularCarousel
 
     // Track active index
     const [currentIndex, setCurrentIndex] = useState(initialIndex);
+    const currentIndexRef = useRef<number>(initialIndex);
+    currentIndexRef.current = currentIndex;
+
+    const lastReportedIndexRef = useRef<number>(initialIndex);
     const activeIndex = controlledIndex !== undefined ? controlledIndex : currentIndex;
 
     // Continuous 3D rotation state (in degrees)
@@ -76,14 +80,14 @@ export const CircularCarousel = forwardRef<CircularCarouselRef, CircularCarousel
     const rotationRef = useRef<number>(-initialIndex * anglePerItem);
     rotationRef.current = rotation;
 
-    // Responsive 3D Amphitheater Radius (tuned for larger model figures)
+    // Responsive 3D Amphitheater Radius
     const [radius, setRadius] = useState<number>(() => {
       if (customRadius) return customRadius;
       if (typeof window === 'undefined') return 500;
       const w = window.innerWidth;
       if (w < 640) return 250;
       if (w < 1024) return 380;
-      return 500; // Desktop: expansive stage radius for larger model figures
+      return 500;
     });
 
     useEffect(() => {
@@ -104,43 +108,79 @@ export const CircularCarousel = forwardRef<CircularCarouselRef, CircularCarousel
     const viewportRef = useRef<HTMLDivElement>(null);
     const cylinderRef = useRef<HTMLDivElement>(null);
     const rafIdRef = useRef<number | null>(null);
+    const wheelTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     // Pointer Physics Tracking
     const isDraggingRef = useRef<boolean>(false);
+    const isUndecidedRef = useRef<boolean>(false);
     const dragStartXRef = useRef<number>(0);
+    const dragStartYRef = useRef<number>(0);
     const lastXRef = useRef<number>(0);
     const lastTimeRef = useRef<number>(0);
     const velocityRef = useRef<number>(0);
     const totalDragDistanceRef = useRef<number>(0);
 
-    // Spring Lerp Animation Engine
-    const smoothRotateTo = useCallback((targetAngle: number) => {
+    // Apple Spring Easing (cubic-bezier 0.16, 1, 0.3, 1 approximation: 1 - (1 - t)^3.8)
+    const smoothRotateTo = useCallback((targetAngle: number, onComplete?: () => void) => {
       if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
 
-      const animate = () => {
-        const current = rotationRef.current;
-        const diff = targetAngle - current;
+      const startAngle = rotationRef.current;
+      const delta = targetAngle - startAngle;
 
-        if (Math.abs(diff) < 0.1) {
-          rotationRef.current = targetAngle;
-          setRotation(targetAngle);
-          const normalized = ((-targetAngle % 360) + 360) % 360;
-          const newIndex = Math.round(normalized / anglePerItem) % total;
-          setCurrentIndex(newIndex);
-          if (onIndexChange) onIndexChange(newIndex, items[newIndex]);
-          return;
+      if (Math.abs(delta) < 0.05) {
+        rotationRef.current = targetAngle;
+        setRotation(targetAngle);
+        const normalized = ((-targetAngle % 360) + 360) % 360;
+        const finalIndex = Math.round(normalized / anglePerItem) % total;
+        if (currentIndexRef.current !== finalIndex) {
+          currentIndexRef.current = finalIndex;
+          setCurrentIndex(finalIndex);
+        }
+        if (lastReportedIndexRef.current !== finalIndex) {
+          lastReportedIndexRef.current = finalIndex;
+          onIndexChange?.(finalIndex, items[finalIndex]);
+        }
+        onComplete?.();
+        return;
+      }
+
+      // Dynamic duration based on delta distance (320ms - 520ms)
+      const duration = Math.min(520, Math.max(320, Math.abs(delta) * 5.2));
+      const startTime = performance.now();
+
+      const animate = (now: number) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Apple fluid spring / quintic ease-out: rapid acceleration, imperceptible settling
+        const ease = 1 - Math.pow(1 - progress, 3.8);
+        const current = startAngle + delta * ease;
+
+        rotationRef.current = current;
+        setRotation(current);
+
+        const normalized = ((-current % 360) + 360) % 360;
+        const currentIdx = Math.round(normalized / anglePerItem) % total;
+        if (currentIndexRef.current !== currentIdx) {
+          currentIndexRef.current = currentIdx;
+          setCurrentIndex(currentIdx);
         }
 
-        const step = diff * 0.16;
-        const nextAngle = current + step;
-        rotationRef.current = nextAngle;
-        setRotation(nextAngle);
-
-        const normalized = ((-nextAngle % 360) + 360) % 360;
-        const currentIdx = Math.round(normalized / anglePerItem) % total;
-        setCurrentIndex(currentIdx);
-
-        rafIdRef.current = requestAnimationFrame(animate);
+        if (progress < 1) {
+          rafIdRef.current = requestAnimationFrame(animate);
+        } else {
+          rotationRef.current = targetAngle;
+          setRotation(targetAngle);
+          const finalIndex = (((Math.round(-targetAngle / anglePerItem) % total) + total) % total);
+          if (currentIndexRef.current !== finalIndex) {
+            currentIndexRef.current = finalIndex;
+            setCurrentIndex(finalIndex);
+          }
+          if (lastReportedIndexRef.current !== finalIndex) {
+            lastReportedIndexRef.current = finalIndex;
+            onIndexChange?.(finalIndex, items[finalIndex]);
+          }
+          onComplete?.();
+        }
       };
 
       rafIdRef.current = requestAnimationFrame(animate);
@@ -177,8 +217,8 @@ export const CircularCarousel = forwardRef<CircularCarouselRef, CircularCarousel
     const startMomentum = useCallback(() => {
       if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
 
-      const friction = 0.91;
-      const minVelocity = 0.05;
+      const friction = 0.92;
+      const minVelocity = 0.04;
 
       const momentumLoop = () => {
         if (Math.abs(velocityRef.current) > minVelocity) {
@@ -188,7 +228,10 @@ export const CircularCarousel = forwardRef<CircularCarouselRef, CircularCarousel
 
           const normalized = ((-rotationRef.current % 360) + 360) % 360;
           const currentIdx = Math.round(normalized / anglePerItem) % total;
-          setCurrentIndex(currentIdx);
+          if (currentIndexRef.current !== currentIdx) {
+            currentIndexRef.current = currentIdx;
+            setCurrentIndex(currentIdx);
+          }
 
           rafIdRef.current = requestAnimationFrame(momentumLoop);
         } else {
@@ -201,24 +244,59 @@ export const CircularCarousel = forwardRef<CircularCarouselRef, CircularCarousel
       rafIdRef.current = requestAnimationFrame(momentumLoop);
     }, [anglePerItem, total, smoothRotateTo]);
 
-    // Pointer Events (Touch & Drag)
+    // Cleanup on unmount
+    useEffect(() => {
+      return () => {
+        if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+        if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current);
+      };
+    }, []);
+
+    // Pointer Events with Apple HIG Gesture Disambiguation
     const handlePointerDown = (e: React.PointerEvent) => {
       if (!enableDrag) return;
+      if (e.button !== 0 && e.pointerType === 'mouse') return;
+
       if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
 
-      isDraggingRef.current = true;
+      isDraggingRef.current = false;
+      isUndecidedRef.current = true;
       dragStartXRef.current = e.clientX;
+      dragStartYRef.current = e.clientY;
       lastXRef.current = e.clientX;
       lastTimeRef.current = performance.now();
       velocityRef.current = 0;
       totalDragDistanceRef.current = 0;
-
-      if (viewportRef.current) {
-        viewportRef.current.setPointerCapture(e.pointerId);
-      }
+      // Note: We do NOT set pointer capture here to prevent hijacking vertical scroll
     };
 
     const handlePointerMove = (e: React.PointerEvent) => {
+      // Gesture Disambiguation Deadzone
+      if (isUndecidedRef.current) {
+        const dx = e.clientX - dragStartXRef.current;
+        const dy = e.clientY - dragStartYRef.current;
+        const dist = Math.hypot(dx, dy);
+
+        // 8px slop threshold
+        if (dist < 8) return;
+
+        isUndecidedRef.current = false;
+
+        // If predominantly vertical, user intends to scroll page; release carousel!
+        if (Math.abs(dy) > Math.abs(dx)) {
+          isDraggingRef.current = false;
+          return;
+        }
+
+        // Horizontal intent confirmed: engage carousel drag and capture pointer
+        isDraggingRef.current = true;
+        try {
+          viewportRef.current?.setPointerCapture(e.pointerId);
+        } catch {
+          // ignore
+        }
+      }
+
       if (!isDraggingRef.current) return;
 
       const currentX = e.clientX;
@@ -228,8 +306,8 @@ export const CircularCarousel = forwardRef<CircularCarouselRef, CircularCarousel
 
       totalDragDistanceRef.current += Math.abs(deltaX);
 
-      // Direct 1:1 finger tracking calibrated by radius
-      const sensitivity = anglePerItem / (radius * 0.65);
+      // Calibrated 1:1 finger tracking
+      const sensitivity = anglePerItem / (radius * 0.75);
       rotationRef.current += deltaX * sensitivity;
       velocityRef.current = (deltaX / dt) * 16 * sensitivity;
 
@@ -240,11 +318,18 @@ export const CircularCarousel = forwardRef<CircularCarouselRef, CircularCarousel
 
       const normalized = ((-rotationRef.current % 360) + 360) % 360;
       const currentIdx = Math.round(normalized / anglePerItem) % total;
-      setCurrentIndex(currentIdx);
+      if (currentIndexRef.current !== currentIdx) {
+        currentIndexRef.current = currentIdx;
+        setCurrentIndex(currentIdx);
+      }
     };
 
     const handlePointerUp = (e: React.PointerEvent) => {
-      if (!isDraggingRef.current) return;
+      isUndecidedRef.current = false;
+
+      if (!isDraggingRef.current) {
+        return;
+      }
       isDraggingRef.current = false;
 
       if (viewportRef.current) {
@@ -255,7 +340,7 @@ export const CircularCarousel = forwardRef<CircularCarouselRef, CircularCarousel
         }
       }
 
-      if (totalDragDistanceRef.current < 6) {
+      if (totalDragDistanceRef.current < 8) {
         const nearestIndex = Math.round(-rotationRef.current / anglePerItem);
         smoothRotateTo(-nearestIndex * anglePerItem);
         return;
@@ -264,29 +349,41 @@ export const CircularCarousel = forwardRef<CircularCarouselRef, CircularCarousel
       startMomentum();
     };
 
-    // Wheel / Trackpad Handling
+    // Wheel / Trackpad Handling (Zero Vertical Scroll Hijacking)
     const handleWheel = (e: React.WheelEvent) => {
       if (!enableWheel) return;
-      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-      if (Math.abs(delta) < 4) return;
 
+      const absX = Math.abs(e.deltaX);
+      const absY = Math.abs(e.deltaY);
+
+      // If the scroll gesture is vertical or predominantly vertical, do NOT touch it!
+      // Let it pass through to Lenis and window vertical page scroll smoothly.
+      if (absY >= absX * 0.85 || absX < 4) {
+        return;
+      }
+
+      // Only handle intentional horizontal gestures (trackpad horizontal swipe)
       if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
 
-      const sensitivity = 0.12;
-      rotationRef.current -= delta * sensitivity;
-      setRotation(rotationRef.current);
+      const sensitivity = 0.08;
+      const nextRot = rotationRef.current - e.deltaX * sensitivity;
+      rotationRef.current = nextRot;
+      setRotation(nextRot);
 
-      const normalized = ((-rotationRef.current % 360) + 360) % 360;
+      const normalized = ((-nextRot % 360) + 360) % 360;
       const currentIdx = Math.round(normalized / anglePerItem) % total;
-      setCurrentIndex(currentIdx);
-
-      if ((handleWheel as any).timeout) {
-        clearTimeout((handleWheel as any).timeout);
+      if (currentIndexRef.current !== currentIdx) {
+        currentIndexRef.current = currentIdx;
+        setCurrentIndex(currentIdx);
       }
-      (handleWheel as any).timeout = setTimeout(() => {
+
+      if (wheelTimeoutRef.current) {
+        clearTimeout(wheelTimeoutRef.current);
+      }
+      wheelTimeoutRef.current = setTimeout(() => {
         const nearestIndex = Math.round(-rotationRef.current / anglePerItem);
         smoothRotateTo(-nearestIndex * anglePerItem);
-      }, 180);
+      }, 140);
     };
 
     // Card Tap Handler
@@ -326,14 +423,7 @@ export const CircularCarousel = forwardRef<CircularCarouselRef, CircularCarousel
             const offset = netAngle / anglePerItem;
             const absOffset = Math.abs(offset);
 
-            // 7 Variants Classification:
-            // 1. Center (Selected): offset in (-0.5, +0.5)
-            // 2. Near Left: offset in (-1.5, -0.5]
-            // 3. Near Right: offset in [0.5, 1.5)
-            // 4. Outer Left: offset in (-2.5, -1.5]
-            // 5. Outer Right: offset in [1.5, 2.5)
-            // 6. Far Left: offset in (-3.5, -2.5]
-            // 7. Far Right: offset in [2.5, 3.5)
+            // 7 Variants Classification
             const isCenter = absOffset < 0.5;
             const isNearLeft = offset <= -0.5 && offset > -1.5;
             const isNearRight = offset >= 0.5 && offset < 1.5;
@@ -348,7 +438,7 @@ export const CircularCarousel = forwardRef<CircularCarouselRef, CircularCarousel
             // 7 cards are visible on the stage arc
             const isVisible = absOffset < 3.5;
 
-            // 3D Amphitheater Arc Coordinates:
+            // 3D Amphitheater Arc Coordinates
             const arcAngleDeg = offset * 26;
             const arcAngleRad = (arcAngleDeg * Math.PI) / 180;
 
@@ -356,16 +446,12 @@ export const CircularCarousel = forwardRef<CircularCarouselRef, CircularCarousel
             const posZ = (Math.cos(arcAngleRad) - 1) * radius;
             const rotY = arcAngleDeg * 0.52;
 
-            // Scale Curve:
-            // Center is heroically ZOOMED (scale 1.36)
-            // Others are distinctly smaller (Near: ~0.75, Outer: ~0.62, Far: ~0.48)
+            // Scale Curve
             const scale = isCenter 
               ? 1.36 
               : Math.max(0.44, 0.88 - (absOffset / 3.5) * 0.46);
 
-            // Opacity Curve:
-            // Center is 100% visible (1.0)
-            // Others are "little bit low visible" (Near: ~0.42, Outer: ~0.25, Far: ~0.14)
+            // Opacity Curve
             let opacity = 0;
             if (absOffset <= 0.5) {
               opacity = 1.0;
@@ -381,7 +467,7 @@ export const CircularCarousel = forwardRef<CircularCarouselRef, CircularCarousel
               opacity = 0;
             }
 
-            // Layered z-index (Center is 150, foreground, others stepped down)
+            // Layered z-index
             const zIndex = isCenter ? 150 : Math.round(90 - absOffset * 20);
 
             return (

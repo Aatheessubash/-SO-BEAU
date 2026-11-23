@@ -1,78 +1,76 @@
-// SOBEAU Design System Tokens — Official Brand Guidelines 2026
+// SOBEAU Luxury Design System Tokens — Atelier International Edition
+// Core Luxury Color Palette
+$color-ivory: #FAF9F6;           // Primary Atelier Canvas Surface
+$color-white: #FFFFFF;           // Pure Cloud Card Highlights
+$color-navy: #14243A;            // Signature Melbourne Atelier Navy
+$color-navy-dark: #0A1422;       // Deepest Onyx Navy
+$color-navy-light: #1E3452;      // Active Interactive States
+$color-navy-subtle: #2D486B;     // Subtle Navy Slate
+$color-navy-soft: rgba(20, 36, 58, 0.06); // Tinted pill badges & surfaces
 
-// SOBEAU Design System Tokens — Australian Sky Blue & Royal Navy Edition 2026 (From Brand Artwork)
-
-// Primary Signature Brand Color: Deep Royal Celestial Navy
-$color-navy: #1D3557;           // Deep Royal Navy ("SO BEAU" logo, primary text, buttons)
-$color-navy-dark: #12233A;      // Deepest Navy for high contrast & headers
-$color-navy-light: #2A4B7C;     // Hover states & interactive focus
-$color-navy-subtle: #3A6094;
-$color-navy-soft: rgba(29, 53, 87, 0.08); // Tinted pill badges & surfaces
-
-// Secondary Atmospheric Accent: Radiant Australian Sky Blue
-$color-secondary: #36618E;      // Ocean Slate / Secondary Navy Accent
-$color-sky-blue: #7BA4D5;       // Vibrant Australian Sky Blue
-$color-sky-light: #EBF3FB;      // Soft Cloud / Sky Tint Canvas
-$color-sky-surface: #F4F8FC;    // Page Background Canvas
-$color-sky-deep: #4A7EB5;       // Darker Sky Blue for text on light backgrounds
-$color-sky-soft: rgba(123, 164, 213, 0.15); // Frosted pill backgrounds
+// Secondary Atmospheric Accent & Soft Greys
+$color-soft-grey: #E9EBEF;       // Architectural Hairline Borders & Frames
+$color-secondary: #2D486B;       // Ocean Slate / Secondary Navy Accent
+$color-sky-blue: #648BB7;        // Vibrant Australian Sky Blue
+$color-sky-light: #F4F6F9;       // Soft Cloud / Sky Tint Canvas
+$color-sky-surface: #FAF9F6;     // Luxury Page Background Canvas
+$color-sky-deep: #1E3452;        // Darker Sky Blue for text
+$color-sky-soft: rgba(20, 36, 58, 0.08); // Frosted pill backgrounds
+$color-sky-container: #F0F3F7;   // Recessed Container / Soft Card
 
 // Pure Cloud Whites & Canvas
-$color-cloud-white: #FFFFFF;    // Pure White surface highlight
-$color-white: #FFFFFF;
-$color-sky-container: #EAF2FA;  // Recessed Container / Soft Cloud Card
+$color-cloud-white: #FFFFFF;     // Pure White surface highlight
 
 // Signature Campaign Scrub Shades
-$color-terracotta-clay: #82504D; // Terracotta / Rosewood Scrub (from Artwork)
+$color-terracotta-clay: #82504D; // Terracotta / Rosewood Scrub
 $color-terracotta-dark: #6D3E3B;
 
 // Gold Accent (Refined Hospital Caduceus & Stars)
-$color-muted-gold: #C5A050;     // Muted Gold
-$color-gold-light: #D6B778;
-$color-gold-dark: #A6833D;
-$color-gold-subtle: rgba(197, 160, 80, 0.16);
+$color-muted-gold: #B6A17B;      // Muted Atelier Gold
+$color-gold-light: #CDB896;      // Luminous Gold
+$color-gold-dark: #9A845E;       // Burnished Bronze
+$color-gold-subtle: rgba(182, 161, 123, 0.16);
 
-// Backward-compatible Aliases mapped to New Sky Blue & Deep Navy Palette
-$color-forest-green: $color-navy;           // Replaces forest green with Deep Navy
+// Backward-compatible Aliases mapped to Luxury Palette
+$color-forest-green: $color-navy;           // Replaces legacy green with Atelier Navy
 $color-forest-dark: $color-navy-dark;
 $color-forest-light: $color-navy-light;
 $color-forest-subtle: $color-navy-subtle;
 $color-forest-soft: $color-navy-soft;
 
-$color-warm-cream: $color-sky-surface;       // Replaces warm cream with Soft Sky Mist (#F4F8FC)
+$color-warm-cream: $color-ivory;
 $color-cream-light: $color-cloud-white;
 $color-cream-dark: $color-sky-container;
 
-$color-soft-beige: #D5E4F3;                 // Replaces soft beige with Soft Sky Blue
-$color-beige-light: #EBF3FB;
-$color-beige-dark: #B8D3EC;
+$color-soft-beige: #E9EBEF;
+$color-beige-light: #F4F6F9;
+$color-beige-dark: #D4D8E0;
 
-$color-charcoal: $color-navy;               // Primary dark text becomes Deep Royal Navy
+$color-charcoal: $color-navy;               // Primary dark text becomes Atelier Navy
 $color-charcoal-light: $color-navy-light;
 $color-charcoal-subtle: $color-navy-subtle;
-$color-ivory: $color-sky-surface;
 $color-ivory-light: #FFFFFF;
-$color-ivory-dark: #D5E4F3;
+$color-ivory-dark: #E9EBEF;
 
-$color-taupe: $color-sky-blue;              // Replaces taupe with Sky Blue
-$color-taupe-light: $color-sky-light;
-$color-taupe-dark: $color-sky-deep;
+$color-taupe: #8C7B6B;
+$color-taupe-light: #EFECE8;
+$color-taupe-dark: #6B5B4E;
 
-$color-sage: #B8D3EC;
-$color-sage-light: #EBF3FB;
-$color-sage-dark: #4A6E9B;
+$color-sage: #96A89D;
+$color-sage-light: #EFF4F1;
+$color-sage-dark: #4A6355;
 
-$color-grey: #5A708B;                       // Cool slate navy grey
-$color-grey-light: #8BA0B8;
-$color-grey-subtle: #E2ECF7;
+$color-grey: #4A5568;                       // Cool slate grey
+$color-grey-light: #718096;
+$color-grey-subtle: #E9EBEF;
 
-$color-border: #D8E6F3;                     // Soft Sky border
-$color-border-dark: #BFD7EC;
+$color-border: #E9EBEF;                     // Soft Grey luxury border
+$color-border-dark: #D4D8E0;
 
 // Semantic
-$color-success: #1D3557;
-$color-error: #A83B3B;
-$color-warning: #C5A059;
+$color-success: #14243A;
+$color-error: #9B2C2C;
+$color-warning: #B6A17B;
 
 // Typography
 $font-serif: 'Cormorant Garamond', Garamond, Georgia, serif;

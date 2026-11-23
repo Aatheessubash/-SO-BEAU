@@ -1,0 +1,231 @@
+@use '../variables' as *;
+
+.interactive-3d-garment-container {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  background: radial-gradient(
+    ellipse 90% 80% at 50% 50%,
+    #FAF9F6 0%,
+    #F3F5F8 60%,
+    #E9EBEF 100%
+  );
+  border: 1px solid #E9EBEF;
+  box-shadow: 
+    0 8px 32px rgba(20, 36, 58, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .canvas-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+      outline: none;
+    }
+  }
+
+  // Floating Glass HUD
+  .garment-hud-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    pointer-events: none;
+    z-index: 2;
+
+    .hud-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+
+      .hud-badge {
+        pointer-events: auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(182, 161, 123, 0.35);
+        padding: 0.4rem 0.85rem;
+        border-radius: 30px;
+        font-family: $font-sans;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #14243A;
+        box-shadow: 0 2px 10px rgba(20, 36, 58, 0.06);
+
+        .sparkle-icon {
+          color: #B6A17B;
+        }
+      }
+
+      .hud-actions-group {
+        pointer-events: auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        .hud-tool-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          background: rgba(255, 255, 255, 0.85);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1px solid #E9EBEF;
+          padding: 0.42rem 0.8rem;
+          border-radius: 20px;
+          font-family: $font-sans;
+          font-size: 0.72rem;
+          font-weight: 600;
+          color: #14243A;
+          cursor: pointer;
+          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+          box-shadow: 0 2px 8px rgba(20, 36, 58, 0.04);
+
+          &:hover {
+            background: #FFFFFF;
+            border-color: #B6A17B;
+            transform: translateY(-1px);
+          }
+
+          &:active {
+            transform: scale(0.97);
+          }
+
+          &.active {
+            background: #14243A;
+            color: #FAF9F6;
+            border-color: #14243A;
+          }
+
+          .spin-icon {
+            animation: spinAround 4s linear infinite;
+          }
+        }
+      }
+    }
+
+    .hud-bottom-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+      flex-wrap: wrap;
+
+      .hud-colorways-glass {
+        pointer-events: auto;
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid #E9EBEF;
+        border-radius: 16px;
+        padding: 0.65rem 1rem;
+        box-shadow: 0 6px 20px rgba(20, 36, 58, 0.08);
+
+        .colorway-label {
+          display: block;
+          font-size: 0.72rem;
+          color: #4A5568;
+          margin-bottom: 0.45rem;
+
+          strong {
+            color: #14243A;
+            font-weight: 700;
+          }
+        }
+
+        .swatches-rack {
+          display: flex;
+          align-items: center;
+          gap: 0.45rem;
+
+          .hud-swatch-circle {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 2px solid #FFFFFF;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            position: relative;
+
+            &:hover {
+              transform: scale(1.15);
+            }
+
+            &:active {
+              transform: scale(0.95);
+            }
+
+            &.is-active {
+              box-shadow: 0 0 0 2px #14243A, 0 2px 8px rgba(0, 0, 0, 0.2);
+              transform: scale(1.12);
+
+              .check-mark {
+                color: #FFFFFF;
+              }
+            }
+          }
+        }
+      }
+
+      .hud-clinical-pill {
+        pointer-events: auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: rgba(255, 255, 255, 0.82);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid #E9EBEF;
+        padding: 0.38rem 0.8rem;
+        border-radius: 20px;
+        font-family: $font-sans;
+        font-size: 0.68rem;
+        font-weight: 600;
+        color: #4A5568;
+
+        .shield-icon {
+          color: #B6A17B;
+        }
+
+        @media (max-width: 640px) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@keyframes spinAround {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

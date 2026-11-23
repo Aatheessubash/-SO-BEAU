@@ -3,7 +3,9 @@
 .curated-silhouettes-suite {
   scroll-margin-top: 75px;
   position: relative;
-  background: radial-gradient(120% 90% at 50% 10%, #FFFFFF 0%, #F5F8FC 60%, #EBF2F9 100%);
+  background: radial-gradient(120% 90% at 50% 10%, #FFFFFF 0%, #FAF9F6 50%, #F3F5F8 100%);
+  border-top: 1px solid #E9EBEF;
+  border-bottom: 1px solid #E9EBEF;
   padding: clamp(3.5rem, 5vw, 4.5rem) 0 clamp(4rem, 6vw, 5.5rem);
   overflow: hidden;
 
