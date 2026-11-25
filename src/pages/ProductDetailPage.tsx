@@ -20,9 +20,10 @@ import { sounds } from '../utils/soundEffects';
 import { SizeGuideModal } from '../components/common/SizeGuideModal';
 import { CustomEmbroideryModal } from '../components/product/CustomEmbroideryModal';
 import { Interactive3DGarmentViewer } from '../components/common/Interactive3DGarmentViewer';
+import fallbackProducts from '../../server/data/products.json';
 import '../styles/pages/ProductDetailPage.scss';
 
-const SIZES = ['4', '6', '8', '10', '12', '14', '16', '18'];
+const DEFAULT_WOMENS_SIZES = ['AU 4 (XXS)', 'AU 6 (XS)', 'AU 8 (S)', 'AU 10 (M)', 'AU 12 (L)', 'AU 14 (XL)', 'AU 16 (2XL)'];
 
 export const ProductDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -31,9 +32,9 @@ export const ProductDetailPage: React.FC = () => {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Selections - default to AU 8 matching reference design
+  // Selections
   const [selectedColor, setSelectedColor] = useState<ProductColor | null>(null);
-  const [selectedSize, setSelectedSize] = useState<string>('8');
+  const [selectedSize, setSelectedSize] = useState<string>('AU 8 (S)');
   const [quantity, setQuantity] = useState(1);
   const [customization, setCustomization] = useState<CartItemCustomization | null>(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -57,16 +58,30 @@ export const ProductDetailPage: React.FC = () => {
     const fetchProductData = async () => {
       if (!slug) return;
       setLoading(true);
+      setActiveImageIndex(0);
+      setCustomization(null);
       try {
         const res = await api.getProductBySlug(slug);
         if (res.data) {
           setProduct(res.data);
           setSelectedColor(res.data.colors[0]);
+          const sizes = res.data.sizes || DEFAULT_WOMENS_SIZES;
+          setSelectedSize(sizes.find((s: string) => s.includes('8 (S)') || s.includes('M (40)')) || sizes[0]);
+          return;
         }
       } catch (err) {
-        console.error('Failed to load product details', err);
+        console.error('Failed to load product details from API, using local catalog fallback', err);
       } finally {
         setLoading(false);
+      }
+
+      // Resilient fallback so demo never fails if API restarts
+      const localMatch = (fallbackProducts as unknown as Product[]).find((p) => p.slug === slug);
+      if (localMatch) {
+        setProduct(localMatch);
+        setSelectedColor(localMatch.colors[0]);
+        const sizes = localMatch.sizes || DEFAULT_WOMENS_SIZES;
+        setSelectedSize(sizes.find((s) => s.includes('8 (S)') || s.includes('M (40)')) || sizes[0]);
       }
     };
 
@@ -103,16 +118,17 @@ export const ProductDetailPage: React.FC = () => {
 
   const unitPrice = product.price + (customization ? customization.price : 0);
   const isWomens = product.category === 'womens-scrubs' || product.slug.includes('women');
+  const availableSizes = product.sizes && product.sizes.length > 0 ? product.sizes : DEFAULT_WOMENS_SIZES;
 
   const handleAddToCart = (e?: React.MouseEvent<HTMLButtonElement>) => {
-    sounds.playAddToCart();
-    addToCart(product, selectedColor, `AU ${selectedSize}`, quantity, e?.currentTarget, customization || undefined);
+    const normalizedSize = selectedSize.startsWith('AU') ? selectedSize : `AU ${selectedSize}`;
+    addToCart(product, selectedColor, normalizedSize, quantity, e?.currentTarget, customization || undefined);
   };
 
-  // Determine active display image
-  let heroImageSrc = isWomens 
-    ? '/images/pdp-studio-female-shadow.jpg' 
-    : '/images/male/male-navy-front.png';
+  // Color-reactive hero studio photo (index 0 always reflects selected colorway!)
+  let heroImageSrc =
+    selectedColor.modelImage ||
+    (isWomens ? '/images/female/female-navy-front.png' : '/images/male/male-navy-front.png');
 
   if (product.images && product.images.length > activeImageIndex && activeImageIndex > 0) {
     heroImageSrc = product.images[activeImageIndex];
@@ -170,9 +186,10 @@ export const ProductDetailPage: React.FC = () => {
           ) : (
             <div className="pdp-studio-image-frame">
               <img
+                key={heroImageSrc}
                 src={heroImageSrc}
-                alt={product.name}
-                className="pdp-studio-primary-image"
+                alt={`${product.name} in ${selectedColor.name}`}
+                className="pdp-studio-primary-image swatch-crossfade-img"
                 loading="eager"
               />
 
@@ -229,12 +246,16 @@ export const ProductDetailPage: React.FC = () => {
 
             {/* Colorway Selection Swatches */}
             <div className="pdp-colorway-section">
+              <div className="size-label-row" style={{ marginBottom: '0.65rem' }}>
+                <span className="size-label-title">SHADE: {selectedColor.name.toUpperCase()}</span>
+                <span className="size-label-region">{product.colors.length} Atelier Shades</span>
+              </div>
               <div className="colorway-swatches-row" role="radiogroup" aria-label="Available Colors">
                 {product.colors.map((color) => {
-                  const isCurrent = selectedColor.id === color.id;
+                  const isCurrent = selectedColor.code === color.code;
                   return (
                     <button
-                      key={color.id}
+                      key={color.code}
                       type="button"
                       role="radio"
                       aria-checked={isCurrent}
@@ -245,6 +266,7 @@ export const ProductDetailPage: React.FC = () => {
                       onClick={() => {
                         sounds.playSwatchClick();
                         setSelectedColor(color);
+                        setActiveImageIndex(0);
                       }}
                     />
                   );
@@ -256,11 +278,11 @@ export const ProductDetailPage: React.FC = () => {
             <div className="pdp-size-section">
               <div className="size-label-row">
                 <span className="size-label-title">SIZE</span>
-                <span className="size-label-region">AU</span>
+                <span className="size-label-region">AUSTRALIAN FIT</span>
               </div>
 
               <div className="size-boxes-row" role="radiogroup" aria-label="Select Size">
-                {SIZES.map((sz) => {
+                {availableSizes.map((sz) => {
                   const isSelected = selectedSize === sz;
                   return (
                     <button
@@ -274,20 +296,66 @@ export const ProductDetailPage: React.FC = () => {
                         setSelectedSize(sz);
                       }}
                     >
-                      {sz}
+                      {sz.replace(/^AU\s+/i, '')}
                     </button>
                   );
                 })}
               </div>
 
-              {/* Fit Guide Link with Hanger Icon */}
+              {/* Fit Guide, AI Fit Finder & Monogram Embroidery Actions */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center', marginTop: '0.75rem' }}>
+                <button
+                  type="button"
+                  className="fit-guide-link-btn"
+                  onClick={() => setIsSizeGuideOpen(true)}
+                >
+                  <Shirt size={14} className="hanger-icon" />
+                  <span>Fit Guide &amp; Measurements</span>
+                </button>
+
+                <button
+                  type="button"
+                  className="fit-guide-link-btn"
+                  onClick={openFitFinder}
+                >
+                  <Sparkles size={14} />
+                  <span>Find My Size (30s)</span>
+                </button>
+              </div>
+
+              {/* Optional Hospital Monogram Embroidery Selector */}
               <button
                 type="button"
-                className="fit-guide-link-btn"
-                onClick={() => setIsSizeGuideOpen(true)}
+                onClick={() => {
+                  sounds.playSwatchClick();
+                  setIsEmbroideryModalOpen(true);
+                }}
+                style={{
+                  width: '100%',
+                  marginTop: '0.9rem',
+                  padding: '0.8rem 1rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  borderRadius: '10px',
+                  border: customization ? '1.5px solid #14243A' : '1px dashed rgba(20, 36, 58, 0.28)',
+                  background: customization ? 'rgba(20, 36, 58, 0.05)' : '#FAF9F6',
+                  color: '#14243A',
+                  fontSize: '0.82rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'all 180ms ease',
+                }}
               >
-                <Shirt size={14} className="hanger-icon" />
-                <span>Fit Guide &amp; Measurements</span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Sparkles size={14} />
+                  {customization
+                    ? `Monogram: "${customization.text}" (${customization.placement})`
+                    : 'Add Hospital Monogram Embroidery (+$18 AUD)'}
+                </span>
+                <span style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.08em', opacity: 0.75 }}>
+                  {customization ? 'Edit' : 'Customize'}
+                </span>
               </button>
             </div>
 

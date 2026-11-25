@@ -19,7 +19,7 @@ body {
   background-color: $color-ivory-light;
   color: $color-charcoal;
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: clip;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

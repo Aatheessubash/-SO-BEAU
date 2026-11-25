@@ -9,6 +9,7 @@ export const CartDrawer: React.FC = () => {
     isCartOpen,
     closeCart,
     cart,
+    totalItems,
     removeFromCart,
     updateQuantity,
     subtotal,
@@ -56,18 +57,20 @@ export const CartDrawer: React.FC = () => {
         <div className="drawer-header">
           <div className="drawer-title-wrap">
             <h3>Shopping Bag</h3>
-            <span className="item-count-label">({cart.length} {cart.length === 1 ? 'piece' : 'pieces'})</span>
+            <span className="item-count-label">({totalItems} {totalItems === 1 ? 'piece' : 'pieces'})</span>
           </div>
           <button onClick={closeCart} className="close-drawer-btn" aria-label="Close bag">
             <X size={20} />
           </button>
         </div>
 
-        {/* 05. Animated Success Feedback Banner */}
-        <div className="cart-success-badge-banner animate-fade-in">
-          <span className="success-icon-dot">✓</span>
-          <span>Added to your bag! Free 30-Day Hospital Shift Trial</span>
-        </div>
+        {/* 05. Animated Success Feedback Banner (only when bag has items) */}
+        {cart.length > 0 && (
+          <div className="cart-success-badge-banner animate-fade-in">
+            <span className="success-icon-dot">✓</span>
+            <span>Complimentary 30-Day Hospital Shift Trial Included</span>
+          </div>
+        )}
 
         {/* Free Shipping Progress */}
         <div className="free-shipping-tracker">
@@ -115,8 +118,8 @@ export const CartDrawer: React.FC = () => {
                     className="item-image-wrap"
                   >
                     <img 
-                      src={item.product.images[0]} 
-                      alt={item.product.name} 
+                      src={item.selectedColor.modelImage || item.product.images[0]} 
+                      alt={`${item.product.name} in ${item.selectedColor.name}`} 
                     />
                   </Link>
 

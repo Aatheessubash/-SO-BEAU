@@ -10,7 +10,7 @@ export const Footer: React.FC = () => {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { showToast } = useCart();
+  const { showToast, applyPromoCode } = useCart();
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,9 +19,11 @@ export const Footer: React.FC = () => {
     try {
       const res = await api.subscribeNewsletter(email);
       setSubscribed(true);
-      showToast(res.message || 'Welcome to the SO BEAU circle.');
+      applyPromoCode('BEAU10');
+      showToast(res.message || 'Welcome to the SO BEAU circle. 10% code BEAU10 applied!');
     } catch {
-      showToast('Welcome to the SO BEAU circle. Use code BEAU10.');
+      applyPromoCode('BEAU10');
+      showToast('Welcome to the SO BEAU circle. 10% code BEAU10 applied!');
       setSubscribed(true);
     } finally {
       setLoading(false);

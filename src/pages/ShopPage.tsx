@@ -39,6 +39,8 @@ export const ShopPage: React.FC = () => {
   const handleCategoryChange = (catId: string) => {
     sounds.playSwatchClick();
     const nextParams = new URLSearchParams(searchParams);
+    nextParams.delete('wishlist');
+    nextParams.delete('search');
     if (catId === 'all') {
       nextParams.delete('category');
     } else {

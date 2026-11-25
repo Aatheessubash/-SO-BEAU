@@ -1,0 +1,440 @@
+@use '../variables' as *;
+
+// =============================================================================
+// SO BEAU — Welcome 3D Scroll-Driven Frame Showcase
+// Built following CSS Scroll-Driven Animations best practices:
+// - Compositor-only properties (transform, opacity)
+// - Progressive enhancement via @supports (animation-timeline: ...)
+// - Safe fallbacks for Firefox & prefers-reduced-motion
+// =============================================================================
+
+// 1. Native Root Scroll Progress Hairline Bar
+.welcome-root-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, $color-navy 0%, $color-muted-gold 65%, $color-sky-blue 100%);
+  transform-origin: left center;
+  transform: scaleX(0);
+  z-index: $z-header + 20;
+  pointer-events: none;
+  opacity: 0;
+}
+
+@supports (animation-timeline: scroll()) {
+  .welcome-root-progress {
+    opacity: 1;
+    animation: welcome-root-progress-grow linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+
+@keyframes welcome-root-progress-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+// 2. Scroll Runway & Sticky 3D Stage
+.welcome-scroll-runway {
+  position: relative;
+  width: 100%;
+  // Extended 900vh runway delivers slow, deliberate, luxury cinema pacing across all 555 frames
+  height: 900vh;
+  background-color: #0B121C;
+  // IMPORTANT: Never use overflow: hidden on a sticky or view-timeline ancestor
+  overflow: visible;
+  z-index: 30;
+
+  // Named ViewTimeline for CSS Scroll-Driven 3D depth transforms
+  @supports (animation-timeline: view()) {
+    view-timeline-name: --welcome-runway;
+    view-timeline-axis: block;
+    timeline-scope: --welcome-runway;
+  }
+
+  @media (max-width: $bp-tablet) {
+    height: 680vh;
+  }
+
+  &.is-reduced-motion {
+    height: calc(100vh - var(--navbar-height, 72px));
+    min-height: 520px;
+  }
+
+  .welcome-sticky-stage {
+    position: sticky;
+    top: var(--navbar-height, 72px);
+    width: 100%;
+    height: calc(100vh - var(--navbar-height, 72px));
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: clip;
+    background-color: #000000;
+  }
+
+  .welcome-3d-viewport {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    perspective: 1400px;
+    transform-style: preserve-3d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // Default fallback state (Firefox / non-animation-timeline browsers)
+  .welcome-3d-frame {
+    --pointer-rx: 0deg;
+    --pointer-ry: 0deg;
+
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transform: rotateX(var(--pointer-rx)) rotateY(var(--pointer-ry));
+    transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+    background-color: #000000;
+  }
+
+  // Native CSS Scroll-Driven 3D Cinema Depth Peel (compositor-only transform, crystal clear opacity 1)
+  @supports (animation-timeline: view()) {
+    .welcome-3d-viewport {
+      animation: welcome-3d-scroll-depth linear both;
+      animation-timeline: --welcome-runway;
+      animation-range: exit 0% exit 100%;
+      will-change: transform;
+    }
+  }
+
+  .welcome-sequence-canvas,
+  .welcome-poster-fallback {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    display: block;
+    object-fit: contain;
+    filter: none;
+  }
+
+  .welcome-sequence-canvas {
+    opacity: 0;
+    transition: opacity 220ms ease;
+
+    &.is-ready {
+      opacity: 1;
+    }
+  }
+
+  // Top Editorial Header Overlay (compact, flush below sticky navbar, zero haze/scrim)
+  .welcome-header-overlay {
+    position: absolute;
+    top: clamp(0.9rem, 2vh, 1.5rem);
+    left: clamp(1.25rem, 3.5vw, 3rem);
+    right: clamp(1.25rem, 3.5vw, 3rem);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    z-index: 5;
+    pointer-events: none;
+
+    @media (max-width: $bp-tablet) {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .welcome-chapter-copy {
+      max-width: 480px;
+      animation: welcome-chapter-enter 380ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .welcome-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: $font-sans;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+      padding: 0.28rem 0.7rem;
+      border-radius: $radius-full;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .welcome-headline {
+      font-family: $font-serif;
+      font-size: clamp(1.65rem, 3vw, 2.75rem);
+      font-weight: 600;
+      line-height: 1.06;
+      letter-spacing: -0.015em;
+      margin: 0 0 0.4rem 0;
+    }
+
+    .welcome-subline {
+      font-family: $font-sans;
+      font-size: clamp(0.8rem, 0.98vw, 0.92rem);
+      line-height: 1.45;
+      max-width: 400px;
+      margin: 0;
+    }
+
+    // Theme contrast adaptations
+    &.theme-dark {
+      .welcome-eyebrow {
+        color: #F4EAD5;
+        background: rgba(15, 23, 42, 0.55);
+        border: 1px solid rgba(205, 184, 150, 0.35);
+      }
+      .welcome-headline {
+        color: #FFFFFF;
+        text-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+      }
+      .welcome-subline {
+        color: rgba(255, 255, 255, 0.86);
+      }
+      .welcome-skip-btn {
+        background: rgba(255, 255, 255, 0.14);
+        color: #FFFFFF;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.25);
+        }
+      }
+    }
+
+    &.theme-light {
+      .welcome-eyebrow {
+        color: $color-navy;
+        background: rgba(255, 255, 255, 0.78);
+        border: 1px solid rgba(20, 36, 58, 0.12);
+      }
+      .welcome-headline {
+        color: $color-navy-dark;
+        text-shadow: 0 2px 18px rgba(255, 255, 255, 0.55);
+      }
+      .welcome-subline {
+        color: rgba(15, 23, 42, 0.82);
+      }
+      .welcome-skip-btn {
+        background: rgba(20, 36, 58, 0.88);
+        color: #FFFFFF;
+        border: 1px solid rgba(20, 36, 58, 0.15);
+
+        &:hover {
+          background: #0A1422;
+        }
+      }
+    }
+
+    .welcome-skip-btn {
+      pointer-events: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: $radius-full;
+      font-family: $font-sans;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      cursor: pointer;
+      transition: transform $transition-fast, background-color $transition-fast;
+      white-space: nowrap;
+
+      &:hover {
+        transform: translateY(-1px);
+      }
+
+      &:active {
+        transform: scale(0.97);
+      }
+    }
+  }
+
+  // Bottom-Center Scroll Prompt Cue (lifted clear of AnnouncementBar fold at scrollY=0)
+  .welcome-scroll-cue {
+    position: absolute;
+    bottom: clamp(3.4rem, 8vh, 4.6rem);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 5;
+    pointer-events: none;
+
+    .scroll-mouse {
+      width: 22px;
+      height: 36px;
+      border-radius: 12px;
+      border: 1.5px solid rgba(255, 255, 255, 0.75);
+      background: rgba(10, 17, 27, 0.35);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: center;
+      padding-top: 6px;
+    }
+
+    .scroll-wheel {
+      width: 3px;
+      height: 7px;
+      border-radius: 2px;
+      background: #FFFFFF;
+      animation: welcome-wheel-pulse 1.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    .scroll-cue-label {
+      font-family: $font-sans;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+    }
+  }
+
+  // Bottom-Right Minimal Scrub HUD (avoids baked bottom-left frame captions & fold clipping)
+  .welcome-hud-pill {
+    position: absolute;
+    bottom: clamp(3.2rem, 7.5vh, 4.25rem);
+    right: clamp(1.25rem, 3.5vw, 3rem);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.55rem 1rem;
+    border-radius: $radius-full;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 5;
+    pointer-events: none;
+    font-family: $font-sans;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    font-variant-numeric: tabular-nums;
+
+    &.theme-dark {
+      background: rgba(10, 17, 27, 0.65);
+      color: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+
+      .hud-track {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      .hud-fill {
+        background: $color-gold-light;
+      }
+    }
+
+    &.theme-light {
+      background: rgba(255, 255, 255, 0.82);
+      color: $color-navy;
+      border: 1px solid rgba(20, 36, 58, 0.12);
+      box-shadow: 0 6px 20px rgba(20, 36, 58, 0.08);
+
+      .hud-track {
+        background: rgba(20, 36, 58, 0.14);
+      }
+      .hud-fill {
+        background: $color-navy;
+      }
+    }
+
+    .hud-track {
+      position: relative;
+      width: 68px;
+      height: 3px;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .hud-fill {
+      position: absolute;
+      inset: 0;
+      transform-origin: left center;
+      transition: transform 80ms linear;
+    }
+
+    .hud-percent {
+      min-width: 2.4em;
+      text-align: right;
+    }
+  }
+}
+
+// =============================================================================
+// Keyframes — Compositor-Only (transform & opacity)
+// =============================================================================
+
+@keyframes welcome-3d-scroll-depth {
+  0% {
+    transform: perspective(1400px) rotateX(0deg) scale(1) translateZ(0px);
+  }
+  100% {
+    transform: perspective(1400px) rotateX(10deg) scale(0.95) translateZ(-60px);
+  }
+}
+
+@keyframes welcome-chapter-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes welcome-wheel-pulse {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  70% {
+    opacity: 0.15;
+    transform: translateY(11px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(11px);
+  }
+}
+
+// Accessibility: Reduced Motion
+@media (prefers-reduced-motion: reduce) {
+  .welcome-root-progress {
+    display: none;
+  }
+
+  .welcome-scroll-runway {
+    .welcome-3d-viewport,
+    .welcome-3d-frame,
+    .welcome-chapter-copy {
+      animation: none !important;
+      transform: none !important;
+    }
+  }
+}

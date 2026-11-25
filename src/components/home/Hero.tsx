@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { MessageSquare, Star } from 'lucide-react';
+import { MessageSquare, Star, Play, Pause, Volume2, VolumeX, Sparkles, Film, Maximize2, Minimize2 } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ProductColor } from '../../types';
+import { useCart } from '../../context/CartContext';
 import { Hero3DAtmosphere } from './Hero3DAtmosphere';
 import '../../styles/components/Hero.scss';
 
@@ -20,10 +21,53 @@ export const Hero: React.FC<HeroProps> = ({
   activeGender = 'womens',
   currentColor,
 }) => {
+  const { openFitFinder } = useCart();
   const heroSectionRef = useRef<HTMLElement>(null);
   const modelStageRef = useRef<HTMLDivElement>(null);
   const heroImageRef = useRef<HTMLImageElement>(null);
   const shadowRef = useRef<HTMLDivElement>(null);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const videoFrameRef = useRef<HTMLDivElement>(null);
+
+  // Mode: 'video' (Google Flow / Gemini Omni Campaign Film) vs 'model' (3D Studio Cutout)
+  const [heroMode, setHeroMode] = useState<'video' | 'model'>('video');
+  const [isFullScreenFit, setIsFullScreenFit] = useState(false);
+  const isFullScreenFitRef = useRef(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(true);
+  const [isVideoMuted, setIsVideoMuted] = useState(true);
+
+  useEffect(() => {
+    isFullScreenFitRef.current = isFullScreenFit;
+  }, [isFullScreenFit]);
+
+  const toggleVideoPlay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!heroVideoRef.current) return;
+    if (isVideoPlaying) {
+      heroVideoRef.current.pause();
+      setIsVideoPlaying(false);
+    } else {
+      heroVideoRef.current.play().catch(() => {});
+      setIsVideoPlaying(true);
+    }
+  };
+
+  const toggleVideoMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!heroVideoRef.current) return;
+    heroVideoRef.current.muted = !isVideoMuted;
+    setIsVideoMuted(!isVideoMuted);
+  };
+
+  const toggleFullScreenFit = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setHeroMode('video');
+    setIsFullScreenFit((prev) => !prev);
+    if (!isVideoPlaying && heroVideoRef.current) {
+      heroVideoRef.current.play().catch(() => {});
+      setIsVideoPlaying(true);
+    }
+  };
 
   const heroImageSrc = currentColor?.modelImage || (
     activeGender === 'womens'
@@ -139,9 +183,11 @@ export const Hero: React.FC<HeroProps> = ({
 
     let hasLanded = false;
 
-    // Initial state check on mount (e.g. if loaded mid-page)
+    // Initial state check on mount (relative to heroSection so components above Hero work cleanly)
     const initialCove = document.querySelector('.studio-cove-viewport');
-    if (typeof window !== 'undefined' && window.scrollY > 450) {
+    const heroTopOffset = heroSection.offsetTop;
+    const relativeInitialScroll = (typeof window !== 'undefined' ? window.scrollY : 0) - heroTopOffset;
+    if (relativeInitialScroll > 450) {
       hasLanded = true;
       initialCove?.classList.add('is-docked');
       gsap.set(stage, { visibility: 'hidden', opacity: 0 });
@@ -151,29 +197,40 @@ export const Hero: React.FC<HeroProps> = ({
       gsap.set(stage, { x: 0, y: 0, scale: 1, visibility: 'visible', opacity: 1 });
     }
 
-    // ScrollTrigger: Animates exclusively on SCROLL DOWN into Carousel dock
+    // ScrollTrigger: Animates exclusively on SCROLL DOWN into Carousel dock & 3D Scroll Perspective
     const st = ScrollTrigger.create({
       trigger: heroSection,
       start: 'top top',
-      end: '+=680', // Completes flight gracefully as carousel moves into view
+      end: '+=720', // Completes flight & 3D perspective gracefully as carousel moves into view
       scrub: 0.8,
       onUpdate: (self) => {
         const p = self.progress;
         const dir = self.direction; // 1 = scrolling down, -1 = scrolling up
         const coveEl = document.querySelector('.studio-cove-viewport');
 
-        // 1. AT TOP OF HERO (p <= 0.08 or scrollY < 120):
+        // 3D Perspective Scroll Animation on Video Frame
+        if (videoFrameRef.current) {
+          const tiltX = p * 16; // 0 to 16 deg backward tilt
+          const scale = isFullScreenFitRef.current ? (1 - p * 0.04) : (1 - p * 0.08);
+          const zDepth = -p * 110; // 0 to -110px depth in 3D space
+          gsap.set(videoFrameRef.current, {
+            transform: `perspective(1200px) rotateX(${tiltX}deg) scale(${scale}) translateZ(${zDepth}px)`,
+            transformOrigin: 'center center',
+          });
+        }
+
+        // 1. AT TOP OF HERO (p <= 0.08):
         // Hero model resting at home. Carousel center figure strictly hidden.
-        if (p <= 0.08 || window.scrollY < 120) {
+        if (p <= 0.08) {
           hasLanded = false;
           coveEl?.classList.remove('is-docked');
           gsap.set(stage, { x: 0, y: 0, scale: 1, visibility: 'visible', opacity: 1 });
           return;
         }
 
-        // 2. DOCKED IN CAROUSEL (p >= 0.88 or scrollY >= 620):
+        // 2. DOCKED IN CAROUSEL (p >= 0.88):
         // Carousel center figure is active. Hero floating stage MUST BE STRICTLY HIDDEN!
-        if (p >= 0.88 || window.scrollY >= 620) {
+        if (p >= 0.88) {
           hasLanded = true;
           coveEl?.classList.add('is-docked');
           gsap.set(stage, { visibility: 'hidden', opacity: 0 });
@@ -201,7 +258,7 @@ export const Hero: React.FC<HeroProps> = ({
         // 4. SCROLLING UP (dir === -1): NO FLIGHT ANIMATION ON SCROLL UP (per prompt instructions)
         // Keep carousel docked until scrolled all the way back up into hero view.
         if (dir === -1 || hasLanded) {
-          if (p > 0.15 && window.scrollY >= 150) {
+          if (p > 0.15) {
             coveEl?.classList.add('is-docked');
             gsap.set(stage, { visibility: 'hidden', opacity: 0 });
           } else {
@@ -225,7 +282,12 @@ export const Hero: React.FC<HeroProps> = ({
   }, []);
 
   return (
-    <section ref={heroSectionRef} className="hero-editorial-section" aria-label="Hero Spotlight">
+    <section
+      id="hero-spotlight"
+      ref={heroSectionRef}
+      className={`hero-editorial-section ${isFullScreenFit ? 'is-fullscreen-fit' : ''}`}
+      aria-label="Hero Spotlight"
+    >
       {/* Three.js 3D Atmospheric Depth & Muted Gold Motes */}
       <Hero3DAtmosphere />
 
@@ -257,22 +319,156 @@ export const Hero: React.FC<HeroProps> = ({
               Hospital-grade tailored scrubs engineered with BeauTech 4-way recoil stretch and Silvadur antimicrobial defense for 14-hour hospital shifts and everyday presence.
             </p>
 
-            {/* Solid Rectangular CTA Button matching mockup */}
+            {/* Primary, Secondary Video & Fullscreen Fit CTAs */}
             <div className="hero-cta-button-group">
               <Link
                 to="/collections/scrubs"
                 className="hero-monolith-btn"
               >
-                CHAT TO NOW
+                SHOP COLLECTION
               </Link>
+
+              <button
+                type="button"
+                className="hero-secondary-video-btn"
+                onClick={() => {
+                  const nextMode = heroMode === 'video' ? 'model' : 'video';
+                  setHeroMode(nextMode);
+                  if (nextMode === 'video' && heroVideoRef.current) {
+                    heroVideoRef.current.play().catch(() => {});
+                    setIsVideoPlaying(true);
+                  }
+                }}
+                aria-label={heroMode === 'video' ? 'Switch to Model Fit' : 'Watch Campaign Video'}
+              >
+                {heroMode === 'video' ? (
+                  <>
+                    <Sparkles size={15} />
+                    <span>View Model Fit</span>
+                  </>
+                ) : (
+                  <>
+                    <Play size={14} fill="currentColor" />
+                    <span>Watch Campaign Film</span>
+                  </>
+                )}
+              </button>
+
+              <button
+                type="button"
+                className={`hero-fullscreen-toggle-btn ${isFullScreenFit ? 'is-active' : ''}`}
+                onClick={toggleFullScreenFit}
+                aria-label="Toggle Full Screen Video Experience"
+                title={isFullScreenFit ? "Switch to Split View" : "Expand to Full Screen Fit"}
+              >
+                {isFullScreenFit ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
+                <span>{isFullScreenFit ? 'Split View' : 'Full Screen Fit'}</span>
+              </button>
             </div>
           </div>
         </div>
 
-        {/* Right Stage with Centered Model on Clean Luxury Background */}
-        <div className="hero-editorial-right">
-          {/* Model Visual Stage with GSAP Parallax Fall */}
-          <div ref={modelStageRef} className="hero-visual-stage gsap-parallax-active">
+        {/* Right Stage with Interactive Mode (Google Flow / Gemini Omni Video or Clean Atelier Model) */}
+        <div className={`hero-editorial-right ${heroMode === 'video' ? 'video-mode-active' : 'model-mode-active'}`}>
+          {/* 1. Google Flow / Gemini Omni 3D Perspective Video Stage */}
+          <div className="hero-video-stage-container" aria-hidden={heroMode !== 'video'}>
+            <div ref={videoFrameRef} className="hero-video-frame">
+              <video
+                ref={heroVideoRef}
+                src="/video/hero-campaign.mp4"
+                poster="/images/campaign-video-poster.jpg"
+                autoPlay
+                loop
+                muted={isVideoMuted}
+                playsInline
+                className="hero-stage-video"
+                onClick={toggleVideoPlay}
+              />
+
+              {/* Video Overlay Top Header Badge & Quick Mode Switcher */}
+              <div className="hero-video-top-overlay">
+                <span className="hero-video-pill-badge">
+                  <Film size={12} />
+                  <span>BEAUTECH™ MOTION • 3D SCROLL PERSPECTIVE</span>
+                </span>
+
+                <div className="hero-top-actions">
+                  <button
+                    type="button"
+                    className="hero-video-mode-pill"
+                    onClick={toggleFullScreenFit}
+                    title={isFullScreenFit ? "Return to Split View" : "Full Screen Fit"}
+                  >
+                    {isFullScreenFit ? <Minimize2 size={13} /> : <Maximize2 size={13} />}
+                    <span>{isFullScreenFit ? 'Split' : 'Full Screen'}</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    className="hero-video-mode-pill"
+                    onClick={() => {
+                      setHeroMode('model');
+                      setIsFullScreenFit(false);
+                    }}
+                    title="Switch to 3D Model Fit"
+                  >
+                    <span>Model Fit</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Video Overlay Bottom Controls */}
+              <div className="hero-video-bottom-controls">
+                <div className="ctrl-actions-left">
+                  <button
+                    type="button"
+                    className="video-ctrl-icon-btn"
+                    onClick={toggleVideoPlay}
+                    aria-label={isVideoPlaying ? 'Pause Video' : 'Play Video'}
+                    title={isVideoPlaying ? 'Pause' : 'Play'}
+                  >
+                    {isVideoPlaying ? <Pause size={15} /> : <Play size={15} fill="currentColor" />}
+                  </button>
+
+                  <button
+                    type="button"
+                    className="video-ctrl-icon-btn"
+                    onClick={toggleVideoMute}
+                    aria-label={isVideoMuted ? 'Unmute Audio' : 'Mute Audio'}
+                    title={isVideoMuted ? 'Unmute' : 'Mute'}
+                  >
+                    {isVideoMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
+                  </button>
+
+                  <button
+                    type="button"
+                    className={`video-ctrl-icon-btn ${isFullScreenFit ? 'is-active' : ''}`}
+                    onClick={toggleFullScreenFit}
+                    aria-label={isFullScreenFit ? 'Exit Full Screen Fit' : 'Full Screen Fit'}
+                    title={isFullScreenFit ? 'Exit Full Screen Fit' : 'Full Screen Fit (3D)'}
+                  >
+                    {isFullScreenFit ? <Minimize2 size={15} /> : <Maximize2 size={15} />}
+                  </button>
+
+                  <span className="video-live-indicator">
+                    <span className="live-dot" />
+                    <span>3D Scroll Depth</span>
+                  </span>
+                </div>
+
+                <div className="ctrl-actions-right">
+                  <span className="video-flow-tag">Gemini Omni Flash • 4K</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 2. Model Visual Stage with GSAP Parallax Fall (Active in model mode) */}
+          <div
+            ref={modelStageRef}
+            className={`hero-visual-stage gsap-parallax-active ${heroMode === 'video' ? 'is-bg-hidden' : ''}`}
+            aria-hidden={heroMode !== 'model'}
+          >
             <img
               ref={heroImageRef}
               src={heroImageSrc}
@@ -293,10 +489,16 @@ export const Hero: React.FC<HeroProps> = ({
             <span className="page-dot" />
           </div>
 
-          {/* Floating Circular Chat Widget Trigger */}
-          <div className="hero-floating-chat-bubble" title="Chat with Atelier Specialist" aria-label="Open Chat">
+          {/* Floating Circular Fit Concierge Trigger */}
+          <button
+            type="button"
+            className="hero-floating-chat-bubble"
+            onClick={openFitFinder}
+            title="Find Your Exact Australian Fit in 30s"
+            aria-label="Open Atelier Fit Concierge"
+          >
             <MessageSquare size={19} color="#FFFFFF" />
-          </div>
+          </button>
         </div>
       </div>
     </section>

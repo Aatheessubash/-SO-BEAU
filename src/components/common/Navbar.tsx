@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Search, ShoppingBag, Heart, Menu, X } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { BrandLogo } from './BrandLogo';
@@ -9,8 +9,25 @@ export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const { totalItems, openCart, openSearch, wishlist, isCartBouncing } = useCart();
+
+  const handleTryTheLookClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    if (location.pathname === '/') {
+      const target = document.getElementById('try-the-look');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+    }
+    navigate('/');
+    setTimeout(() => {
+      document.getElementById('try-the-look')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 180);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,7 +83,8 @@ export const Navbar: React.FC = () => {
             Men
           </Link>
           <a 
-            href="/#try-the-look" 
+            href="#try-the-look" 
+            onClick={handleTryTheLookClick}
             className="nav-link"
           >
             Try The Look
@@ -131,7 +149,7 @@ export const Navbar: React.FC = () => {
           <Link to="/collections/scrubs?category=mens-scrubs" className="mobile-nav-sublink">
             Men's Scrubs
           </Link>
-          <a href="/#try-the-look" className="mobile-nav-sublink" onClick={() => setIsMobileMenuOpen(false)}>
+          <a href="#try-the-look" className="mobile-nav-sublink" onClick={handleTryTheLookClick}>
             Try The Look Studio
           </a>
           <Link to="/pages/size-guide" className="mobile-nav-sublink">

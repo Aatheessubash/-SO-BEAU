@@ -178,3 +178,143 @@
 .reveal-mask-image {
   animation: maskCurtainWipe 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+// =============================================================================
+// CSS Scroll-Driven Animations Suite (Progressive Enhancement)
+// Compositor-only (transform + opacity), zero JS jank, safe Firefox fallback
+// =============================================================================
+
+@keyframes sda-lift-3d {
+  from {
+    opacity: 0.15;
+    transform: perspective(1200px) translateY(40px) rotateX(4deg) scale(0.975);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1200px) translateY(0) rotateX(0deg) scale(1);
+  }
+}
+
+@keyframes sda-card-left {
+  from {
+    opacity: 0.12;
+    transform: translate3d(-24px, 36px, 0) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes sda-card-right {
+  from {
+    opacity: 0.12;
+    transform: translate3d(24px, 44px, 0) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes sda-tile-zoom {
+  from {
+    opacity: 0.18;
+    transform: translateY(30px) scale(0.93);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes sda-wave-parallax {
+  from {
+    transform: translateY(-28px);
+  }
+  to {
+    transform: translateY(28px);
+  }
+}
+
+@keyframes swatchCrossfade {
+  from {
+    opacity: 0.35;
+    transform: scale(0.985) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.swatch-crossfade-img {
+  animation: swatchCrossfade 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    // Try The Look Studio: subtle 3D stage lift on entry
+    .try-the-look-studio-section .studio-main-stage,
+    .try-the-look-studio-section .selected-variant-detail-panel {
+      animation: sda-lift-3d linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 34%;
+      will-change: transform, opacity;
+    }
+
+    // Curated Collections: opposing editorial card entrances + wave parallax
+    .curated-silhouettes-suite .curated-header-center {
+      animation: sda-tile-zoom linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 36%;
+    }
+
+    .curated-silhouettes-suite .womens-card {
+      animation: sda-card-left linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 38%;
+      will-change: transform, opacity;
+    }
+
+    .curated-silhouettes-suite .mens-card {
+      animation: sda-card-right linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 42%;
+      will-change: transform, opacity;
+    }
+
+    .curated-silhouettes-suite .style-dock-floating-wrap {
+      animation: sda-tile-zoom linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 32%;
+    }
+
+    .curated-silhouettes-suite .corner-wave {
+      animation: sda-wave-parallax linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+
+    // Instagram Clinical Collective: smooth tile reveal
+    .insta-feed-section .insta-header {
+      animation: sda-tile-zoom linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+
+    .insta-feed-section .insta-tile {
+      animation: sda-tile-zoom linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 38%;
+      will-change: transform, opacity;
+    }
+
+    // Footer newsletter entrance
+    .site-footer .footer-newsletter-banner {
+      animation: sda-tile-zoom linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 30%;
+    }
+  }
+}

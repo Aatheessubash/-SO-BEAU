@@ -208,9 +208,10 @@ export const CuratedCollections: React.FC<CuratedCollectionsProps> = ({ products
             {/* Right Column: Model Figure */}
             <div className="card-figure-showcase">
               <img
+                key={currentWomens.img}
                 src={currentWomens.img}
                 alt={`Women's Scrub in ${currentWomens.name}`}
-                className="model-full-figure"
+                className="model-full-figure swatch-crossfade-img"
                 loading="eager"
               />
             </div>
@@ -263,9 +264,10 @@ export const CuratedCollections: React.FC<CuratedCollectionsProps> = ({ products
             {/* Right Column: Model Figure */}
             <div className="card-figure-showcase">
               <img
+                key={currentMens.img}
                 src={currentMens.img}
                 alt={`Men's Scrub in ${currentMens.name}`}
-                className="model-full-figure"
+                className="model-full-figure swatch-crossfade-img"
                 loading="eager"
               />
             </div>

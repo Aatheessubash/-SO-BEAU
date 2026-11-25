@@ -15,9 +15,22 @@ export const OrderConfirmationPage: React.FC = () => {
       if (!id) return;
       try {
         const res = await api.getOrder(id);
-        if (res.data) setOrder(res.data);
+        if (res.data) {
+          setOrder(res.data);
+          return;
+        }
       } catch {
-        // Fallback demo order state if server memory is fresh
+        // Check exact locally saved receipt from checkout first
+        try {
+          const saved = sessionStorage.getItem(`so_beau_order_${id}`);
+          if (saved) {
+            setOrder(JSON.parse(saved) as OrderRecord);
+            return;
+          }
+        } catch {
+          // ignore
+        }
+        // Fallback demo order state with valid PNG images and accurate math
         setOrder({
           orderId: id,
           createdAt: new Date().toISOString(),
@@ -27,22 +40,22 @@ export const OrderConfirmationPage: React.FC = () => {
             {
               id: 'item-1',
               productId: 'sb-001',
-              name: "The Women's Nursing Scrub Set",
+              name: "The Women's Scrub Set",
               price: 158.0,
               quantity: 1,
               color: 'Deep Charcoal',
               size: 'AU 8 (S)',
-              image: '/images/female/female-navy-front.jpg',
+              image: '/images/female/female-charcoal-front.png',
             },
             {
               id: 'item-2',
               productId: 'sb-002',
-              name: "The Men's Nursing Scrub Set",
+              name: "The Men's Scrub Set",
               price: 158.0,
               quantity: 1,
               color: 'French Navy',
               size: 'AU L (42)',
-              image: '/images/male/male-navy-front.jpg',
+              image: '/images/male/male-navy-front.png',
             },
           ],
           customer: {
@@ -60,11 +73,11 @@ export const OrderConfirmationPage: React.FC = () => {
           },
           shippingMethod: 'express',
           paymentMethod: 'card',
-          discountAmount: 18.60,
-          itemsSubtotal: 186.00,
+          discountAmount: 31.60,
+          itemsSubtotal: 316.00,
           shippingCost: 0,
-          gstIncluded: 15.22,
-          total: 167.40,
+          gstIncluded: 25.85,
+          total: 284.40,
           estimatedDelivery: '1–2 business days (Australia Post Express)',
         });
       } finally {

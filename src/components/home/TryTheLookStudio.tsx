@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   ChevronLeft, 
   ChevronRight, 
-  Star,
   Check,
   ShoppingBag,
-  Eye,
-  Truck,
-  RotateCcw
+  ArrowUpRight
 } from 'lucide-react';
 import { Product } from '../../types';
 import { useCart } from '../../context/CartContext';
@@ -57,8 +55,11 @@ export const TryTheLookStudio: React.FC<TryTheLookStudioProps> = ({
     onSelectLookIndex?.(idx);
   };
 
-  // Selected size state (default 'M')
-  const [selectedSize, setSelectedSize] = useState<string>('M');
+  // Selected size state initialized safely from activeProduct.sizes
+  const [selectedSize, setSelectedSize] = useState<string>(() => {
+    const sizes = activeProduct?.sizes || [];
+    return sizes.find(s => s.includes('8 (S)') || s.includes('M (40)') || s === 'M') || sizes[0] || 'AU 8 (S)';
+  });
 
   // Add to Bag feedback state
   const [isAdded, setIsAdded] = useState(false);
@@ -334,7 +335,9 @@ export const TryTheLookStudio: React.FC<TryTheLookStudioProps> = ({
           <div className="panel-option-block">
             <div className="option-header-row">
               <span className="option-label">Size</span>
-              <span className="option-active-value">AU {selectedSize}</span>
+              <span className="option-active-value">
+                {selectedSize.startsWith('AU') ? selectedSize : `AU ${selectedSize}`}
+              </span>
             </div>
             <div className="sizes-selector-grid" role="radiogroup" aria-label="Select size">
               {availableSizes.map((size) => {
@@ -358,7 +361,7 @@ export const TryTheLookStudio: React.FC<TryTheLookStudioProps> = ({
             </div>
           </div>
 
-          {/* Action CTAs (Clean, sleek, no price) */}
+          {/* Action CTAs */}
           <div className="panel-cta-group">
             <button
               ref={addButtonRef}
@@ -374,10 +377,35 @@ export const TryTheLookStudio: React.FC<TryTheLookStudioProps> = ({
               ) : (
                 <>
                   <ShoppingBag size={18} />
-                  <span>Add Look to Bag</span>
+                  <span>Add Look to Bag — ${activeProduct.price.toFixed(0)} AUD</span>
                 </>
               )}
             </button>
+
+            <Link
+              to={`/products/${activeProduct.slug}`}
+              className="atelier-inspect-link"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.4rem',
+                marginTop: '0.6rem',
+                fontSize: '0.78rem',
+                fontWeight: 600,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                color: '#14243A',
+                textDecoration: 'none',
+                padding: '0.55rem 0.75rem',
+                borderRadius: '8px',
+                border: '1px solid rgba(20, 36, 58, 0.14)',
+                transition: 'all 180ms ease',
+              }}
+            >
+              <span>3D 360° &amp; Full Garment Specs</span>
+              <ArrowUpRight size={14} />
+            </Link>
           </div>
         </aside>
 

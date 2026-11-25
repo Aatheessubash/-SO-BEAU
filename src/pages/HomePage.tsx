@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { api } from '../services/api';
 import { Product, ProductColor } from '../types';
 import productsFallback from '../../server/data/products.json';
+import { WelcomeScrollShowcase } from '../components/home/WelcomeScrollShowcase';
 import { Hero } from '../components/home/Hero';
 import { TryTheLookStudio } from '../components/home/TryTheLookStudio';
 import { CuratedCollections } from '../components/home/CuratedCollections';
@@ -43,6 +44,9 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="home-page animate-fade-in">
+      {/* 0. Welcome 3D Scroll-Driven Frame Sequence Showcase (public/Frames) */}
+      <WelcomeScrollShowcase />
+
       {/* 1. Hero: Soft-Blurred Video, 2-Line Headline, Core CTAs & Linked Model */}
       <Hero 
         activeGender={selectedGender}
